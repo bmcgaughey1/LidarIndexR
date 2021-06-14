@@ -1,0 +1,26 @@
+Package: LidarIndexR
+Title: Provides functions to build index files for lidar projects
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Robert",
+           family = "McGaughey",
+           role = c("aut", "cre"),
+           email = "robert.mcgaughey@usda.gov")
+Description: LidarIndexR contains functions to build index files for collections of
+  LAS or LAZ point tiles.
+Imports:
+    RCurl,
+    rgdal,
+    rgeos,
+    sp,
+    sf,
+    urltools
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
