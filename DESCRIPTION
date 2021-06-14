@@ -14,6 +14,7 @@ Imports:
     rgeos,
     sp,
     sf,
+    lidR,
     urltools
 License: CC0
 Encoding: UTF-8

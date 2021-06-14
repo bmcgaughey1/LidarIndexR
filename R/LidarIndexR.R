@@ -6,6 +6,7 @@
 #   Build documentation:       Ctrl + Shift + D...not working
 #   Build vignette:            Ctrl + Shift + K
 #
+# library(devtools)
 # setwd("G:/R_Stuff/LidarIndexR")
 #
 # To build documentation:
@@ -192,9 +193,28 @@ DirListByName <- function (
   }
 }
 
-# Functions to access LAS/LAZ files
+# ---------- ReadRemoteLASProjection
+#
+#' LidarIndexR -- Read LAS/LAZ header and extract CRS information
+#'
+#' Download the header for a LAS/LAZ file and read CRS information from the header.
+#' Only the file header is downloaded (including VLRs) so you don't have to worry 
+#' about the size of the LAS/LAZ file.
+#'
+#' @param URL URL for a LAS/LAZ file on a remote host.
+#' @param tempFolder A valid folder name where the LAS/LAZ file header can be 
+#'   temporarily stored. The header file is deleted after use.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A string containing the CRS information retrieved from the LAS/LAZ
+#'   header.
+#' @examples
+#' \dontrun{
+#' ReadRemoteLASProjection()
+#' }
+#' @export
 ReadRemoteLASProjection <- function (
-  url,
+  URL,
   tempFolder,
   quiet = FALSE
 ) {
@@ -207,7 +227,7 @@ ReadRemoteLASProjection <- function (
   OffsettoPointData <- 0
   crs <- NA
 
-  con <- tryCatch(url(url, open = "rb"), error = function(e) {NA})
+  con <- tryCatch(url(URL, open = "rb"), error = function(e) {NA})
   if (is.object(con)) {
     bs <- readBin(con, "raw", 100)
     close(con)
@@ -229,7 +249,7 @@ ReadRemoteLASProjection <- function (
 
   if (Signature == "LASF" && OffsettoPointData > 0) {
     # read the entire header and write to local file
-    con <- url(url, open = "rb")
+    con <- url(URL, open = "rb")
     bs <- readBin(con, "raw", OffsettoPointData)
     close(con)
 
@@ -251,16 +271,32 @@ ReadRemoteLASProjection <- function (
   return(crs)
 }
 
+# ---------- ReadRemoteLASHeader
+#
+#' LidarIndexR -- Read the header for a remote LAS/LAZ file
+#'
+#' Reads the header of a LAS/LAZ file and returns header information in a
+#' data frame. Only the header is read.
+#'
+#' @param URL URL for a LAS/LAZ file on a remote host.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A data frame containing header information.
+#' @examples
+#' \dontrun{
+#' ReadRemoteLASHeader()
+#' }
+#' @export
 ReadRemoteLASHeader <- function(
-  url,
+  URL,
   quiet = FALSE
 ) {
   # open connection and read 375 bytes...header for V1.4 is 375 bytes
   # hopefully this is faster than reading individual values via ftp...but i didn't test
   if (!quiet)
-    cat("reading header for", basename(url), "\n")
+    cat("reading header for", basename(URL), "\n")
 
-  con <- url(url, open = "rb")
+  con <- url(URL, open = "rb")
   bs <- readBin(con, "raw", 375)
   close(con)
 
@@ -299,7 +335,7 @@ ReadRemoteLASHeader <- function(
     }
 
     if (!quiet)
-      cat("Read extent of", basename(url), "\n")
+      cat("Read extent of", basename(URL), "\n")
   } else {
     VersionMajor <- NA
     VersionMinor <- NA
@@ -318,14 +354,14 @@ ReadRemoteLASHeader <- function(
     MinZ <- NA
 
     if (!quiet)
-      cat("Failed to read extent of", basename(url), "\n")
+      cat("Failed to read extent of", basename(URL), "\n")
   }
   close(con)
 
   # build data frame to return
   df <- data.frame(
-    "URL" = url,
-    "FileName" = basename(url),
+    "URL" = URL,
+    "FileName" = basename(URL),
     "LASVersion" = VersionMajor + VersionMinor / 10,
     "FileDayOfYear" = DayOfYear,
     "FileYear" = Year,
@@ -345,13 +381,33 @@ ReadRemoteLASHeader <- function(
   return(df)
 }
 
-# Functions to find CRS information
-# function to download smallest LAS file in a folder, load it with lidR and
-# get the crs. Return is a CRS in sp format...get WKT using sp::wkt(crs)
+# ---------- FetchAndExtractCRSFromPoints
 #
-# if headerOnly = TRUE, only the LAS/LAZ file header is downloaded to get the crs
-# partial LAS/LAZ file is deleted after crs is extracted
-#
+#' LidarIndexR -- Retrieve CRS information from a LAS/LAZ point file
+#'
+#' Reads CRS information from LAS/LAZ files on a remote host. This is done by
+#' reading only the file header \code{headerOnly = TRUE} or retreiving the entire
+#' file and reading the header \code{headerOnly = FALSE}. 
+#'
+#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#'   be included.
+#' @param folderName Folder name on the \code{baseURL} containing LAS/LAZ
+#'   files.
+#' @param tempFolder A valid folder name where the LAS/LAZ file header can be 
+#'   temporarily stored. The header file is deleted after use.
+#' @param headerOnly Boolean. If TRUE, only the file header is read. If FALSE,
+#'   the entire LAS/LAZ file is retrieved and then the header is read to 
+#'   extract CRS information.
+#' @param fetchnew Boolean. If TRUE, the file is always retrieved. If FALSE,
+#'   the file is only retrieved if it does not already exist in the \code{tempFolder}.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A list of file names.
+#' @examples
+#' \dontrun{
+#' FetchAndExtractCRSFromPoints()
+#' }
+#' @export
 FetchAndExtractCRSFromPoints <- function (
   baseURL,
   folderName,
@@ -396,6 +452,34 @@ FetchAndExtractCRSFromPoints <- function (
 
 # function to download a shapefile, load it with st_read and
 # get the crs. Return is a CRS in a proj4string
+
+
+# ---------- FetchAndExtractCRSFromIndex
+#
+#' LidarIndexR -- Retrieve a shapefile (all files) and read CRS information
+#'
+#' Retrieves all files related to a shapefile (same name as \code{fileName} but
+#' different extensions) and then reads CRS information from the projection 
+#' file.
+#'
+#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#'   be included.
+#' @param folderName Folder name on the \code{baseURL} containing the shapefile.
+#' @param fileName A string containing the name of a single file. All
+#'   files with the same name (but different extensions) will be retrieved. The 
+#'   projection file is then read to provide CRS information.
+#' @param tempFolder A valid folder name where the files can be 
+#'   temporarily stored.
+#' @param fetchnew Boolean. If TRUE, the files are always retrieved. If FALSE,
+#'   the files are only retrieved if they do not already exist in the \code{tempFolder}.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A list of file names.
+#' @examples
+#' \dontrun{
+#' DirListByName("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/NHD/HU4/HighResolution/Shape/", "NHD_H_0101_HU4_Shape.jpg")
+#' }
+#' @export
 FetchAndExtractCRSFromIndex <- function (
   baseURL,
   folderName,
@@ -437,10 +521,38 @@ FetchAndExtractCRSFromIndex <- function (
 
 # function to download .prj file associated with the .shp file passed in fileName
 # Use the string read form the .prj file to get the crs. Return is a CRS in proj4string
+
+
+# ---------- FetchAndExtractCRSFromPrj
+#
+#' LidarIndexR -- Retrieve a projection file and read CRS information
+#'
+#' Retrieves only the projection file related to a shapefile (same name as 
+#' \code{fileName} but with .prj extensions) and then reads CRS information 
+#' from the projection file.
+#'
+#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#'   be included.
+#' @param folderName Folder name on the \code{baseURL} containing the shapefile.
+#' @param fileName A string containing the name of a single file. The projection
+#'   file with the same name (but extension of .prj) will be retrieved. The 
+#'   projection file is then read to provide CRS information.
+#' @param tempFolder A valid folder name where the projection file can be 
+#'   temporarily stored.
+#' @param fetchnew Boolean. If TRUE, the file is always retrieved. If FALSE,
+#'   the file is only retrieved if it does not already exist in the \code{tempFolder}.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A list of file names.
+#' @examples
+#' \dontrun{
+#' FetchAndExtractCRSFromPrj()
+#' }
+#' @export
 FetchAndExtractCRSFromPrj <- function (
   baseURL,
   folderName,
-  fileName,             # must be .prj file
+  fileName,
   tempFolder,
   fetchnew = FALSE,
   quiet = FALSE,
@@ -483,7 +595,43 @@ FetchAndExtractCRSFromPrj <- function (
   return(crs)
 }
 
-# Functions to build index files
+# ---------- BuildIndexFromPoints
+#
+#' LidarIndexR -- Create spatial index by reading LAS/LAZ file headers
+#'
+#' Longer description
+#'
+#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#'   be included.
+#' @param folderName Folder name on the \code{baseURL} containing LAS/LAZ files.
+#' @param outputFile Full path and filename on the local file system for the index
+#'   file.
+#' @param projString A valid projection string that can be used with the \code{crs}
+#'   parameter in \code{st_sf}. \code{projString} should represent the projection
+#'   pf the point data.
+#' @param outputCRS A valid projection string that can be used with the \code{crs}
+#'     parameter in \code{st_transform} to reproject the index.
+#' @param fileType Any valid string for the pattern parameter in \code{grep()}.
+#'   "$" will be appended to the string to search for file/folder names ending
+#'   with values in \code{fileType}.
+#' @param dirFormat String indicating the expected directory format for the
+#'   \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
+#'   Attribute/Size, and file name or "ls" if the URL returns directory
+#'   information similar to the UNIX \code{ls -al} command.
+#' @param dimensionThreshold Size threshold used to omit files from the index.
+#'   This is intended to help omit invalid LAS.LAZ files from the index. If
+#'   the height or width of the point tile exceeds the threshold, the tile
+#'   will ne omitted.
+#' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
+#'   the index is only created if it does not already exist.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A list of file names.
+#' @examples
+#' \dontrun{
+#' BuildIndexFromPoints()
+#' }
+#' @export
 BuildIndexFromPoints <- function (
   baseURL,
   folderName,
