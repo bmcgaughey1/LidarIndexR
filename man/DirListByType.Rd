@@ -12,6 +12,8 @@ DirListByType(URL, fileType, ...)
 \item{fileType}{Any valid string for the pattern parameter in \code{grep()}.
 "$" will be appended to the string to search for file/folder names ending
 with values in \code{fileType}.}
+
+\item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
 A list of file names.
@@ -22,6 +24,8 @@ of file names.
 }
 \examples{
 \dontrun{
-DirListByType("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/", "\\\\.las|\\\\.laz")
+DirListByType(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+    "Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"),
+    "\\\\.las|\\\\.laz")
 }
 }

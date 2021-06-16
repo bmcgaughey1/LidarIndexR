@@ -32,6 +32,8 @@ the files are only retrieved if they do not already exist in the \code{tempFolde
 
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}
+
+\item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
 String containing a valid input value for \code{st_crs()}.
@@ -43,6 +45,8 @@ file.
 }
 \examples{
 \dontrun{
-DirListByName("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/NHD/HU4/HighResolution/Shape/", "NHD_H_0101_HU4_Shape.jpg")
+DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+    "Staged/Hydrography/NHD/HU4/HighResolution/Shape/"),
+    "NHD_H_0101_HU4_Shape.jpg")
 }
 }

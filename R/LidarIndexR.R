@@ -53,12 +53,15 @@ unsignedFourByteIntToDouble <- function(i) {
 #'   Attribute/Size, and file name; "ls" if the URL returns directory
 #'   information similar to the UNIX \code{ls -al} command; or "" if you
 #'   want the function to try to determine the directory format.
+#' @param ... Arguments passed to \code{RCurl::getURL()}.
 #' @return A list of file names or a data frame with file names and attribute
 #'   information. The return value depends on \code{namesOnly}.
 #' @examples
 #' \dontrun{
 #' DirList("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/")
-#' DirList("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/", "\\.las|\\.laz")
+#' DirList(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+#'    "Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"),
+#'     "\\.las|\\.laz")
 #' }
 #' @export
 DirList <- function (
@@ -138,10 +141,13 @@ DirList <- function (
 #' @param fileType Any valid string for the pattern parameter in \code{grep()}.
 #'   "$" will be appended to the string to search for file/folder names ending
 #'   with values in \code{fileType}.
+#' @param ... Arguments passed to \code{RCurl::getURL()}.
 #' @return A list of file names.
 #' @examples
 #' \dontrun{
-#' DirListByType("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/", "\\.las|\\.laz")
+#' DirListByType(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+#'     "Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"),
+#'     "\\.las|\\.laz")
 #' }
 #' @export
 DirListByType <- function (
@@ -176,10 +182,13 @@ DirListByType <- function (
 #' @param URL URL for a folder on a remote host. Trailing slash is optional.
 #' @param fileName A string containing the name of a single file. All files
 #'   with the same name (but different extensions) will be returned.
+#' @param ... Arguments passed to \code{RCurl::getURL()}.
 #' @return A list of file names.
 #' @examples
 #' \dontrun{
-#' DirListByName("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/NHD/HU4/HighResolution/Shape/", "NHD_H_0101_HU4_Shape.jpg")
+#' DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+#'     "Staged/Hydrography/NHD/HU4/HighResolution/Shape/"),
+#'     "NHD_H_0101_HU4_Shape.jpg")
 #' }
 #' @export
 DirListByName <- function (
@@ -270,7 +279,7 @@ ReadRemoteLASProjection <- function (
       # read header
       t <- tryCatch(lidR::readLASheader(file.path(tempFolder, "__temp__.las")), error = function(e) {NA})
       if (is.object(t)) {
-        crs <- projection(t)
+        crs <- raster::projection(t)
       }
 
       # delete temp file
@@ -414,6 +423,7 @@ ReadRemoteLASHeader <- function(
 #'   the file is only retrieved if it does not already exist in the \code{tempFolder}.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
+#' @param ... Arguments passed to \code{RCurl::getURL()}.
 #' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
@@ -443,13 +453,13 @@ FetchAndExtractCRSFromPoints <- function (
       crs <- ReadRemoteLASProjection(paste0(t, fileList$Name[1]), tempFolder, quiet = TRUE)
     } else {
       if (!file.exists(file.path(tempFolder, fileList$Name[1])) || fetchnew) {
-        download.file(paste0(t, fileList$Name[1]), file.path(tempFolder, fileList$Name[1]), quiet = quiet, mode = "wb", ...)
+        utils::download.file(paste0(t, fileList$Name[1]), file.path(tempFolder, fileList$Name[1]), quiet = quiet, mode = "wb", ...)
       }
 
       # load file and extract CRS (if any)
       las <- tryCatch(lidR::readLASheader(file.path(tempFolder, fileList$Name[1])), error = function(e) {NA})
       if (is.object(las)) {
-        crs <- projection(las)
+        crs <- raster::projection(las)
       } else {
         crs <- NA
       }
@@ -486,10 +496,13 @@ FetchAndExtractCRSFromPoints <- function (
 #'   the files are only retrieved if they do not already exist in the \code{tempFolder}.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
+#' @param ... Arguments passed to \code{RCurl::getURL()}.
 #' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
-#' DirListByName("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/NHD/HU4/HighResolution/Shape/", "NHD_H_0101_HU4_Shape.jpg")
+#' DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+#'     "Staged/Hydrography/NHD/HU4/HighResolution/Shape/"),
+#'     "NHD_H_0101_HU4_Shape.jpg")
 #' }
 #' @export
 FetchAndExtractCRSFromIndex <- function (
@@ -512,14 +525,14 @@ FetchAndExtractCRSFromIndex <- function (
   if (length(filenames)) {
     for (filename in filenames) {
       if (!file.exists(paste0(tempFolder, "/", filename)) || fetchnew) {
-        download.file(paste0(t, filename), paste0(tempFolder, "/", filename), mode = "wb")
+        utils::download.file(paste0(t, filename), paste0(tempFolder, "/", filename), mode = "wb")
       }
     }
 
     # load index file and extract CRS (if any)
     index <- tryCatch(sf::st_read(file.path(tempFolder, fileName)), error = function(e) {NA})
     if (is.object(index)) {
-      crs <- projection(index)
+      crs <- raster::projection(index)
     } else {
       crs <- NA
     }
@@ -555,6 +568,7 @@ FetchAndExtractCRSFromIndex <- function (
 #'   the file is only retrieved if it does not already exist in the \code{tempFolder}.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
+#' @param ... Arguments passed to \code{RCurl::getURL()}.
 #' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
@@ -584,7 +598,7 @@ FetchAndExtractCRSFromPrj <- function (
   if (length(filenames)) {
     for (f in filenames) {
       if (!file.exists(paste0(tempFolder, "/", f)) || fetchnew) {
-        download.file(paste0(t, f), paste0(tempFolder, "/", f), mode = "wb")
+        utils::download.file(paste0(t, f), paste0(tempFolder, "/", f), mode = "wb")
       }
     }
 
@@ -595,7 +609,7 @@ FetchAndExtractCRSFromPrj <- function (
       close(f)
       #      cat(l, "\n")
 
-      crs <- CRS(l)@projargs
+      crs <- sp::CRS(l)@projargs
     } else {
       crs <- NA
     }
@@ -679,7 +693,7 @@ BuildIndexFromPoints <- function (
     t_df <- do.call("rbind", t)
 
     # drop any rows with NA values...bad LAS file...only check min/max XYZ values
-    t_df <- t_df[complete.cases(t_df[, 11:16]), ]
+    t_df <- t_df[stats::complete.cases(t_df[, 11:16]), ]
 
     # drop rows where width or height is >dimensionThreshold units
     t_df <- t_df[((t_df$MaxX - t_df$MinX) < dimensionThreshold & (t_df$MaxY - t_df$MinY) < dimensionThreshold), ]
@@ -799,7 +813,7 @@ BuildIndexFromUSGSProjectIndexItem <- function (
     t_df <- do.call("rbind", t)
     
     # drop any rows with NA values...bad LAS file...only check min/max XYZ values
-    t_df <- t_df[complete.cases(t_df[, 11:16]), ]
+    t_df <- t_df[stats::complete.cases(t_df[, 11:16]), ]
     
     # drop rows where width or height is >dimensionThreshold units
     t_df <- t_df[((t_df$MaxX - t_df$MinX) < dimensionThreshold & (t_df$MaxY - t_df$MinY) < dimensionThreshold), ]
@@ -897,7 +911,7 @@ BuildProjectPolygonFromIndex <- function (
     r_poly <- stars::st_rasterize(t_sf[, "PID"], dx = 512, dy = 512)
     
     # convert back to polygons...merge tiles
-    t_rp <- st_as_sf(r_poly, as_points = FALSE, merge = TRUE)
+    t_rp <- sf::st_as_sf(r_poly, as_points = FALSE, merge = TRUE)
     sf::st_make_valid(t_rp)
     
     if (!is.null(outputCRS)) {

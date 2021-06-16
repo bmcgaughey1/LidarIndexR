@@ -12,6 +12,8 @@ DirListByName(URL, fileName, ...)
 
 \item{fileName}{A string containing the name of a single file. All files
 with the same name (but different extensions) will be returned.}
+
+\item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
 A list of file names.
@@ -22,6 +24,8 @@ extensions.
 }
 \examples{
 \dontrun{
-DirListByName("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/NHD/HU4/HighResolution/Shape/", "NHD_H_0101_HU4_Shape.jpg")
+DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+    "Staged/Hydrography/NHD/HU4/HighResolution/Shape/"),
+    "NHD_H_0101_HU4_Shape.jpg")
 }
 }

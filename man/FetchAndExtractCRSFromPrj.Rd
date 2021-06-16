@@ -32,6 +32,8 @@ the file is only retrieved if it does not already exist in the \code{tempFolder}
 
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}
+
+\item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
 String containing a valid input value for \code{st_crs()}.

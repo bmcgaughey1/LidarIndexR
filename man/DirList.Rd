@@ -35,6 +35,8 @@ in the list of returned files/folders.}
 Attribute/Size, and file name; "ls" if the URL returns directory
 information similar to the UNIX \code{ls -al} command; or "" if you
 want the function to try to determine the directory format.}
+
+\item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
 A list of file names or a data frame with file names and attribute
@@ -47,6 +49,8 @@ of file/folder names or a data frame with file/folder information.
 \examples{
 \dontrun{
 DirList("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/")
-DirList("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/", "\\\\.las|\\\\.laz")
+DirList(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+   "Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"),
+    "\\\\.las|\\\\.laz")
 }
 }
