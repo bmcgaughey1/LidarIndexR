@@ -13,8 +13,12 @@ Imports:
     rgdal,
     rgeos,
     sp,
+    stars,
     sf,
     lidR,
+    utils,
+    readr,
+    raster,
     urltools
 License: CC0
 Encoding: UTF-8

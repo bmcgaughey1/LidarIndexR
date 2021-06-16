@@ -34,13 +34,106 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("bmcgaughey1/LidarIndexR")
 ```
-## Example
+## Example #1: Create a tile index from files on a remote ftp server
 
-This is a basic example which shows you how to solve a common problem:
+This example creates a tile index for a single lidar project stored in the USGS rockyftp server. In this case,
+you have to know the details for the project including the folder name for the project and the projection
+information for the data.
 
-```{r example}
+```{r example1}
 library(LidarIndexR)
-## basic example code
+library(sf)
+library(ggplot2)
+library(viridis)
+
+## Basic example to build an index
+URL <- "ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/LPC/projects/AK_BrooksCamp_2012"
+pointFolder <- "laz"
+outputFile <- "~/AK_BrooksCamp_2012.gpkg"
+
+# projection info...no easy way to determine this
+pointCRS <- 26905
+
+# create index
+BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS)
+
+# read the index and display
+index <- st_read(outputFile)
+
+ggplot(index) +
+  ggtitle("AK_BrooksCamp_2012 lidar tiles") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_sf(aes(fill = PointCount), show.legend = TRUE) +
+  scale_fill_viridis()
+ 
+```
+
+## Example #2: Create a tile index using a project from the USGS FESM project index
+
+This example creates an index for the same lidar project as Example #1. However, this
+example uses the USGS project index to populate the new tile index with information
+regarding the acquisition and to provide projection information for the project.
+
+The example requires a local copy of the USGS project index from
+[here](ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg).
+The commented code in the example downloads the WESM.gpkg index.
+
+**Note:** The call to \code{BuildIndexFromUSGSProjectIndexItem} can take quite a bit of
+time to execute. It touches every point file on the server to read bounding box information
+for the tiles. For projects with thousands of tiles, it can take hours to build the index.
+
+```{r example2}
+library(LidarIndexR)
+library(sf)
+library(utils)
+library(ggplot2)
+library(viridis)
+
+# download the USGS WESM index
+# utils::download.file("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg",
+#                      "WESM.gpkg", 
+#                      method = "libcurl", 
+#                      mode = "wb")
+
+# read the FESM index from a local file
+index <- st_read("G:/R_Stuff/PlotClipping/WESM_6_04_2021.gpkg")
+pointFolder <- "laz"
+outputFile <- "~/AK_BrooksCamp_2012.gpkg"
+
+item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
+
+# create index
+BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
+
+# read the index and display
+tindex <- st_read(outputFile)
+
+ggplot(tindex) +
+  ggtitle("AK_BrooksCamp_2012 lidar tiles") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_sf(aes(fill = PointCount), show.legend = TRUE) +
+  scale_fill_viridis()
+ 
+```
+
+## Example #3: Create an overall polygon for a project from the tile index
+
+This example builds on Example #2 to create a polygon showing the area covered by the point tiles.
+
+```{r example3}
+# build on the last example to generate a project polygon
+
+tproject <- BuildProjectPolygonFromIndex(
+  outputFile,
+  item$workunit,
+  quiet = FALSE
+)
+
+# display the project polygon
+ggplot(tproject) +
+  ggtitle(paste0(item$workunit, " project area")) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_sf(aes(fill = PID), show.legend = FALSE)
 ```
 
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.

@@ -50,8 +50,9 @@ unsignedFourByteIntToDouble <- function(i) {
 #'   in the list of returned files/folders.
 #' @param dirFormat String indicating the expected directory format for the
 #'   \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
-#'   Attribute/Size, and file name or "ls" if the URL returns directory
-#'   information similar to the UNIX \code{ls -al} command.
+#'   Attribute/Size, and file name; "ls" if the URL returns directory
+#'   information similar to the UNIX \code{ls -al} command; or "" if you
+#'   want the function to try to determine the directory format.
 #' @return A list of file names or a data frame with file names and attribute
 #'   information. The return value depends on \code{namesOnly}.
 #' @examples
@@ -85,10 +86,21 @@ DirList <- function (
 
     # create a dataframe and sort on the attribute (size for files)
     if (!namesOnly) {
-      if (dirFormat != "dir") {
-        df <- read_table2(filenames, col_names = c("Permissions", "Links", "Owner", "Group", "Attribute", "Month", "Day", "Year", "Name"))
+      if (dirFormat == "") {
+        # look at first 10 characters of 1st string
+        if (grepl("/", filenames[1], fixed = TRUE))
+          dirFormat <- "dir"
+        else
+          dirFormat <- "ls"
+      }
+      
+      # parse information
+      if (dirFormat == "ls") {
+        # add a blank filename entry
+        filenames[length(filenames) + 1] <- ""
+        df <- readr::read_table2(filenames, col_names = c("Permissions", "Links", "Owner", "Group", "Attribute", "Month", "Day", "Year", "Name"), n_max = length(filenames) - 1)
       } else {
-        df <- read_fwf(filenames, fwf_widths(c(8, 9, 21, NA), c("Date", "Time", "Attribute", "Name")))
+        df <- readr::read_fwf(filenames, readr::fwf_widths(c(8, 9, 21, NA), c("Date", "Time", "Attribute", "Name")))
       }
 
       # df <- read.table(text = filenames)
@@ -293,8 +305,8 @@ ReadRemoteLASHeader <- function(
 ) {
   # open connection and read 375 bytes...header for V1.4 is 375 bytes
   # hopefully this is faster than reading individual values via ftp...but i didn't test
-  if (!quiet)
-    cat("reading header for", basename(URL), "\n")
+#  if (!quiet)
+#    cat("reading header for", basename(URL), "\n")
 
   con <- url(URL, open = "rb")
   bs <- readBin(con, "raw", 375)
@@ -386,7 +398,7 @@ ReadRemoteLASHeader <- function(
 #' LidarIndexR -- Retrieve CRS information from a LAS/LAZ point file
 #'
 #' Reads CRS information from LAS/LAZ files on a remote host. This is done by
-#' reading only the file header \code{headerOnly = TRUE} or retreiving the entire
+#' reading only the file header \code{headerOnly = TRUE} or retrieving the entire
 #' file and reading the header \code{headerOnly = FALSE}. 
 #'
 #' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
@@ -402,7 +414,7 @@ ReadRemoteLASHeader <- function(
 #'   the file is only retrieved if it does not already exist in the \code{tempFolder}.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A list of file names.
+#' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromPoints()
@@ -474,7 +486,7 @@ FetchAndExtractCRSFromPoints <- function (
 #'   the files are only retrieved if they do not already exist in the \code{tempFolder}.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A list of file names.
+#' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' DirListByName("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/NHD/HU4/HighResolution/Shape/", "NHD_H_0101_HU4_Shape.jpg")
@@ -543,7 +555,7 @@ FetchAndExtractCRSFromIndex <- function (
 #'   the file is only retrieved if it does not already exist in the \code{tempFolder}.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A list of file names.
+#' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromPrj()
@@ -608,7 +620,7 @@ FetchAndExtractCRSFromPrj <- function (
 #'   file.
 #' @param projString A valid projection string that can be used with the \code{crs}
 #'   parameter in \code{st_sf}. \code{projString} should represent the projection
-#'   pf the point data.
+#'   pf the point data. If using EPSG codes, do not enclose the EPSG number in quotes.
 #' @param outputCRS A valid projection string that can be used with the \code{crs}
 #'     parameter in \code{st_transform} to reproject the index.
 #' @param fileType Any valid string for the pattern parameter in \code{grep()}.
@@ -626,7 +638,7 @@ FetchAndExtractCRSFromPrj <- function (
 #'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A list of file names.
+#' @return Boolean indicating success (TRUE) or failure (FALSE).
 #' @examples
 #' \dontrun{
 #' BuildIndexFromPoints()
@@ -636,10 +648,10 @@ BuildIndexFromPoints <- function (
   baseURL,
   folderName,
   outputFile,
-  projString = NA,
-  outputCRS = NA,
+  projString = NULL,
+  outputCRS = NULL,
   fileType = "\\.las|\\.laz",
-  dirFormat = "short",
+  dirFormat = "ls",
   dimensionThreshold = 50000,
   rebuild = FALSE,
   quiet = FALSE
@@ -684,19 +696,23 @@ BuildIndexFromPoints <- function (
                       , ncol =2, byrow = T
         )
         # create polygon objects
-        st_polygon(list(res))
+        sf::st_polygon(list(res))
       }
       )
 
-      tiles_sf <- st_sf(t_df, st_sfc(lst), crs = projString)
+      tiles_sf <- sf::st_sf(t_df, sf::st_sfc(lst), crs = projString)
 
+      if (!is.null(projString)) {
+        tiles_sf <- sf::st_set_crs(tiles_sf, projString)  
+      }
+      
       # reproject to outputCRS
-      if (!is.na(projString) && !is.na(outputCRS)) {
-        tiles_sf <- st_transform(tiles_sf, crs = outputCRS)
+      if (!is.null(projString) && !is.null(outputCRS)) {
+        tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
       }
 
       # write output
-      st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
+      sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
 
       return(TRUE)
     } else {
@@ -709,17 +725,193 @@ BuildIndexFromPoints <- function (
   return(FALSE)
 }
 
-
-
-
-
-
-
-# notes:
+# ---------- BuildIndexFromUSGSProjectIndexItem
 #
-# The goal for this package is to have a set of functions that can create either a tile
-# index or a general polygon (created from the tiles) for a project (or both). I keep
-# running into USGS projects that don't have valid entries in their tile index so it
-# would be helpful to be able to build a new index for projects when needed.
+#' LidarIndexR -- Create spatial index by reading LAS/LAZ file headers
+#' associated with a USGS project index item.
+#'
+#' Longer description
+#'
+#' @param projectItem Data frame of sf object with information for a single USGS
+#'   lidar project as found in the USGS FESM index.
+#' @param folderName Folder name on the \code{baseURL} containing LAS/LAZ files.
+#' @param outputFile Full path and filename on the local file system for the index
+#'   file.
+#' @param projString A valid projection string that can be used with the \code{crs}
+#'   parameter in \code{st_sf}. \code{projString} should represent the projection
+#'   of the point data. If using EPSG codes, do not enclose the EPSG number in quotes.
+#' @param outputCRS A valid projection string that can be used with the \code{crs}
+#'     parameter in \code{st_transform} to reproject the index.
+#' @param fileType Any valid string for the pattern parameter in \code{grep()}.
+#'   "$" will be appended to the string to search for file/folder names ending
+#'   with values in \code{fileType}.
+#' @param dirFormat String indicating the expected directory format for the
+#'   \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
+#'   Attribute/Size, and file name or "ls" if the URL returns directory
+#'   information similar to the UNIX \code{ls -al} command.
+#' @param dimensionThreshold Size threshold used to omit files from the index.
+#'   This is intended to help omit invalid LAS.LAZ files from the index. If
+#'   the height or width of the point tile exceeds the threshold, the tile
+#'   will ne omitted.
+#' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
+#'   the index is only created if it does not already exist.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return Boolean indicating success (TRUE) or failure (FALSE).
+#' @examples
+#' \dontrun{
+#' BuildIndexFromUSGSProjectIndexItem()
+#' }
+#' @export
+BuildIndexFromUSGSProjectIndexItem <- function (
+  projectItem,
+  folderName,
+  outputFile,
+  projString = NULL,
+  outputCRS = NULL,
+  fileType = "\\.las|\\.laz",
+  dirFormat = "ls",
+  dimensionThreshold = 50000,
+  rebuild = FALSE,
+  quiet = FALSE
+) {
+  if (file.exists(outputFile) && !rebuild) {
+    cat("Index already exist...skipping: ", basename(outputFile),"\n")
+    return(TRUE);
+  }
+  
+  folderURL <- paste0(projectItem$lpc_link, folderName, "/")
+#  cat("Folder:", folderURL, "\n")
+  
+  # get list of .laz & .las files...full directory info
+  flist <- DirList(folderURL, "\\.las|\\.laz", dirFormat = dirFormat)
+  
+  if (nrow(flist) > 0) {
+    cat("Building index: ", basename(outputFile), "\n")
+    
+    # prepend folder path to file names
+    fileURLs <- paste0(folderURL, flist$Name)
+    
+    # read headers
+    t <- lapply(fileURLs, ReadRemoteLASHeader)    # returns a list of dataframes
+    
+    # convert to a simple dataframe
+    t_df <- do.call("rbind", t)
+    
+    # drop any rows with NA values...bad LAS file...only check min/max XYZ values
+    t_df <- t_df[complete.cases(t_df[, 11:16]), ]
+    
+    # drop rows where width or height is >dimensionThreshold units
+    t_df <- t_df[((t_df$MaxX - t_df$MinX) < dimensionThreshold & (t_df$MaxY - t_df$MinY) < dimensionThreshold), ]
+    
+    # create sf set of tile polygons
+    if (nrow(t_df) > 0) {
+      lst <- lapply(1:nrow(t_df), function(x) {
+        # create a matrix of coordinates that also 'close' the polygon
+        res <- matrix(c(t_df[x, 'MinX'], t_df[x, 'MinY'],
+                        t_df[x, 'MinX'], t_df[x, 'MaxY'],
+                        t_df[x, 'MaxX'], t_df[x, 'MaxY'],
+                        t_df[x, 'MaxX'], t_df[x, 'MinY'],
+                        t_df[x, 'MinX'], t_df[x, 'MinY'])  ## need to close the polygon
+                      , ncol =2, byrow = T
+        )
+        # create polygon objects
+        sf::st_polygon(list(res))
+      }
+      )
+      
+      if (is.null(projString)) {
+        prs <- strtoi(projectItem$horiz_crs)
+      } else {
+        prs <- projString
+      }
+      
+      tiles_sf <- sf::st_sf(t_df, sf::st_sfc(lst), crs = prs)
+      
+      tiles_sf <- sf::st_set_crs(tiles_sf, prs)  
+
+      # reproject to outputCRS
+      if (!is.na(raster::projection(tiles_sf)) && !is.null(outputCRS)) {
+        tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
+      }
+      
+      # add fields from the project information
+      tiles_sf$workunit_id <- projectItem$workunit_id
+      tiles_sf$ql <- projectItem$ql
+      tiles_sf$collect_start <- projectItem$collect_start
+      tiles_sf$collect_end <- projectItem$collect_end
+      tiles_sf$p_method <- projectItem$p_method
+      tiles_sf$horiz_crs <- projectItem$horiz_crs
+      tiles_sf$vert_crs <- projectItem$vert_crs
+
+      # rearrange
+      tiles_sf <- tiles_sf[, c(1:2, 17:23, 3:16, 24)]
+      
+      # write output
+      sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
+      
+      return(TRUE)
+    } else {
+      cat("   ***No LAS polygons\n")
+    }
+  } else {
+    cat("   ***No LAS files\n")
+  }
+  
+  return(FALSE)
+}
+
+# ---------- BuildProjectPolygonFromIndex
 #
-# I have some code in the testpackage.R code that does this for the Mendocino area
+#' LidarIndexR -- Create polygon(s) representing the area covered by a tile index
+#'
+#' Longer description
+#'
+#' @param indexFile Full path and filename on the local file system for the tile index
+#'   file.
+#' @param projectIdentifier Character string containing an identifier for the project
+#'   area.
+#' @param outputCRS A valid projection string that can be used with the \code{crs}
+#'   parameter in \code{st_transform} to reproject the index. If using EPSG codes,
+#'   do not enclose the EPSG number in quotes.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return An \code{sf} object containing the polygon(s) for the project area.
+#' @examples
+#' \dontrun{
+#' BuildProjectPolygonFromIndex()
+#' }
+#' @export
+BuildProjectPolygonFromIndex <- function (
+  indexFile,
+  projectIdentifier,
+  outputCRS = NULL,
+  quiet = TRUE
+) {
+  t_sf <- sf::st_read(indexFile, quiet = TRUE)
+  
+  if (is.object(t_sf)) {
+    t_sf$PID <- 1
+    
+    # rasterize
+    r_poly <- stars::st_rasterize(t_sf[, "PID"], dx = 512, dy = 512)
+    
+    # convert back to polygons...merge tiles
+    t_rp <- st_as_sf(r_poly, as_points = FALSE, merge = TRUE)
+    sf::st_make_valid(t_rp)
+    
+    if (!is.null(outputCRS)) {
+      t_rp <- sf::st_transform(t_rp, crs = outputCRS)
+    }
+    
+    t_rp$PID <- projectIdentifier
+    
+    if (!quiet) cat ("Done with:", indexFile, "\n")
+    
+    return(t_rp)
+  } else {
+    cat("Problems reading ", indexFile,)
+  }
+  return(NULL)
+}
+
