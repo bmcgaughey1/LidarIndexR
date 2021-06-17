@@ -13,6 +13,7 @@ BuildIndexFromPoints(
   fileType = "\\\\.las|\\\\.laz",
   dirFormat = "ls",
   dimensionThreshold = 50000,
+  appendInfo = NULL,
   rebuild = FALSE,
   quiet = FALSE
 )
@@ -39,13 +40,19 @@ with values in \code{fileType}.}
 
 \item{dirFormat}{String indicating the expected directory format for the
 \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
-Attribute/Size, and file name or "ls" if the URL returns directory
-information similar to the UNIX \code{ls -al} command.}
+Attribute/Size, and file name; "ls" if the URL returns directory
+information similar to the UNIX \code{ls -al} command; or "" if you
+want the function to try to determine the directory format.}
 
 \item{dimensionThreshold}{Size threshold used to omit files from the index.
 This is intended to help omit invalid LAS.LAZ files from the index. If
 the height or width of the point tile exceeds the threshold, the tile
 will ne omitted.}
+
+\item{appendInfo}{Data frame (single row) with values to append to each
+feature in the return \code{sf} object. If NULL, no information is appended.
+If \code{appendInfo} is \code{sf} object, the geometry will be removed
+before appending to each feature.}
 
 \item{rebuild}{Boolean. If TRUE, the index is always created. If FALSE,
 the index is only created if it does not already exist.}

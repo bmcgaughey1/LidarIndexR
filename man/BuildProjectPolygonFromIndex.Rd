@@ -8,6 +8,7 @@ BuildProjectPolygonFromIndex(
   indexFile,
   projectIdentifier,
   outputCRS = NULL,
+  appendInfo = NULL,
   quiet = TRUE
 )
 }
@@ -16,11 +17,16 @@ BuildProjectPolygonFromIndex(
 file.}
 
 \item{projectIdentifier}{Character string containing an identifier for the project
-area.}
+area. This will be added to each feature in the return \code{sf} object.}
 
 \item{outputCRS}{A valid projection string that can be used with the \code{crs}
 parameter in \code{st_transform} to reproject the index. If using EPSG codes,
 do not enclose the EPSG number in quotes.}
+
+\item{appendInfo}{Data frame (single row) with values to append to each feature
+in the return \code{sf} object. If NULL, no information is appended.
+If \code{appendInfo} is \code{sf} object, the geometry will be removed
+before appending to each feature.}
 
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}

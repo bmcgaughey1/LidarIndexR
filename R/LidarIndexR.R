@@ -642,12 +642,17 @@ FetchAndExtractCRSFromPrj <- function (
 #'   with values in \code{fileType}.
 #' @param dirFormat String indicating the expected directory format for the
 #'   \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
-#'   Attribute/Size, and file name or "ls" if the URL returns directory
-#'   information similar to the UNIX \code{ls -al} command.
+#'   Attribute/Size, and file name; "ls" if the URL returns directory
+#'   information similar to the UNIX \code{ls -al} command; or "" if you
+#'   want the function to try to determine the directory format.
 #' @param dimensionThreshold Size threshold used to omit files from the index.
 #'   This is intended to help omit invalid LAS.LAZ files from the index. If
 #'   the height or width of the point tile exceeds the threshold, the tile
 #'   will ne omitted.
+#' @param appendInfo Data frame (single row) with values to append to each 
+#'   feature in the return \code{sf} object. If NULL, no information is appended.
+#'   If \code{appendInfo} is \code{sf} object, the geometry will be removed
+#'   before appending to each feature.
 #' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
 #'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
@@ -667,6 +672,7 @@ BuildIndexFromPoints <- function (
   fileType = "\\.las|\\.laz",
   dirFormat = "ls",
   dimensionThreshold = 50000,
+  appendInfo = NULL,
   rebuild = FALSE,
   quiet = FALSE
 ) {
@@ -725,7 +731,19 @@ BuildIndexFromPoints <- function (
         tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
       }
 
-      # write output
+      if (!is.null(appendInfo)) {
+        # see if appendInfo is sf object...if so drop the geometry
+        if (inherits(appendInfo, "sf"))
+          appendInfo$geometry <- NULL
+        
+        # duplicate rows
+        info <- do.call("rbind", replicate(nrow(tiles_sf), appendInfo, simplify = FALSE))
+        
+        # cbind to tile data frame
+        tiles_sf <- cbind(tiles_sf, info)
+      }
+
+            # write output
       sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
 
       return(TRUE)
@@ -761,8 +779,13 @@ BuildIndexFromPoints <- function (
 #'   with values in \code{fileType}.
 #' @param dirFormat String indicating the expected directory format for the
 #'   \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
-#'   Attribute/Size, and file name or "ls" if the URL returns directory
-#'   information similar to the UNIX \code{ls -al} command.
+#'   Attribute/Size, and file name; "ls" if the URL returns directory
+#'   information similar to the UNIX \code{ls -al} command; or "" if you
+#'   want the function to try to determine the directory format.
+#' @param appendCols List of column numbers or column names for information from the 
+#'   \code{projectItem} to append to individual tile records in the index. If 
+#'   column names conflict with existing column names, they will be adjusted
+#'   to remove the conflict. if NULL, no column information is appended.
 #' @param dimensionThreshold Size threshold used to omit files from the index.
 #'   This is intended to help omit invalid LAS.LAZ files from the index. If
 #'   the height or width of the point tile exceeds the threshold, the tile
@@ -785,6 +808,13 @@ BuildIndexFromUSGSProjectIndexItem <- function (
   outputCRS = NULL,
   fileType = "\\.las|\\.laz",
   dirFormat = "ls",
+  appendCols = c("workunit_id",
+                 "ql", 
+                 "collect_start",
+                 "collect_end",
+                 "p_method",
+                 "horiz_crs",
+                 "vert_crs"),
   dimensionThreshold = 50000,
   rebuild = FALSE,
   quiet = FALSE
@@ -849,18 +879,34 @@ BuildIndexFromUSGSProjectIndexItem <- function (
         tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
       }
       
-      # add fields from the project information
-      tiles_sf$workunit_id <- projectItem$workunit_id
-      tiles_sf$ql <- projectItem$ql
-      tiles_sf$collect_start <- projectItem$collect_start
-      tiles_sf$collect_end <- projectItem$collect_end
-      tiles_sf$p_method <- projectItem$p_method
-      tiles_sf$horiz_crs <- projectItem$horiz_crs
-      tiles_sf$vert_crs <- projectItem$vert_crs
+      # see if we have a list of columns to add to the tiles
+      if (!is.null(appendCols)) {
+        # build data frame with requested columns repeated over rows
+        info <- data.frame(projectItem[, appendCols])
+        
+        # drop geometry
+        info$geometry <- NULL
+        
+        # duplicate rows
+        info <- do.call("rbind", replicate(nrow(tiles_sf), info, simplify = FALSE))
+        
+        # cbind to tile data frame
+        tiles_sf <- cbind(tiles_sf, info)
+      }
+      # else {
+      #   # add fields from the project information
+      #   tiles_sf$workunit_id <- projectItem$workunit_id
+      #   tiles_sf$ql <- projectItem$ql
+      #   tiles_sf$collect_start <- projectItem$collect_start
+      #   tiles_sf$collect_end <- projectItem$collect_end
+      #   tiles_sf$p_method <- projectItem$p_method
+      #   tiles_sf$horiz_crs <- projectItem$horiz_crs
+      #   tiles_sf$vert_crs <- projectItem$vert_crs
+      # 
+      #   # rearrange
+      #   tiles_sf <- tiles_sf[, c(1:2, 17:23, 3:16, 24)]
+      # }
 
-      # rearrange
-      tiles_sf <- tiles_sf[, c(1:2, 17:23, 3:16, 24)]
-      
       # write output
       sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
       
@@ -884,10 +930,14 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 #' @param indexFile Full path and filename on the local file system for the tile index
 #'   file.
 #' @param projectIdentifier Character string containing an identifier for the project
-#'   area.
+#'   area. This will be added to each feature in the return \code{sf} object.
 #' @param outputCRS A valid projection string that can be used with the \code{crs}
 #'   parameter in \code{st_transform} to reproject the index. If using EPSG codes,
 #'   do not enclose the EPSG number in quotes.
+#' @param appendInfo Data frame (single row) with values to append to each feature 
+#'   in the return \code{sf} object. If NULL, no information is appended.
+#'   If \code{appendInfo} is \code{sf} object, the geometry will be removed
+#'   before appending to each feature.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @return An \code{sf} object containing the polygon(s) for the project area.
@@ -900,6 +950,7 @@ BuildProjectPolygonFromIndex <- function (
   indexFile,
   projectIdentifier,
   outputCRS = NULL,
+  appendInfo = NULL,
   quiet = TRUE
 ) {
   t_sf <- sf::st_read(indexFile, quiet = TRUE)
@@ -919,6 +970,18 @@ BuildProjectPolygonFromIndex <- function (
     }
     
     t_rp$PID <- projectIdentifier
+
+    if (!is.null(appendInfo)) {
+      # see if appendInfo is sf object...if so drop the geometry
+      if (inherits(appendInfo, "sf"))
+        appendInfo$geometry <- NULL
+      
+      # duplicate rows
+      info <- do.call("rbind", replicate(nrow(t_rp), appendInfo, simplify = FALSE))
+      
+      # cbind to tile data frame
+      t_rp <- cbind(t_rp, info)
+    }
     
     if (!quiet) cat ("Done with:", indexFile, "\n")
     

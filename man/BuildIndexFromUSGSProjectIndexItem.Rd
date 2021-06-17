@@ -13,6 +13,8 @@ BuildIndexFromUSGSProjectIndexItem(
   outputCRS = NULL,
   fileType = "\\\\.las|\\\\.laz",
   dirFormat = "ls",
+  appendCols = c("workunit_id", "ql", "collect_start", "collect_end", "p_method",
+    "horiz_crs", "vert_crs"),
   dimensionThreshold = 50000,
   rebuild = FALSE,
   quiet = FALSE
@@ -40,8 +42,14 @@ with values in \code{fileType}.}
 
 \item{dirFormat}{String indicating the expected directory format for the
 \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
-Attribute/Size, and file name or "ls" if the URL returns directory
-information similar to the UNIX \code{ls -al} command.}
+Attribute/Size, and file name; "ls" if the URL returns directory
+information similar to the UNIX \code{ls -al} command; or "" if you
+want the function to try to determine the directory format.}
+
+\item{appendCols}{List of column numbers or column names for information from the
+\code{projectItem} to append to individual tile records in the index. If
+column names conflict with existing column names, they will be adjusted
+to remove the conflict. if NULL, no column information is appended.}
 
 \item{dimensionThreshold}{Size threshold used to omit files from the index.
 This is intended to help omit invalid LAS.LAZ files from the index. If

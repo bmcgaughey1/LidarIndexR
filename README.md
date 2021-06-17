@@ -54,14 +54,15 @@ outputFile <- "~/AK_BrooksCamp_2012.gpkg"
 pointCRS <- 26905
 
 # create index
-BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS)
+BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS, 
+                     appendInfo = data.frame("Project" = "AK_BrooksCamp_2012"))
 #> Index already exist...skipping:  AK_BrooksCamp_2012.gpkg
 #> [1] TRUE
 
 # read the index and display
 index <- st_read(outputFile)
 #> Reading layer `AK_BrooksCamp_2012' from data source `G:\R_Stuff\AK_BrooksCamp_2012.gpkg' using driver `GPKG'
-#> Simple feature collection with 41 features and 23 fields
+#> Simple feature collection with 41 features and 17 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: 335201.4 ymin: 6484121 xmax: 348234.6 ymax: 6496318
@@ -114,18 +115,18 @@ index <- st_read("G:/R_Stuff/PlotClipping/WESM_6_04_2021.gpkg")
 #> Bounding box:  xmin: -179.2501 ymin: 13.232 xmax: 179.8547 ymax: 71.507
 #> Geodetic CRS:  NAD83
 pointFolder <- "laz"
-outputFile <- "~/AK_BrooksCamp_2012.gpkg"
+outputFile <- "~/AK_BrooksCamp_2012_Proj.gpkg"
 
 item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
 
 # create index
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
-#> Index already exist...skipping:  AK_BrooksCamp_2012.gpkg
+#> Index already exist...skipping:  AK_BrooksCamp_2012_Proj.gpkg
 #> [1] TRUE
 
 # read the index and display
 tindex <- st_read(outputFile)
-#> Reading layer `AK_BrooksCamp_2012' from data source `G:\R_Stuff\AK_BrooksCamp_2012.gpkg' using driver `GPKG'
+#> Reading layer `AK_BrooksCamp_2012_Proj' from data source `G:\R_Stuff\AK_BrooksCamp_2012_Proj.gpkg' using driver `GPKG'
 #> Simple feature collection with 41 features and 23 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
@@ -152,9 +153,10 @@ covered by the point tiles.
 tproject <- BuildProjectPolygonFromIndex(
   outputFile,
   item$workunit,
+  appendInfo = item[, c("workunit_id", "collect_start", "collect_end", "p_method", "horiz_crs")],
   quiet = FALSE
 )
-#> Done with: ~/AK_BrooksCamp_2012.gpkg
+#> Done with: ~/AK_BrooksCamp_2012_Proj.gpkg
 
 # display the project polygon
 ggplot(tproject) +
