@@ -37,16 +37,15 @@ information for the data.
 library(LidarIndexR)
 library(sf)
 #> Warning: package 'sf' was built under R version 4.0.5
-#> Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1
+#> Linking to GEOS 3.9.1, GDAL 3.2.1, PROJ 7.2.1
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.0.3
+#> Warning: package 'ggplot2' was built under R version 4.0.5
 library(viridis)
 #> Warning: package 'viridis' was built under R version 4.0.5
 #> Loading required package: viridisLite
 #> Warning: package 'viridisLite' was built under R version 4.0.5
-
 ## Basic example to build an index
-URL <- "ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/LPC/projects/AK_BrooksCamp_2012"
+URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/"
 pointFolder <- "laz"
 outputFile <- "~/AK_BrooksCamp_2012.gpkg"
 
@@ -58,16 +57,15 @@ BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS,
                      appendInfo = data.frame("Project" = "AK_BrooksCamp_2012"))
 #> Index already exist...skipping:  AK_BrooksCamp_2012.gpkg
 #> [1] TRUE
-
 # read the index and display
 index <- st_read(outputFile)
-#> Reading layer `AK_BrooksCamp_2012' from data source `G:\R_Stuff\AK_BrooksCamp_2012.gpkg' using driver `GPKG'
+#> Reading layer `AK_BrooksCamp_2012' from data source 
+#>   `G:\R_Stuff\AK_BrooksCamp_2012.gpkg' using driver `GPKG'
 #> Simple feature collection with 41 features and 17 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: 335201.4 ymin: 6484121 xmax: 348234.6 ymax: 6496318
 #> Projected CRS: NAD83 / UTM zone 5N
-
 ggplot(index) +
   ggtitle("AK_BrooksCamp_2012 lidar tiles") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -107,9 +105,9 @@ library(viridis)
 #                      mode = "wb")
 
 # read the FESM index from a local file
-index <- st_read("G:/R_Stuff/PlotClipping/WESM_6_04_2021.gpkg")
-#> Reading layer `WESM' from data source `G:\R_Stuff\PlotClipping\WESM_6_04_2021.gpkg' using driver `GPKG'
-#> Simple feature collection with 2356 features and 25 fields
+index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
+#> Reading layer `WESM' from data source `G:\R_Stuff\EntwineIndex\WESM.gpkg' using driver `GPKG'
+#> Simple feature collection with 2436 features and 26 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: -179.2501 ymin: 13.232 xmax: 179.8547 ymax: 71.507
@@ -123,16 +121,15 @@ item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
 #> Index already exist...skipping:  AK_BrooksCamp_2012_Proj.gpkg
 #> [1] TRUE
-
 # read the index and display
 tindex <- st_read(outputFile)
-#> Reading layer `AK_BrooksCamp_2012_Proj' from data source `G:\R_Stuff\AK_BrooksCamp_2012_Proj.gpkg' using driver `GPKG'
+#> Reading layer `AK_BrooksCamp_2012_Proj' from data source 
+#>   `G:\R_Stuff\AK_BrooksCamp_2012_Proj.gpkg' using driver `GPKG'
 #> Simple feature collection with 41 features and 23 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: 335201.4 ymin: 6484121 xmax: 348234.6 ymax: 6496318
 #> Projected CRS: NAD83 / UTM zone 5N
-
 ggplot(tindex) +
   ggtitle("AK_BrooksCamp_2012 lidar tiles") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -157,7 +154,6 @@ tproject <- BuildProjectPolygonFromIndex(
   quiet = FALSE
 )
 #> Done with: ~/AK_BrooksCamp_2012_Proj.gpkg
-
 # display the project polygon
 ggplot(tproject) +
   ggtitle(paste0(item$workunit, " project area")) +
@@ -166,9 +162,3 @@ ggplot(tproject) +
 ```
 
 <img src="man/figures/README-example3-1.png" width="100%" />
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.

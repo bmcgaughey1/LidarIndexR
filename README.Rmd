@@ -47,7 +47,7 @@ library(ggplot2)
 library(viridis)
 
 ## Basic example to build an index
-URL <- "ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/LPC/projects/AK_BrooksCamp_2012"
+URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/"
 pointFolder <- "laz"
 outputFile <- "~/AK_BrooksCamp_2012.gpkg"
 
@@ -97,7 +97,7 @@ library(viridis)
 #                      mode = "wb")
 
 # read the FESM index from a local file
-index <- st_read("G:/R_Stuff/PlotClipping/WESM_6_04_2021.gpkg")
+index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
 pointFolder <- "laz"
 outputFile <- "~/AK_BrooksCamp_2012_Proj.gpkg"
 
@@ -165,5 +165,3 @@ info <- do.call("rbind", replicate(nrow(tindex), info, simplify = FALSE))
 tindex <- cbind(tindex, info)
 
 ```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
