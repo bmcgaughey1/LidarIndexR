@@ -75,12 +75,15 @@ ggplot(index) +
 
 <img src="man/figures/README-example1-1.png" width="100%" />
 
-## Example \#2: Create a tile index using a project from the USGS FESM project index
+## Example \#2: Create a tile index using a project from the USGS WESM project index
 
 This example creates an index for the same lidar project as Example \#1.
 However, this example uses the USGS project index to populate the new
 tile index with information regarding the acquisition and to provide
 projection information for the project.
+
+You will need to change the line that reads the index to reflect the
+location of the WESM index on your computer.
 
 The example requires a local copy of the USGS project index from
 [here](ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg).

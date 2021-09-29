@@ -69,11 +69,14 @@ ggplot(index) +
  
 ```
 
-## Example #2: Create a tile index using a project from the USGS FESM project index
+## Example #2: Create a tile index using a project from the USGS WESM project index
 
 This example creates an index for the same lidar project as Example #1. However, this
 example uses the USGS project index to populate the new tile index with information
 regarding the acquisition and to provide projection information for the project.
+
+You will need to change the line that reads the index to reflect the location of the WESM index
+on your computer.
 
 The example requires a local copy of the USGS project index from
 [here](ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg).
@@ -139,12 +142,15 @@ ggplot(tproject) +
 ```
 
 ```{r eval=FALSE, include=FALSE}
+# You will need to change the line that reads the index to reflect the location of the WESM index
+# on your computer.
+
 library(LidarIndexR)
 library(sf)
 
 # test code...not to be run as part of README
 
-index <- st_read("G:/R_Stuff/PlotClipping/WESM_6_04_2021.gpkg")
+index <- st_read("G:/R_Stuff/PlotClipping/WESM.gpkg")
 outputFile <- "~/AK_BrooksCamp_2012.gpkg"
 appendCols <- c("opr_category", "lpc_pub_date")
 
