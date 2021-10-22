@@ -13,7 +13,8 @@ DirListByType(URL, fileType, ...)
 "$" will be appended to the string to search for file/folder names ending
 with values in \code{fileType}.}
 
-\item{...}{Arguments passed to \code{RCurl::getURL()}.}
+\item{...}{Arguments passed to \code{RCurl::getURL()}. This is ignored
+if the URL uses http or https schemes.}
 }
 \value{
 A list of file names.
@@ -21,6 +22,9 @@ A list of file names.
 \description{
 Retrieve a directory listing from a remote host as a simple list
 of file names.
+}
+\details{
+DirListByType is an alias for \code{DirList(URL, fileType = fileType, namesOnly = TRUE, ...)}
 }
 \examples{
 \dontrun{

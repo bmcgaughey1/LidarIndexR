@@ -45,8 +45,9 @@ file.
 }
 \examples{
 \dontrun{
-DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
-    "Staged/Hydrography/NHD/HU4/HighResolution/Shape/"),
-    "NHD_H_0101_HU4_Shape.jpg")
+FetchAndExtractCRSFromIndex("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+    "Staged/Hydrography/NHD/HU4/HighResolution/Shape/",
+    "NHD_H_0101_HU4_Shape.shp",
+    ".")
 }
 }

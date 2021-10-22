@@ -45,6 +45,9 @@ from the projection file.
 }
 \examples{
 \dontrun{
-FetchAndExtractCRSFromPrj()
+FetchAndExtractCRSFromPrj("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+    "Staged/Hydrography/NHD/HU4/HighResolution/Shape/",
+    "NHD_H_0101_HU4_Shape.prj",
+    ".")
 }
 }

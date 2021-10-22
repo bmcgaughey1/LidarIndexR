@@ -36,7 +36,7 @@ devtools::install_github("bmcgaughey1/LidarIndexR")
 ```
 ## Example #1: Create a tile index from files on a remote ftp server
 
-This example creates a tile index for a single lidar project stored in the USGS rockyftp server. In this case,
+This example creates a tile index for a single lidar project stored in the USGS rockyweb server. In this case,
 you have to know the details for the project including the folder name for the project and the projection
 information for the data.
 
@@ -51,7 +51,7 @@ URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projec
 pointFolder <- "laz"
 outputFile <- "~/AK_BrooksCamp_2012.gpkg"
 
-# projection info...no easy way to determine this
+# projection info...for most projects, this can be pulled from the WESM project index
 pointCRS <- 26905
 
 # create index
@@ -79,7 +79,7 @@ You will need to change the line that reads the index to reflect the location of
 on your computer.
 
 The example requires a local copy of the USGS project index from
-[here](ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg).
+[here](https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg).
 The commented code in the example downloads the WESM.gpkg index.
 
 **Note:** The call to \code{BuildIndexFromUSGSProjectIndexItem} can take quite a bit of
@@ -94,7 +94,7 @@ library(ggplot2)
 library(viridis)
 
 # download the USGS WESM index
-# utils::download.file("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg",
+# utils::download.file("https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg",
 #                      "WESM.gpkg", 
 #                      method = "libcurl", 
 #                      mode = "wb")

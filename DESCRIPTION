@@ -20,7 +20,9 @@ Imports:
     utils,
     readr,
     raster,
-    urltools
+    stringr,
+    urltools,
+    XML
 License: CC0
 Encoding: UTF-8
 LazyData: true

@@ -31,6 +31,177 @@ unsignedFourByteIntToDouble <- function(i) {
   invisible(d)
 }
 
+# ---------- makeFileSize
+#
+#' LidarIndexR -- Utility function to convert file size string to actual
+#' file size.
+#'
+#' This is a helper function used in the LidarIndexR package to help read
+#' file sizes from HTTP or HTTPS directory listings. It looks for a trailing
+#' character to determine the multipliuer for the numeric portion of the size
+#' value. In the case of directories, the \code{sizeString} will be "-". This
+#' value is explicitly recognized.
+#'
+#' @param sizeString A string containing the file size or "-" for directories.
+#' @return A (invisible) double value for files and a string for directories.
+makeFileSize <- function(sizeString) {
+  if (sizeString == "-")
+    fileSize <- "<DIR>"
+  else {
+    # have strings with K, M, G, T indicating multiplier for leading numeric portion of string
+    # get last character
+    flag <- stringr::str_extract(sizeString, "[A-Z]{1}")
+    
+    # get all but last character
+    if (is.na(flag))
+      fileSize <- as.numeric(substr(sizeString, 1, nchar(sizeString)))
+    else
+      fileSize <- as.numeric(substr(sizeString, 1, nchar(sizeString) - 1))
+    
+    if (!is.na(fileSize) && !is.na(flag)) {
+      if (flag == "K")
+        fileSize <- fileSize * 1024.0
+      if (flag == "M")
+        fileSize <- fileSize * 1024.0 * 1024.0
+      if (flag == "G")
+        fileSize <- fileSize * 1024.0 * 1024.0 * 1024.0
+      if (flag == "T")
+        fileSize <- fileSize * 1024.0 * 1024.0 * 1024.0 * 1024.0
+    } else {
+      if (!is.na(flag))
+        fileSize <- 0
+    }  
+    
+    if (is.na(fileSize))
+      fileSize <- 0
+  }
+  
+  invisible(fileSize)
+}
+
+# ---------- DirList_HTTP
+#
+#' LidarIndexR -- Retrieve a directory listing from a remote HTTP(S) host
+#'
+#' Retrieve a HTTP or HTTPS directory listing from a remote host as either
+#' a simple list of file/folder names or a data frame with file/folder information.
+#'
+#' @param URL URL for a folder on a remote host. Trailing slash is optional.
+#' @param fileType Any valid string for the pattern parameter in \code{grep()}.
+#'   "$" will be appended to the string to search for file/folder names ending
+#'   with values in \code{fileType}.
+#' @param namesOnly Boolean indicating you want only file names (TRUE) or all
+#'   directory information (FALSE).
+#' @param excludeDirectories Boolean indicating you want to exclude folders
+#'   from the list of returned files/folders.
+#' @param directoryOnly Boolean indicating you only want folder names included
+#'   in the list of returned files/folders.
+#' @return A list of file names or a data frame with file names and attribute
+#'   information. The return value depends on \code{namesOnly}.
+#' @examples
+#' \dontrun{
+#' DirList_HTTP(pasteo("https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/",
+#'   "Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"))
+#' }
+#' @export
+DirList_HTTP <- function (
+  URL,
+  fileType = NULL,
+  namesOnly = FALSE,
+  excludeDirectories = TRUE,
+  directoryOnly = FALSE
+) {
+  # make sure URL ends with "/"
+  if (!endsWith(URL, "/"))
+    URL <- paste0(URL, "/")
+  
+  dir_read <- readLines(URL)
+  parsed_dir <- XML::htmlParse(dir_read)
+  
+  # set up data frame
+  df <- data.frame("line" = dir_read, isXML = FALSE, isParent = FALSE)
+  
+  # see if lines are XML
+  df$isXML <- as.integer(sapply(dir_read, function(x) {XML::isXMLString(x)}))
+
+  # drop non-XML lines
+  df <- df[df$isXML == 1, ]
+  
+  # see if line has parent directory...look for "  -  "
+  df$isParent <- as.integer(sapply(df$line, function(x) {!is.na(stringr::str_extract(x, "[ ]{2}-[ ]{2}"))}))
+  
+  # drop lines up to and including parent line
+  parentRow <- match(1, df$isParent)
+  if (parentRow > 0) 
+    df <- df[(parentRow + 1):nrow(df), ]
+  
+  # drop last row...should be <hr></pre>
+  df <- df[1:(nrow(df) -1), ]
+  
+  # make sure we still have rows...not an empty directory
+  if (nrow(df) > 0) {
+    # extract file name
+    df$Name <- XML::getHTMLLinks(df$line)
+    
+    # remove slashes in filename
+    df$Name <- stringr::str_remove_all(df$Name, "/")
+    df$Name <- stringr::str_remove_all(df$Name, "\\\\")
+    
+    # extract date
+    df$Date <- stringr::str_extract(df$line, "[0-9]{4}-[0-9]{2}-[0-9]{2}")
+    
+    # extract time
+    df$Time <- stringr::str_extract(df$line, "[0-9]{2}:[0-9]{2}")
+    
+    # check for directory...look for "  -  "
+    df$isFolder <- as.integer(sapply(df$line, function(x) {!is.na(stringr::str_extract(x, "[ ]{2}-[ ]{2}"))}))
+    
+    t <- regexpr("[0-9]{2}:[0-9]{2}", df$line)
+    attributes(t) <- NULL
+    
+    # get file size...assumes time is 5 characters and file size is no more than 8 characters
+    df$Attribute <- trimws(
+      substr(df$line, 
+             t + 6, 
+             t + 14
+      )
+    )
+    
+    df$Attribute <- sapply(df$Attribute, makeFileSize)
+    
+    # clean up
+    df <- df[, c("Date", "Time", "Attribute", "Name")]
+    
+    # sort on attribute...<DIR> or size
+    df <- df[order(df$Attribute), ]
+  } else {
+    df <- NULL
+  }
+  
+  # we now have the directory listing...apply the options
+  if (!is.null(df)) {
+    if (!is.null(fileType)) {
+      nameFlags <- grepl(paste0(fileType, "$"), df$Name, ignore.case=TRUE)
+      
+      df <- df[nameFlags, ]
+    }
+    
+    if (excludeDirectories) {
+      df <- df[df$Attribute != "<DIR>", ]
+    }
+    
+    if (directoryOnly) {
+      df <- df[df$Attribute == "<DIR>", ]
+    }
+    
+    if (namesOnly) {
+      df <- df$Name
+    }
+  }
+  
+  return(df)
+}
+
 # ---------- DirList
 #
 #' LidarIndexR -- Retrieve a directory listing from a remote host
@@ -52,8 +223,10 @@ unsignedFourByteIntToDouble <- function(i) {
 #'   \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
 #'   Attribute/Size, and file name; "ls" if the URL returns directory
 #'   information similar to the UNIX \code{ls -al} command; or "" if you
-#'   want the function to try to determine the directory format.
-#' @param ... Arguments passed to \code{RCurl::getURL()}.
+#'   want the function to try to determine the directory format. This is
+#'   ignored if the URL uses http or https schemes.
+#' @param ... Arguments passed to \code{RCurl::getURL()}. This is ignored
+#'   if the URL uses http or https schemes.
 #' @return A list of file names or a data frame with file names and attribute
 #'   information. The return value depends on \code{namesOnly}.
 #' @examples
@@ -77,6 +250,17 @@ DirList <- function (
   if (!endsWith(URL, "/"))
     URL <- paste0(URL, "/")
 
+  # if URL is HTTP or HTTPS, return list from DirList_HTTP
+  if (urltools::scheme(URL) == "http" || urltools::scheme(URL) == "https") {
+    return(DirList_HTTP(URL, 
+                        fileType = fileType, 
+                        namesOnly = namesOnly, 
+                        excludeDirectories = excludeDirectories,
+                        directoryOnly = directoryOnly
+                        )
+           )
+  }
+  
   # get folder listing and parse into individual files
   # create an empty character vector on error
   filenames <- tryCatch(RCurl::getURL(URL, ftp.use.epsv = FALSE, dirlistonly = namesOnly, ...), error = function(e) {character(0)})
@@ -136,12 +320,15 @@ DirList <- function (
 #'
 #' Retrieve a directory listing from a remote host as a simple list
 #' of file names.
+#' 
+#' DirListByType is an alias for \code{DirList(URL, fileType = fileType, namesOnly = TRUE, ...)}
 #'
 #' @param URL URL for a folder on a remote host. Trailing slash is optional.
 #' @param fileType Any valid string for the pattern parameter in \code{grep()}.
 #'   "$" will be appended to the string to search for file/folder names ending
 #'   with values in \code{fileType}.
-#' @param ... Arguments passed to \code{RCurl::getURL()}.
+#' @param ... Arguments passed to \code{RCurl::getURL()}. This is ignored
+#'   if the URL uses http or https schemes.
 #' @return A list of file names.
 #' @examples
 #' \dontrun{
@@ -159,16 +346,18 @@ DirListByType <- function (
   if (!endsWith(URL, "/"))
     URL <- paste0(URL, "/")
 
-  # get folder listing and parse into individual files
-  # create an empty character vector on error
-  filenames <- tryCatch(RCurl::getURL(URL, ftp.use.epsv = FALSE, dirlistonly = TRUE, ...), error = function(e) {character(0)})
-  if (length(filenames)) {
-    filenames <- strsplit(filenames, "\r\n")
-    filenames <- unlist(filenames)
-
-    # find files ending with the desired type (extension)
-    filenames <- grep(paste0(fileType, "$"), filenames, ignore.case=TRUE, value=TRUE)
-  }
+  return(DirList(URL, fileType = fileType, namesOnly = TRUE, ...))
+  
+  # # get folder listing and parse into individual files
+  # # create an empty character vector on error
+  # filenames <- tryCatch(RCurl::getURL(URL, ftp.use.epsv = FALSE, dirlistonly = TRUE, ...), error = function(e) {character(0)})
+  # if (length(filenames)) {
+  #   filenames <- strsplit(filenames, "\r\n")
+  #   filenames <- unlist(filenames)
+  # 
+  #   # find files ending with the desired type (extension)
+  #   filenames <- grep(paste0(fileType, "$"), filenames, ignore.case=TRUE, value=TRUE)
+  # }
 }
 
 # ---------- DirListByName
@@ -202,16 +391,21 @@ DirListByName <- function (
 
   fileName <- sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(fileName))
 
+  # get list of file names in URL
+  filenames <- DirList(URL, namesOnly = TRUE, excludeDirectories = TRUE, ...)
+  
   # get folder listing and parse into individual files
   # create an empty character vector on error
-  filenames <- tryCatch(RCurl::getURL(URL, ftp.use.epsv = FALSE, dirlistonly = TRUE, ...), error = function(e) {character(0)})
+  # filenames <- tryCatch(RCurl::getURL(URL, ftp.use.epsv = FALSE, dirlistonly = TRUE, ...), error = function(e) {character(0)})
   if (length(filenames)) {
-    filenames <- strsplit(filenames, "\r\n")
-    filenames <- unlist(filenames)
+    # filenames <- strsplit(filenames, "\r\n")
+    # filenames <- unlist(filenames)
 
     # find files matching the name...various extensions
     filenames <- grep(paste0("^", fileName), filenames, ignore.case=TRUE, value=TRUE)
   }
+  
+  return(filenames)
 }
 
 # ---------- ReadRemoteLASProjection
@@ -250,7 +444,7 @@ ReadRemoteLASProjection <- function (
 
   con <- tryCatch(url(URL, open = "rb"), error = function(e) {NA})
   if (is.object(con)) {
-    bs <- readBin(con, "raw", 100)
+    bs <- readBin(con, "raw", 120)
     close(con)
   } else {
     return(crs)
@@ -500,9 +694,10 @@ FetchAndExtractCRSFromPoints <- function (
 #' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
-#' DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
-#'     "Staged/Hydrography/NHD/HU4/HighResolution/Shape/"),
-#'     "NHD_H_0101_HU4_Shape.jpg")
+#' FetchAndExtractCRSFromIndex("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+#'     "Staged/Hydrography/NHD/HU4/HighResolution/Shape/",
+#'     "NHD_H_0101_HU4_Shape.shp",
+#'     ".")
 #' }
 #' @export
 FetchAndExtractCRSFromIndex <- function (
@@ -572,7 +767,10 @@ FetchAndExtractCRSFromIndex <- function (
 #' @return String containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
-#' FetchAndExtractCRSFromPrj()
+#' FetchAndExtractCRSFromPrj("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
+#'     "Staged/Hydrography/NHD/HU4/HighResolution/Shape/",
+#'     "NHD_H_0101_HU4_Shape.prj",
+#'     ".")
 #' }
 #' @export
 FetchAndExtractCRSFromPrj <- function (

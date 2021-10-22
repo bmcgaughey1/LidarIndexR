@@ -34,9 +34,11 @@ in the list of returned files/folders.}
 \code{URL}. Valid values are "dir" if the URL returns the Date, Time,
 Attribute/Size, and file name; "ls" if the URL returns directory
 information similar to the UNIX \code{ls -al} command; or "" if you
-want the function to try to determine the directory format.}
+want the function to try to determine the directory format. This is
+ignored if the URL uses http or https schemes.}
 
-\item{...}{Arguments passed to \code{RCurl::getURL()}.}
+\item{...}{Arguments passed to \code{RCurl::getURL()}. This is ignored
+if the URL uses http or https schemes.}
 }
 \value{
 A list of file names or a data frame with file names and attribute
