@@ -8,7 +8,10 @@
 <!-- badges: end -->
 
 The goal of LidarIndexR is to provide functions to build index files for
-lidar projects.
+lidar projects. The functions in the package have been tested using FTP
+and HTTPS servers. However, I can’t guarantee that the directory
+functions work with all HTTP(S) servers due to differences in the HTML
+generated to show directory contents.
 
 ## Installation
 
@@ -55,7 +58,48 @@ pointCRS <- 26905
 # create index
 BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS, 
                      appendInfo = data.frame("Project" = "AK_BrooksCamp_2012"))
-#> Index already exist...skipping:  AK_BrooksCamp_2012.gpkg
+#> Building index:  AK_BrooksCamp_2012.gpkg 
+#> Read extent of AK_BrooksCamp_2012_000030.laz 
+#> Read extent of AK_BrooksCamp_2012_000039.laz 
+#> Read extent of AK_BrooksCamp_2012_000015.laz 
+#> Read extent of AK_BrooksCamp_2012_000024.laz 
+#> Read extent of AK_BrooksCamp_2012_000038.laz 
+#> Read extent of AK_BrooksCamp_2012_000019.laz 
+#> Read extent of AK_BrooksCamp_2012_000041.laz 
+#> Read extent of AK_BrooksCamp_2012_000025.laz 
+#> Read extent of AK_BrooksCamp_2012_000034.laz 
+#> Read extent of AK_BrooksCamp_2012_000020.laz 
+#> Read extent of AK_BrooksCamp_2012_000040.laz 
+#> Read extent of AK_BrooksCamp_2012_000029.laz 
+#> Read extent of AK_BrooksCamp_2012_000008.laz 
+#> Read extent of AK_BrooksCamp_2012_000009.laz 
+#> Read extent of AK_BrooksCamp_2012_000035.laz 
+#> Read extent of AK_BrooksCamp_2012_000001.laz 
+#> Read extent of AK_BrooksCamp_2012_000004.laz 
+#> Read extent of AK_BrooksCamp_2012_000010.laz 
+#> Read extent of AK_BrooksCamp_2012_000014.laz 
+#> Read extent of AK_BrooksCamp_2012_000031.laz 
+#> Read extent of AK_BrooksCamp_2012_000013.laz 
+#> Read extent of AK_BrooksCamp_2012_000023.laz 
+#> Read extent of AK_BrooksCamp_2012_000026.laz 
+#> Read extent of AK_BrooksCamp_2012_000005.laz 
+#> Read extent of AK_BrooksCamp_2012_000037.laz 
+#> Read extent of AK_BrooksCamp_2012_000002.laz 
+#> Read extent of AK_BrooksCamp_2012_000028.laz 
+#> Read extent of AK_BrooksCamp_2012_000016.laz 
+#> Read extent of AK_BrooksCamp_2012_000021.laz 
+#> Read extent of AK_BrooksCamp_2012_000036.laz 
+#> Read extent of AK_BrooksCamp_2012_000022.laz 
+#> Read extent of AK_BrooksCamp_2012_000032.laz 
+#> Read extent of AK_BrooksCamp_2012_000027.laz 
+#> Read extent of AK_BrooksCamp_2012_000033.laz 
+#> Read extent of AK_BrooksCamp_2012_000007.laz 
+#> Read extent of AK_BrooksCamp_2012_000012.laz 
+#> Read extent of AK_BrooksCamp_2012_000017.laz 
+#> Read extent of AK_BrooksCamp_2012_000011.laz 
+#> Read extent of AK_BrooksCamp_2012_000003.laz 
+#> Read extent of AK_BrooksCamp_2012_000018.laz 
+#> Read extent of AK_BrooksCamp_2012_000006.laz
 #> [1] TRUE
 # read the index and display
 index <- st_read(outputFile)
@@ -122,7 +166,48 @@ item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
 
 # create index
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
-#> Index already exist...skipping:  AK_BrooksCamp_2012_Proj.gpkg
+#> Building index:  AK_BrooksCamp_2012_Proj.gpkg 
+#> Read extent of AK_BrooksCamp_2012_000030.laz 
+#> Read extent of AK_BrooksCamp_2012_000039.laz 
+#> Read extent of AK_BrooksCamp_2012_000015.laz 
+#> Read extent of AK_BrooksCamp_2012_000024.laz 
+#> Read extent of AK_BrooksCamp_2012_000038.laz 
+#> Read extent of AK_BrooksCamp_2012_000019.laz 
+#> Read extent of AK_BrooksCamp_2012_000041.laz 
+#> Read extent of AK_BrooksCamp_2012_000025.laz 
+#> Read extent of AK_BrooksCamp_2012_000034.laz 
+#> Read extent of AK_BrooksCamp_2012_000020.laz 
+#> Read extent of AK_BrooksCamp_2012_000040.laz 
+#> Read extent of AK_BrooksCamp_2012_000029.laz 
+#> Read extent of AK_BrooksCamp_2012_000008.laz 
+#> Read extent of AK_BrooksCamp_2012_000009.laz 
+#> Read extent of AK_BrooksCamp_2012_000035.laz 
+#> Read extent of AK_BrooksCamp_2012_000001.laz 
+#> Read extent of AK_BrooksCamp_2012_000004.laz 
+#> Read extent of AK_BrooksCamp_2012_000010.laz 
+#> Read extent of AK_BrooksCamp_2012_000014.laz 
+#> Read extent of AK_BrooksCamp_2012_000031.laz 
+#> Read extent of AK_BrooksCamp_2012_000013.laz 
+#> Read extent of AK_BrooksCamp_2012_000023.laz 
+#> Read extent of AK_BrooksCamp_2012_000026.laz 
+#> Read extent of AK_BrooksCamp_2012_000005.laz 
+#> Read extent of AK_BrooksCamp_2012_000037.laz 
+#> Read extent of AK_BrooksCamp_2012_000002.laz 
+#> Read extent of AK_BrooksCamp_2012_000028.laz 
+#> Read extent of AK_BrooksCamp_2012_000016.laz 
+#> Read extent of AK_BrooksCamp_2012_000021.laz 
+#> Read extent of AK_BrooksCamp_2012_000036.laz 
+#> Read extent of AK_BrooksCamp_2012_000022.laz 
+#> Read extent of AK_BrooksCamp_2012_000032.laz 
+#> Read extent of AK_BrooksCamp_2012_000027.laz 
+#> Read extent of AK_BrooksCamp_2012_000033.laz 
+#> Read extent of AK_BrooksCamp_2012_000007.laz 
+#> Read extent of AK_BrooksCamp_2012_000012.laz 
+#> Read extent of AK_BrooksCamp_2012_000017.laz 
+#> Read extent of AK_BrooksCamp_2012_000011.laz 
+#> Read extent of AK_BrooksCamp_2012_000003.laz 
+#> Read extent of AK_BrooksCamp_2012_000018.laz 
+#> Read extent of AK_BrooksCamp_2012_000006.laz
 #> [1] TRUE
 # read the index and display
 tindex <- st_read(outputFile)

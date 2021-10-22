@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of LidarIndexR is to provide functions to build index files for lidar projects.
+The goal of LidarIndexR is to provide functions to build index files for lidar projects. The functions
+in the package have been tested using FTP and HTTPS servers. However, I can't guarantee that the directory
+functions work with all HTTP(S) servers due to differences in the HTML generated to show directory contents.
 
 ## Installation
 
