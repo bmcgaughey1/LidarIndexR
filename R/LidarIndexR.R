@@ -37,7 +37,7 @@ unsignedFourByteIntToDouble <- function(i) {
 #' file size.
 #'
 #' This is a helper function used in the LidarIndexR package to help read
-#' file sizes from HTTP or HTTPS directory listings. It looks for a trailing
+#' file sizes from http or https directory listings. It looks for a trailing
 #' character to determine the multipliuer for the numeric portion of the size
 #' value. In the case of directories, the \code{sizeString} will be "-". This
 #' value is explicitly recognized.
@@ -79,11 +79,11 @@ makeFileSize <- function(sizeString) {
   invisible(fileSize)
 }
 
-# ---------- DirList_HTTP
+# ---------- DirList_http
 #
-#' LidarIndexR -- Retrieve a directory listing from a remote HTTP(S) host
+#' LidarIndexR -- Retrieve a directory listing from a remote http(s) host
 #'
-#' Retrieve a HTTP or HTTPS directory listing from a remote host as either
+#' Retrieve a http or https directory listing from a remote host as either
 #' a simple list of file/folder names or a data frame with file/folder information.
 #'
 #' @param URL URL for a folder on a remote host. Trailing slash is optional.
@@ -100,11 +100,11 @@ makeFileSize <- function(sizeString) {
 #'   information. The return value depends on \code{namesOnly}.
 #' @examples
 #' \dontrun{
-#' DirList_HTTP(pasteo("https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/",
+#' DirList_http(pasteo("https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/",
 #'   "Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"))
 #' }
 #' @export
-DirList_HTTP <- function (
+DirList_http <- function (
   URL,
   fileType = NULL,
   namesOnly = FALSE,
@@ -250,9 +250,9 @@ DirList <- function (
   if (!endsWith(URL, "/"))
     URL <- paste0(URL, "/")
 
-  # if URL is HTTP or HTTPS, return list from DirList_HTTP
+  # if URL is http or https, return list from DirList_http
   if (urltools::scheme(URL) == "http" || urltools::scheme(URL) == "https") {
-    return(DirList_HTTP(URL, 
+    return(DirList_http(URL, 
                         fileType = fileType, 
                         namesOnly = namesOnly, 
                         excludeDirectories = excludeDirectories,

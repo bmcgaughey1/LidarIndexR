@@ -15,7 +15,7 @@ A (invisible) double value for files and a string for directories.
 }
 \description{
 This is a helper function used in the LidarIndexR package to help read
-file sizes from HTTP or HTTPS directory listings. It looks for a trailing
+file sizes from http or https directory listings. It looks for a trailing
 character to determine the multipliuer for the numeric portion of the size
 value. In the case of directories, the \code{sizeString} will be "-". This
 value is explicitly recognized.
