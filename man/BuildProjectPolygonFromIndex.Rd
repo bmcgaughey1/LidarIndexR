@@ -9,6 +9,7 @@ BuildProjectPolygonFromIndex(
   projectIdentifier,
   outputCRS = NULL,
   appendInfo = NULL,
+  outputFile = NULL,
   quiet = TRUE
 )
 }
@@ -27,6 +28,9 @@ do not enclose the EPSG number in quotes.}
 in the return \code{sf} object. If NULL, no information is appended.
 If \code{appendInfo} is \code{sf} object, the geometry will be removed
 before appending to each feature.}
+
+\item{outputFile}{Full path and file name on the local file system for the index
+file.}
 
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}

@@ -26,7 +26,7 @@ lidar project as found in the USGS FESM index.}
 
 \item{folderName}{Folder name on the \code{baseURL} containing LAS/LAZ files.}
 
-\item{outputFile}{Full path and filename on the local file system for the index
+\item{outputFile}{Full path and file name on the local file system for the index
 file.}
 
 \item{projString}{A valid projection string that can be used with the \code{crs}

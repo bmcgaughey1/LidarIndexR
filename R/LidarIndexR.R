@@ -965,7 +965,7 @@ BuildIndexFromPoints <- function (
 #' @param projectItem Data frame of sf object with information for a single USGS
 #'   lidar project as found in the USGS FESM index.
 #' @param folderName Folder name on the \code{baseURL} containing LAS/LAZ files.
-#' @param outputFile Full path and filename on the local file system for the index
+#' @param outputFile Full path and file name on the local file system for the index
 #'   file.
 #' @param projString A valid projection string that can be used with the \code{crs}
 #'   parameter in \code{st_sf}. \code{projString} should represent the projection
@@ -1021,8 +1021,12 @@ BuildIndexFromUSGSProjectIndexItem <- function (
     cat("Index already exist...skipping: ", basename(outputFile),"\n")
     return(TRUE);
   }
-  
-  folderURL <- paste0(projectItem$lpc_link, folderName, "/")
+
+  URL <- projectItem$lpc_link
+  if (!endsWith(URL, "/"))
+    URL <- paste0(URL, "/")
+
+  folderURL <- paste0(URL, folderName, "/")
 #  cat("Folder:", folderURL, "\n")
   
   # get list of .laz & .las files...full directory info
@@ -1136,6 +1140,8 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 #'   in the return \code{sf} object. If NULL, no information is appended.
 #'   If \code{appendInfo} is \code{sf} object, the geometry will be removed
 #'   before appending to each feature.
+#' @param outputFile Full path and file name on the local file system for the index
+#'   file.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @return An \code{sf} object containing the polygon(s) for the project area.
@@ -1149,6 +1155,7 @@ BuildProjectPolygonFromIndex <- function (
   projectIdentifier,
   outputCRS = NULL,
   appendInfo = NULL,
+  outputFile = NULL,
   quiet = TRUE
 ) {
   t_sf <- sf::st_read(indexFile, quiet = TRUE)
@@ -1182,6 +1189,10 @@ BuildProjectPolygonFromIndex <- function (
     }
     
     if (!quiet) cat ("Done with:", indexFile, "\n")
+    
+    if (!is.null(outputFile)) {
+      sf::st_write(t_rp, outputFile, projectIdentifier, delete_dsn = TRUE, quiet = TRUE)
+    }
     
     return(t_rp)
   } else {
