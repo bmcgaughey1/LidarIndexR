@@ -10,6 +10,7 @@ BuildProjectPolygonFromIndex(
   outputCRS = NULL,
   appendInfo = NULL,
   outputFile = NULL,
+  rebuild = FALSE,
   quiet = TRUE
 )
 }
@@ -32,6 +33,9 @@ before appending to each feature.}
 \item{outputFile}{Full path and file name on the local file system for the index
 file.}
 
+\item{rebuild}{Boolean. If TRUE, the index is always created. If FALSE,
+the index is only created if it does not already exist.}
+
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
@@ -39,7 +43,8 @@ information is \emph{not} displayed. Otherwise, status information is displayed.
 An \code{sf} object containing the polygon(s) for the project area.
 }
 \description{
-Longer description
+Creates a bounding polygon(s) given a set of point tile polygons. This is useful to
+create project polygons to display the areas covered by a lidar project.
 }
 \examples{
 \dontrun{

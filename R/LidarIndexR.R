@@ -479,10 +479,10 @@ ReadRemoteLASProjection <- function (
       # delete temp file
       file.remove(file.path(tempFolder, "__temp__.las"))
     } else {
-      if (!quiet) cat("Temp file not created:", file.path(tempFolder, "__temp__.las"), "\n")
+      if (!quiet) message("Temp file not created: ", file.path(tempFolder, "__temp__.las"))
     }
   }
-  if (!quiet) cat(basename(url), ":", crs, "\n")
+  if (!quiet) message(basename(url), ": ", crs)
   return(crs)
 }
 
@@ -509,7 +509,7 @@ ReadRemoteLASHeader <- function(
   # open connection and read 375 bytes...header for V1.4 is 375 bytes
   # hopefully this is faster than reading individual values via ftp...but i didn't test
 #  if (!quiet)
-#    cat("reading header for", basename(URL), "\n")
+#    message("reading header for ", basename(URL))
 
   con <- url(URL, open = "rb")
   bs <- readBin(con, "raw", 375)
@@ -550,7 +550,7 @@ ReadRemoteLASHeader <- function(
     }
 
     if (!quiet)
-      cat("Read extent of", basename(URL), "\n")
+      message("Read extent of ", basename(URL))
   } else {
     VersionMajor <- NA
     VersionMinor <- NA
@@ -569,7 +569,7 @@ ReadRemoteLASHeader <- function(
     MinZ <- NA
 
     if (!quiet)
-      cat("Failed to read extent of", basename(URL), "\n")
+      message("Failed to read extent of ", basename(URL))
   }
   close(con)
 
@@ -642,7 +642,7 @@ FetchAndExtractCRSFromPoints <- function (
 
   # download first file
   if (length(fileList)) {
-    if (!quiet) cat(folderName, "/", fileList$Name[1], "--")
+    if (!quiet) message(folderName, "/", fileList$Name[1], " -- ")
     if (headerOnly) {
       crs <- ReadRemoteLASProjection(paste0(t, fileList$Name[1]), tempFolder, quiet = TRUE)
     } else {
@@ -660,7 +660,7 @@ FetchAndExtractCRSFromPoints <- function (
     }
   }
   if (!quiet) {
-    cat(basename(baseURL), ":", crs, "\n")
+    message(basename(baseURL), ": ", crs)
   }
 
   return(crs)
@@ -733,7 +733,7 @@ FetchAndExtractCRSFromIndex <- function (
     }
   }
   if (!quiet) {
-    cat(basename(baseURL), ":", crs, "\n")
+    message(basename(baseURL), ": ", crs)
   }
 
   return(crs)
@@ -813,7 +813,7 @@ FetchAndExtractCRSFromPrj <- function (
     }
   }
   if (!quiet) {
-    cat(basename(baseURL), ":", crs, "\n")
+    message(basename(baseURL), ": ", crs)
   }
 
   return(crs)
@@ -875,7 +875,7 @@ BuildIndexFromPoints <- function (
   quiet = FALSE
 ) {
   if (file.exists(outputFile) && !rebuild) {
-    cat("Index already exist...skipping: ", basename(outputFile),"\n")
+    if (!quiet) message("Index already exist...skipping: ", basename(outputFile))
     return(TRUE);
   }
 
@@ -885,7 +885,7 @@ BuildIndexFromPoints <- function (
   flist <- DirList(folderURL, "\\.las|\\.laz", dirFormat = dirFormat)
 
   if (nrow(flist) > 0) {
-    cat("Building index: ", basename(outputFile), "\n")
+    if (!quiet) message("Building index: ", basename(outputFile))
 
     # prepend folder path to file names
     fileURLs <- paste0(folderURL, flist$Name)
@@ -946,10 +946,10 @@ BuildIndexFromPoints <- function (
 
       return(TRUE)
     } else {
-      cat("   ***No LAS polygons\n")
+      if (!quiet) message("   ***No LAS polygons")
     }
   } else {
-    cat("   ***No LAS files\n")
+    if (!quiet) message("   ***No LAS files")
   }
 
   return(FALSE)
@@ -1018,7 +1018,7 @@ BuildIndexFromUSGSProjectIndexItem <- function (
   quiet = FALSE
 ) {
   if (file.exists(outputFile) && !rebuild) {
-    cat("Index already exist...skipping: ", basename(outputFile),"\n")
+    if(!quiet) message("Index already exists...skipping: ", basename(outputFile))
     return(TRUE);
   }
 
@@ -1033,7 +1033,7 @@ BuildIndexFromUSGSProjectIndexItem <- function (
   flist <- DirList(folderURL, "\\.las|\\.laz", dirFormat = dirFormat)
   
   if (nrow(flist) > 0) {
-    cat("Building index: ", basename(outputFile), "\n")
+    if (!quiet) message("Building index: ", basename(outputFile))
     
     # prepend folder path to file names
     fileURLs <- paste0(folderURL, flist$Name)
@@ -1114,10 +1114,10 @@ BuildIndexFromUSGSProjectIndexItem <- function (
       
       return(TRUE)
     } else {
-      cat("   ***No LAS polygons\n")
+      if (!quiet) message("   ***No LAS polygons")
     }
   } else {
-    cat("   ***No LAS files\n")
+    if (!quiet) message("   ***No LAS files")
   }
   
   return(FALSE)
@@ -1127,7 +1127,8 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 #
 #' LidarIndexR -- Create polygon(s) representing the area covered by a tile index
 #'
-#' Longer description
+#' Creates a bounding polygon(s) given a set of point tile polygons. This is useful to
+#' create project polygons to display the areas covered by a lidar project.
 #'
 #' @param indexFile Full path and filename on the local file system for the tile index
 #'   file.
@@ -1142,6 +1143,8 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 #'   before appending to each feature.
 #' @param outputFile Full path and file name on the local file system for the index
 #'   file.
+#' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
+#'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @return An \code{sf} object containing the polygon(s) for the project area.
@@ -1156,8 +1159,17 @@ BuildProjectPolygonFromIndex <- function (
   outputCRS = NULL,
   appendInfo = NULL,
   outputFile = NULL,
+  rebuild = FALSE,
   quiet = TRUE
 ) {
+  if (!rebuild && !is.null(outputFile)) {
+    # see if output file exists
+    if (file.exists(outputFile)) {
+      if (!quiet) message("Project polygon file already exists...skipping: ", basename(outputFile))
+      return(TRUE);
+    }
+  }
+  
   t_sf <- sf::st_read(indexFile, quiet = TRUE)
   
   if (is.object(t_sf)) {
@@ -1188,7 +1200,7 @@ BuildProjectPolygonFromIndex <- function (
       t_rp <- cbind(t_rp, info)
     }
     
-    if (!quiet) cat ("Done with:", indexFile, "\n")
+    if (!quiet) message("Done with: ", indexFile)
     
     if (!is.null(outputFile)) {
       sf::st_write(t_rp, outputFile, projectIdentifier, delete_dsn = TRUE, quiet = TRUE)
@@ -1196,7 +1208,7 @@ BuildProjectPolygonFromIndex <- function (
     
     return(t_rp)
   } else {
-    cat("Problems reading ", indexFile,)
+    if (!quiet) message("Problems reading index file: ", indexFile)
   }
   return(NULL)
 }
