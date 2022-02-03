@@ -58,48 +58,7 @@ pointCRS <- 26905
 # create index
 BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS, 
                      appendInfo = data.frame("Project" = "AK_BrooksCamp_2012"))
-#> Building index:  AK_BrooksCamp_2012.gpkg 
-#> Read extent of AK_BrooksCamp_2012_000030.laz 
-#> Read extent of AK_BrooksCamp_2012_000039.laz 
-#> Read extent of AK_BrooksCamp_2012_000015.laz 
-#> Read extent of AK_BrooksCamp_2012_000024.laz 
-#> Read extent of AK_BrooksCamp_2012_000038.laz 
-#> Read extent of AK_BrooksCamp_2012_000019.laz 
-#> Read extent of AK_BrooksCamp_2012_000041.laz 
-#> Read extent of AK_BrooksCamp_2012_000025.laz 
-#> Read extent of AK_BrooksCamp_2012_000034.laz 
-#> Read extent of AK_BrooksCamp_2012_000020.laz 
-#> Read extent of AK_BrooksCamp_2012_000040.laz 
-#> Read extent of AK_BrooksCamp_2012_000029.laz 
-#> Read extent of AK_BrooksCamp_2012_000008.laz 
-#> Read extent of AK_BrooksCamp_2012_000009.laz 
-#> Read extent of AK_BrooksCamp_2012_000035.laz 
-#> Read extent of AK_BrooksCamp_2012_000001.laz 
-#> Read extent of AK_BrooksCamp_2012_000004.laz 
-#> Read extent of AK_BrooksCamp_2012_000010.laz 
-#> Read extent of AK_BrooksCamp_2012_000014.laz 
-#> Read extent of AK_BrooksCamp_2012_000031.laz 
-#> Read extent of AK_BrooksCamp_2012_000013.laz 
-#> Read extent of AK_BrooksCamp_2012_000023.laz 
-#> Read extent of AK_BrooksCamp_2012_000026.laz 
-#> Read extent of AK_BrooksCamp_2012_000005.laz 
-#> Read extent of AK_BrooksCamp_2012_000037.laz 
-#> Read extent of AK_BrooksCamp_2012_000002.laz 
-#> Read extent of AK_BrooksCamp_2012_000028.laz 
-#> Read extent of AK_BrooksCamp_2012_000016.laz 
-#> Read extent of AK_BrooksCamp_2012_000021.laz 
-#> Read extent of AK_BrooksCamp_2012_000036.laz 
-#> Read extent of AK_BrooksCamp_2012_000022.laz 
-#> Read extent of AK_BrooksCamp_2012_000032.laz 
-#> Read extent of AK_BrooksCamp_2012_000027.laz 
-#> Read extent of AK_BrooksCamp_2012_000033.laz 
-#> Read extent of AK_BrooksCamp_2012_000007.laz 
-#> Read extent of AK_BrooksCamp_2012_000012.laz 
-#> Read extent of AK_BrooksCamp_2012_000017.laz 
-#> Read extent of AK_BrooksCamp_2012_000011.laz 
-#> Read extent of AK_BrooksCamp_2012_000003.laz 
-#> Read extent of AK_BrooksCamp_2012_000018.laz 
-#> Read extent of AK_BrooksCamp_2012_000006.laz
+#> Index already exist...skipping: AK_BrooksCamp_2012.gpkg
 #> [1] TRUE
 # read the index and display
 index <- st_read(outputFile)
@@ -154,7 +113,7 @@ library(viridis)
 # read the FESM index from a local file
 index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
 #> Reading layer `WESM' from data source `G:\R_Stuff\EntwineIndex\WESM.gpkg' using driver `GPKG'
-#> Simple feature collection with 2436 features and 26 fields
+#> Simple feature collection with 2457 features and 26 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: -179.2501 ymin: 13.232 xmax: 179.8547 ymax: 71.507
@@ -166,48 +125,7 @@ item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
 
 # create index
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
-#> Building index:  AK_BrooksCamp_2012_Proj.gpkg 
-#> Read extent of AK_BrooksCamp_2012_000030.laz 
-#> Read extent of AK_BrooksCamp_2012_000039.laz 
-#> Read extent of AK_BrooksCamp_2012_000015.laz 
-#> Read extent of AK_BrooksCamp_2012_000024.laz 
-#> Read extent of AK_BrooksCamp_2012_000038.laz 
-#> Read extent of AK_BrooksCamp_2012_000019.laz 
-#> Read extent of AK_BrooksCamp_2012_000041.laz 
-#> Read extent of AK_BrooksCamp_2012_000025.laz 
-#> Read extent of AK_BrooksCamp_2012_000034.laz 
-#> Read extent of AK_BrooksCamp_2012_000020.laz 
-#> Read extent of AK_BrooksCamp_2012_000040.laz 
-#> Read extent of AK_BrooksCamp_2012_000029.laz 
-#> Read extent of AK_BrooksCamp_2012_000008.laz 
-#> Read extent of AK_BrooksCamp_2012_000009.laz 
-#> Read extent of AK_BrooksCamp_2012_000035.laz 
-#> Read extent of AK_BrooksCamp_2012_000001.laz 
-#> Read extent of AK_BrooksCamp_2012_000004.laz 
-#> Read extent of AK_BrooksCamp_2012_000010.laz 
-#> Read extent of AK_BrooksCamp_2012_000014.laz 
-#> Read extent of AK_BrooksCamp_2012_000031.laz 
-#> Read extent of AK_BrooksCamp_2012_000013.laz 
-#> Read extent of AK_BrooksCamp_2012_000023.laz 
-#> Read extent of AK_BrooksCamp_2012_000026.laz 
-#> Read extent of AK_BrooksCamp_2012_000005.laz 
-#> Read extent of AK_BrooksCamp_2012_000037.laz 
-#> Read extent of AK_BrooksCamp_2012_000002.laz 
-#> Read extent of AK_BrooksCamp_2012_000028.laz 
-#> Read extent of AK_BrooksCamp_2012_000016.laz 
-#> Read extent of AK_BrooksCamp_2012_000021.laz 
-#> Read extent of AK_BrooksCamp_2012_000036.laz 
-#> Read extent of AK_BrooksCamp_2012_000022.laz 
-#> Read extent of AK_BrooksCamp_2012_000032.laz 
-#> Read extent of AK_BrooksCamp_2012_000027.laz 
-#> Read extent of AK_BrooksCamp_2012_000033.laz 
-#> Read extent of AK_BrooksCamp_2012_000007.laz 
-#> Read extent of AK_BrooksCamp_2012_000012.laz 
-#> Read extent of AK_BrooksCamp_2012_000017.laz 
-#> Read extent of AK_BrooksCamp_2012_000011.laz 
-#> Read extent of AK_BrooksCamp_2012_000003.laz 
-#> Read extent of AK_BrooksCamp_2012_000018.laz 
-#> Read extent of AK_BrooksCamp_2012_000006.laz
+#> Index already exists...skipping: AK_BrooksCamp_2012_Proj.gpkg
 #> [1] TRUE
 # read the index and display
 tindex <- st_read(outputFile)
@@ -230,7 +148,10 @@ ggplot(tindex) +
 ## Example \#3: Create an overall polygon for a project from the tile index
 
 This example builds on Example \#2 to create a polygon showing the area
-covered by the point tiles.
+covered by the point tiles. The default size for the raster used to
+merge polygons is 512 by 512. By increasing this to 2048 by 2048, the
+project polygon captures the small tiles that are otherwise omitted when
+using the default size.
 
 ``` r
 # build on the last example to generate a project polygon
@@ -239,7 +160,8 @@ tproject <- BuildProjectPolygonFromIndex(
   outputFile,
   item$workunit,
   appendInfo = item[, c("workunit_id", "collect_start", "collect_end", "p_method", "horiz_crs")],
-  quiet = FALSE
+  quiet = FALSE,
+  nx = 2048, ny = 2048
 )
 #> Done with: ~/AK_BrooksCamp_2012_Proj.gpkg
 # display the project polygon

@@ -7,6 +7,8 @@
 BuildProjectPolygonFromIndex(
   indexFile,
   projectIdentifier,
+  nx = 512,
+  ny = 512,
   outputCRS = NULL,
   appendInfo = NULL,
   outputFile = NULL,
@@ -20,6 +22,12 @@ file.}
 
 \item{projectIdentifier}{Character string containing an identifier for the project
 area. This will be added to each feature in the return \code{sf} object.}
+
+\item{nx}{Integer specifying the number of cells (width) of the raster used
+to merge polygons.}
+
+\item{ny}{Integer specifying the number of cells (height) of the raster used
+to merge polygons.}
 
 \item{outputCRS}{A valid projection string that can be used with the \code{crs}
 parameter in \code{st_transform} to reproject the index. If using EPSG codes,

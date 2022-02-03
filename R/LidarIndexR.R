@@ -1134,6 +1134,10 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 #'   file.
 #' @param projectIdentifier Character string containing an identifier for the project
 #'   area. This will be added to each feature in the return \code{sf} object.
+#' @param nx Integer specifying the number of cells (width) of the raster used
+#'   to merge polygons.
+#' @param ny Integer specifying the number of cells (height) of the raster used
+#'   to merge polygons.
 #' @param outputCRS A valid projection string that can be used with the \code{crs}
 #'   parameter in \code{st_transform} to reproject the index. If using EPSG codes,
 #'   do not enclose the EPSG number in quotes.
@@ -1156,6 +1160,8 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 BuildProjectPolygonFromIndex <- function (
   indexFile,
   projectIdentifier,
+  nx = 512,
+  ny = 512,
   outputCRS = NULL,
   appendInfo = NULL,
   outputFile = NULL,
@@ -1176,7 +1182,7 @@ BuildProjectPolygonFromIndex <- function (
     t_sf$PID <- 1
     
     # rasterize
-    r_poly <- stars::st_rasterize(t_sf[, "PID"], dx = 512, dy = 512)
+    r_poly <- stars::st_rasterize(t_sf[, "PID"], nx = nx, ny = ny)
     
     # convert back to polygons...merge tiles
     t_rp <- sf::st_as_sf(r_poly, as_points = FALSE, merge = TRUE)

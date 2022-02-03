@@ -124,7 +124,9 @@ ggplot(tindex) +
 
 ## Example #3: Create an overall polygon for a project from the tile index
 
-This example builds on Example #2 to create a polygon showing the area covered by the point tiles.
+This example builds on Example #2 to create a polygon showing the area covered by the point tiles. The default size for 
+the raster used to merge polygons is 512 by 512. By increasing this to 2048 by 2048, the project polygon captures the small tiles
+that are otherwise omitted when using the default size.
 
 ```{r example3}
 # build on the last example to generate a project polygon
@@ -133,7 +135,8 @@ tproject <- BuildProjectPolygonFromIndex(
   outputFile,
   item$workunit,
   appendInfo = item[, c("workunit_id", "collect_start", "collect_end", "p_method", "horiz_crs")],
-  quiet = FALSE
+  quiet = FALSE,
+  nx = 2048, ny = 2048
 )
 
 # display the project polygon
