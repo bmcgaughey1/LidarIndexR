@@ -19,7 +19,6 @@ Imports:
     lidR,
     utils,
     readr,
-    raster,
     stringr,
     urltools,
     XML

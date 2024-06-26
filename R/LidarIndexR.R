@@ -473,7 +473,8 @@ ReadRemoteLASProjection <- function (
       # read header
       t <- tryCatch(lidR::readLASheader(file.path(tempFolder, "__temp__.las")), error = function(e) {NA})
       if (is.object(t)) {
-        crs <- raster::projection(t)
+        crs <- lidR::st_crs(t)
+#        crs <- raster::projection(t)
       }
 
       # delete temp file
@@ -653,7 +654,8 @@ FetchAndExtractCRSFromPoints <- function (
       # load file and extract CRS (if any)
       las <- tryCatch(lidR::readLASheader(file.path(tempFolder, fileList$Name[1])), error = function(e) {NA})
       if (is.object(las)) {
-        crs <- raster::projection(las)
+        crs <- lidR::st_crs(las)
+#        crs <- raster::projection(las)
       } else {
         crs <- NA
       }
@@ -727,7 +729,8 @@ FetchAndExtractCRSFromIndex <- function (
     # load index file and extract CRS (if any)
     index <- tryCatch(sf::st_read(file.path(tempFolder, fileName)), error = function(e) {NA})
     if (is.object(index)) {
-      crs <- raster::projection(index)
+      crs <- lidR::st_crs(index)
+#      crs <- raster::projection(index)
     } else {
       crs <- NA
     }
@@ -1077,8 +1080,9 @@ BuildIndexFromUSGSProjectIndexItem <- function (
       tiles_sf <- sf::st_set_crs(tiles_sf, prs)  
 
       # reproject to outputCRS
-      if (!is.na(raster::projection(tiles_sf)) && !is.null(outputCRS)) {
-        tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
+      if (!is.na(lidR::st_crs(tiles_sf)) && !is.null(outputCRS)) {
+#      if (!is.na(raster::projection(tiles_sf)) && !is.null(outputCRS)) {
+          tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
       }
       
       # see if we have a list of columns to add to the tiles
