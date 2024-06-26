@@ -10,8 +10,6 @@ Description: LidarIndexR contains functions to build index files for collections
   LAS or LAZ point tiles.
 Imports:
     RCurl,
-    rgdal,
-    rgeos,
     sp,
     stars,
     stats,
