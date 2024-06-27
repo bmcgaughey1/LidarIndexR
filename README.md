@@ -4,7 +4,6 @@
 # LidarIndexR
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 The goal of LidarIndexR is to provide functions to build index files for
@@ -39,38 +38,40 @@ information for the data.
 ``` r
 library(LidarIndexR)
 library(sf)
-#> Warning: package 'sf' was built under R version 4.0.5
-#> Linking to GEOS 3.9.1, GDAL 3.2.1, PROJ 7.2.1
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.0.5
 library(viridis)
-#> Warning: package 'viridis' was built under R version 4.0.5
-#> Loading required package: viridisLite
-#> Warning: package 'viridisLite' was built under R version 4.0.5
+
 ## Basic example to build an index
-URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/"
-pointFolder <- "laz"
-outputFile <- "~/AK_BrooksCamp_2012.gpkg"
+URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/WA_ElwhaRiver_2015"
+pointFolder <- "WA_Elwha_TB_2015/LAZ"
+outputFile <- "~/WA_ElwhaRiver_2015.gpkg"
 
 # projection info...for most projects, this can be pulled from the WESM project index
 pointCRS <- 26905
 
 # create index
-BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS, 
-                     appendInfo = data.frame("Project" = "AK_BrooksCamp_2012"))
-#> Index already exist...skipping: AK_BrooksCamp_2012.gpkg
+BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS,
+                     appendInfo = data.frame("Project" = "WA_ElwhaRiver_2015"))
 #> [1] TRUE
+```
+
+``` r
+
 # read the index and display
 index <- st_read(outputFile)
-#> Reading layer `AK_BrooksCamp_2012' from data source 
-#>   `G:\R_Stuff\AK_BrooksCamp_2012.gpkg' using driver `GPKG'
-#> Simple feature collection with 41 features and 17 fields
+#> Reading layer `WA_ElwhaRiver_2015' from data source 
+#>   `C:\Users\bmcgaughey\Documents\WA_ElwhaRiver_2015.gpkg' using driver `GPKG'
+#> Simple feature collection with 67 features and 17 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: 335201.4 ymin: 6484121 xmax: 348234.6 ymax: 6496318
+#> Bounding box:  xmin: 456087.6 ymin: 5323597 xmax: 470339.9 ymax: 5333589
 #> Projected CRS: NAD83 / UTM zone 5N
+```
+
+``` r
+
 ggplot(index) +
-  ggtitle("AK_BrooksCamp_2012 lidar tiles") +
+  ggtitle("WA_ElwhaRiver_2015 lidar tiles") +
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_sf(aes(fill = PointCount), show.legend = TRUE) +
   scale_fill_viridis()
@@ -92,7 +93,7 @@ The example requires a local copy of the USGS project index from
 [here](https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/metadata/WESM.gpkg).
 The commented code in the example downloads the WESM.gpkg index.
 
-**Note:** The call to  can take quite a bit of time to execute. It
+**Note:** The call to can take quite a bit of time to execute. It
 touches every point file on the server to read bounding box information
 for the tiles. For projects with thousands of tiles, it can take hours
 to build the index.
@@ -113,11 +114,14 @@ library(viridis)
 # read the FESM index from a local file
 index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
 #> Reading layer `WESM' from data source `G:\R_Stuff\EntwineIndex\WESM.gpkg' using driver `GPKG'
-#> Simple feature collection with 2457 features and 26 fields
+#> Simple feature collection with 2785 features and 26 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: -179.2501 ymin: 13.232 xmax: 179.8547 ymax: 71.507
 #> Geodetic CRS:  NAD83
+```
+
+``` r
 pointFolder <- "laz"
 outputFile <- "~/AK_BrooksCamp_2012_Proj.gpkg"
 
@@ -125,17 +129,25 @@ item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
 
 # create index
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
-#> Index already exists...skipping: AK_BrooksCamp_2012_Proj.gpkg
 #> [1] TRUE
+```
+
+``` r
+
 # read the index and display
 tindex <- st_read(outputFile)
 #> Reading layer `AK_BrooksCamp_2012_Proj' from data source 
-#>   `G:\R_Stuff\AK_BrooksCamp_2012_Proj.gpkg' using driver `GPKG'
+#>   `C:\Users\bmcgaughey\Documents\AK_BrooksCamp_2012_Proj.gpkg' 
+#>   using driver `GPKG'
 #> Simple feature collection with 41 features and 23 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: 335201.4 ymin: 6484121 xmax: 348234.6 ymax: 6496318
 #> Projected CRS: NAD83 / UTM zone 5N
+```
+
+``` r
+
 ggplot(tindex) +
   ggtitle("AK_BrooksCamp_2012 lidar tiles") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -163,7 +175,7 @@ tproject <- BuildProjectPolygonFromIndex(
   quiet = FALSE,
   nx = 2048, ny = 2048
 )
-#> Done with: ~/AK_BrooksCamp_2012_Proj.gpkg
+
 # display the project polygon
 ggplot(tproject) +
   ggtitle(paste0(item$workunit, " project area")) +

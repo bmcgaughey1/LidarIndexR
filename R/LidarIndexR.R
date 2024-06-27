@@ -135,8 +135,16 @@ DirList_http <- function (
   if (parentRow > 0) 
     df <- df[(parentRow + 1):nrow(df), ]
   
-  # drop last row...should be <hr></pre>
-  df <- df[1:(nrow(df) -1), ]
+  # 6/27/2024...USGS index format has changed to add a footer. We need to keep all
+  # lines that have img tags
+  # see if lines has "img src="
+  df$isImg <- as.integer(sapply(df$line, function(x) {!is.na(stringr::str_extract(x, "img src="))}))
+  
+  # drop non-img lines
+  df <- df[df$isImg == 1, ]
+  
+  ## drop last row...should be <hr></pre>
+  ##df <- df[1:(nrow(df) -1), ]
   
   # make sure we still have rows...not an empty directory
   if (nrow(df) > 0) {

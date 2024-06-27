@@ -42,29 +42,29 @@ This example creates a tile index for a single lidar project stored in the USGS 
 you have to know the details for the project including the folder name for the project and the projection
 information for the data.
 
-```{r example1}
+```{r example1, message=FALSE, warning=FALSE}
 library(LidarIndexR)
 library(sf)
 library(ggplot2)
 library(viridis)
 
 ## Basic example to build an index
-URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/"
-pointFolder <- "laz"
-outputFile <- "~/AK_BrooksCamp_2012.gpkg"
+URL <- "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/WA_ElwhaRiver_2015"
+pointFolder <- "WA_Elwha_TB_2015/LAZ"
+outputFile <- "~/WA_ElwhaRiver_2015.gpkg"
 
 # projection info...for most projects, this can be pulled from the WESM project index
 pointCRS <- 26905
 
 # create index
-BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS, 
-                     appendInfo = data.frame("Project" = "AK_BrooksCamp_2012"))
+BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS,
+                     appendInfo = data.frame("Project" = "WA_ElwhaRiver_2015"))
 
 # read the index and display
 index <- st_read(outputFile)
 
 ggplot(index) +
-  ggtitle("AK_BrooksCamp_2012 lidar tiles") +
+  ggtitle("WA_ElwhaRiver_2015 lidar tiles") +
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_sf(aes(fill = PointCount), show.legend = TRUE) +
   scale_fill_viridis()
@@ -88,7 +88,7 @@ The commented code in the example downloads the WESM.gpkg index.
 time to execute. It touches every point file on the server to read bounding box information
 for the tiles. For projects with thousands of tiles, it can take hours to build the index.
 
-```{r example2}
+```{r example2, message=FALSE, warning=FALSE}
 library(LidarIndexR)
 library(sf)
 library(utils)
@@ -128,7 +128,7 @@ This example builds on Example #2 to create a polygon showing the area covered b
 the raster used to merge polygons is 512 by 512. By increasing this to 2048 by 2048, the project polygon captures the small tiles
 that are otherwise omitted when using the default size.
 
-```{r example3}
+```{r example3, message=FALSE, warning=FALSE}
 # build on the last example to generate a project polygon
 
 tproject <- BuildProjectPolygonFromIndex(
