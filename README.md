@@ -8,20 +8,21 @@
 
 The goal of LidarIndexR is to provide functions to build index files for
 lidar projects. The functions in the package have been tested using FTP
-and HTTPS servers. However, I can’t guarantee that the directory
-functions work with all HTTP(S) servers due to differences in the HTML
-generated to show directory contents.
+and HTTPS servers. USGS changed the format of the XML generated for
+directory listing on the rockyweb server sometime between 2022 and 2024.
+Code was modified in June 2024 to correctly parse the new output.
+However, I can’t guarantee that the directory functions work with all
+HTTP(S) servers due to differences in the HTML generated to show
+directory contents. The changes in 2024 should make the functions more
+reliable given different formats but I haven’t tested functions using
+other servers.
 
 ## Installation
 
-You can install the released version of LidarIndexR from
-[CRAN](https://CRAN.R-project.org) with:
+LidarIndexR is not available on CRAN.
 
-``` r
-# install.packages("LidarIndexR")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -47,7 +48,7 @@ pointFolder <- "WA_Elwha_TB_2015/LAZ"
 outputFile <- "~/WA_ElwhaRiver_2015.gpkg"
 
 # projection info...for most projects, this can be pulled from the WESM project index
-pointCRS <- 26905
+pointCRS <- 26910
 
 # create index
 BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS,
@@ -114,7 +115,7 @@ library(viridis)
 # read the FESM index from a local file
 index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
 #> Reading layer `WESM' from data source `G:\R_Stuff\EntwineIndex\WESM.gpkg' using driver `GPKG'
-#> Simple feature collection with 2785 features and 26 fields
+#> Simple feature collection with 2923 features and 28 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: -179.2501 ymin: 13.232 xmax: 179.8547 ymax: 71.507
@@ -123,9 +124,9 @@ index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
 
 ``` r
 pointFolder <- "laz"
-outputFile <- "~/AK_BrooksCamp_2012_Proj.gpkg"
+outputFile <- "~/WA_Elwha_TB_2015.gpkg"
 
-item <- index[which(index$workunit == "AK_BROOKSCAMP_2012"), ]
+item <- index[which(index$workunit == "WA_Elwha_TB_2015"), ]
 
 # create index
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
@@ -136,20 +137,19 @@ BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
 
 # read the index and display
 tindex <- st_read(outputFile)
-#> Reading layer `AK_BrooksCamp_2012_Proj' from data source 
-#>   `C:\Users\bmcgaughey\Documents\AK_BrooksCamp_2012_Proj.gpkg' 
-#>   using driver `GPKG'
-#> Simple feature collection with 41 features and 23 fields
+#> Reading layer `WA_Elwha_TB_2015' from data source 
+#>   `C:\Users\bmcgaughey\Documents\WA_Elwha_TB_2015.gpkg' using driver `GPKG'
+#> Simple feature collection with 67 features and 23 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: 335201.4 ymin: 6484121 xmax: 348234.6 ymax: 6496318
-#> Projected CRS: NAD83 / UTM zone 5N
+#> Bounding box:  xmin: 456087.6 ymin: 5323597 xmax: 470339.9 ymax: 5333589
+#> Projected CRS: NAD83 / UTM zone 10N
 ```
 
 ``` r
 
 ggplot(tindex) +
-  ggtitle("AK_BrooksCamp_2012 lidar tiles") +
+  ggtitle("WA_Elwha_TB_2015 lidar tiles") +
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_sf(aes(fill = PointCount), show.legend = TRUE) +
   scale_fill_viridis()
