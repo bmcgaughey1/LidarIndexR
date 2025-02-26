@@ -9,13 +9,13 @@
 The goal of LidarIndexR is to provide functions to build index files for
 lidar projects. The functions in the package have been tested using FTP
 and HTTPS servers. USGS changed the format of the XML generated for
-directory listing on the rockyweb server sometime between 2022 and 2024.
-Code was modified in June 2024 to correctly parse the new output.
-However, I can’t guarantee that the directory functions work with all
-HTTP(S) servers due to differences in the HTML generated to show
-directory contents. The changes in 2024 should make the functions more
-reliable given different formats but I haven’t tested functions using
-other servers.
+directory listing on the rockyweb server (or changed the server
+software) sometime between 2022 and 2024. Code was modified in June 2024
+to correctly parse the new output. However, I can’t guarantee that the
+directory functions work with all HTTP(S) servers due to differences in
+the HTML generated to show directory contents. The changes in 2024
+should make the functions more reliable given different formats but I
+haven’t tested functions using other servers.
 
 ## Installation
 
@@ -54,22 +54,17 @@ pointCRS <- 26910
 BuildIndexFromPoints(URL, pointFolder, outputFile, projString = pointCRS,
                      appendInfo = data.frame("Project" = "WA_ElwhaRiver_2015"))
 #> [1] TRUE
-```
-
-``` r
 
 # read the index and display
 index <- st_read(outputFile)
 #> Reading layer `WA_ElwhaRiver_2015' from data source 
-#>   `C:\Users\bmcgaughey\Documents\WA_ElwhaRiver_2015.gpkg' using driver `GPKG'
+#>   `C:\Users\bmcgaughey\OneDrive - USDA\Documents\WA_ElwhaRiver_2015.gpkg' 
+#>   using driver `GPKG'
 #> Simple feature collection with 67 features and 17 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: 456087.6 ymin: 5323597 xmax: 470339.9 ymax: 5333589
 #> Projected CRS: NAD83 / UTM zone 5N
-```
-
-``` r
 
 ggplot(index) +
   ggtitle("WA_ElwhaRiver_2015 lidar tiles") +
@@ -115,14 +110,11 @@ library(viridis)
 # read the FESM index from a local file
 index <- st_read("G:/R_Stuff/EntwineIndex/WESM.gpkg")
 #> Reading layer `WESM' from data source `G:\R_Stuff\EntwineIndex\WESM.gpkg' using driver `GPKG'
-#> Simple feature collection with 2923 features and 28 fields
+#> Simple feature collection with 2911 features and 28 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: -179.2501 ymin: 13.232 xmax: 179.8547 ymax: 71.507
 #> Geodetic CRS:  NAD83
-```
-
-``` r
 pointFolder <- "laz"
 outputFile <- "~/WA_Elwha_TB_2015.gpkg"
 
@@ -131,22 +123,17 @@ item <- index[which(index$workunit == "WA_Elwha_TB_2015"), ]
 # create index
 BuildIndexFromUSGSProjectIndexItem(item, pointFolder, outputFile)
 #> [1] TRUE
-```
-
-``` r
 
 # read the index and display
 tindex <- st_read(outputFile)
 #> Reading layer `WA_Elwha_TB_2015' from data source 
-#>   `C:\Users\bmcgaughey\Documents\WA_Elwha_TB_2015.gpkg' using driver `GPKG'
+#>   `C:\Users\bmcgaughey\OneDrive - USDA\Documents\WA_Elwha_TB_2015.gpkg' 
+#>   using driver `GPKG'
 #> Simple feature collection with 67 features and 23 fields
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: 456087.6 ymin: 5323597 xmax: 470339.9 ymax: 5333589
 #> Projected CRS: NAD83 / UTM zone 10N
-```
-
-``` r
 
 ggplot(tindex) +
   ggtitle("WA_Elwha_TB_2015 lidar tiles") +

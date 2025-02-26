@@ -857,7 +857,7 @@ FetchAndExtractCRSFromPrj <- function (
 #' @param dimensionThreshold Size threshold used to omit files from the index.
 #'   This is intended to help omit invalid LAS.LAZ files from the index. If
 #'   the height or width of the point tile exceeds the threshold, the tile
-#'   will ne omitted.
+#'   will be omitted.
 #' @param appendInfo Data frame (single row) with values to append to each 
 #'   feature in the return \code{sf} object. If NULL, no information is appended.
 #'   If \code{appendInfo} is \code{sf} object, the geometry will be removed
