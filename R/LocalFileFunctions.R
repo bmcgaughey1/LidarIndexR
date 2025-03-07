@@ -23,7 +23,7 @@
 #' Only the file header is downloaded (including VLRs) so you don't have to worry 
 #' about the size of the LAS/LAZ file.
 #'
-#' @param URL URL for a LAS/LAZ file on a remote host.
+#' @param path Path for a LAS/LAZ file on a remote host.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @return A string containing the CRS information retrieved from the LAS/LAZ
@@ -34,14 +34,14 @@
 #' }
 #' @export
 ReadLocalLASProjection <- function (
-  url,
+  path,
   quiet = FALSE
 ) {
   crs <- NA
   
-  if (file.exists(url)) {
+  if (file.exists(path)) {
     # read header
-    t <- tryCatch(lidR::readLASheader(url), error = function(e) {NA})
+    t <- tryCatch(lidR::readLASheader(path), error = function(e) {NA})
     if (is.object(t)) {
       crs <- lidR::st_crs(t)
       
@@ -56,13 +56,13 @@ ReadLocalLASProjection <- function (
         }
       }
     } else {
-      if (!quiet) cat("Invalid LAS/LAZ file:", url, "\n")
+      if (!quiet) cat("Invalid LAS/LAZ file:", path, "\n")
     }
   } else {
-    if (!quiet) cat("File does not exist:", url, "\n")
+    if (!quiet) cat("File does not exist:", path, "\n")
   }
 
-  if (!quiet) cat(basename(url), ":", crs, "\n")
+  if (!quiet) cat(basename(path), ":", crs, "\n")
 
   return(crs)
 }
@@ -74,7 +74,7 @@ ReadLocalLASProjection <- function (
 #' Reads the header of a LAS/LAZ file and returns header information in a
 #' data frame. Only the header is read.
 #'
-#' @param URL URL for a LAS/LAZ file on a remote host.
+#' @param path Path for a LAS/LAZ file on a remote host.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @return A data frame containing header information.
@@ -84,11 +84,11 @@ ReadLocalLASProjection <- function (
 #' }
 #' @export
 ReadLocalLASHeader <- function(
-  url,
+  path,
   quiet = FALSE
 ) {
   # open file and read header...value by value
-  con = file(url, open = "rb")
+  con = file(path, open = "rb")
   Signaturebytes <- readBin(con, "raw", n = 4, size = 1, endian = "little")
   
   Signature <- readBin(Signaturebytes, "character", size = 4, endian = "little")
@@ -122,7 +122,7 @@ ReadLocalLASHeader <- function(
     }
     
     if (!quiet)
-      cat("Read extent of", basename(url), "\n")
+      cat("Read extent of", basename(path), "\n")
   } else {
     VersionMajor <- NA
     VersionMinor <- NA
@@ -141,14 +141,14 @@ ReadLocalLASHeader <- function(
     MinZ <- NA
     
     if (!quiet)
-      cat("Failed to read extent of", basename(url), "\n")
+      cat("Failed to read extent of", basename(path), "\n")
   }
   close(con)
   
   # build data frame to return
   df <- data.frame(
-    "URL" = url,
-    "FileName" = basename(url),
+    "path" = path,
+    "FileName" = basename(path),
     "LASVersion" = VersionMajor + VersionMinor / 10,
     "FileDayOfYear" = DayOfYear,
     "FileYear" = Year,
@@ -174,10 +174,12 @@ ReadLocalLASHeader <- function(
 #'
 #' Longer description
 #'
-#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#' @param basePath Path for a folder on a remote host. Trailing slash should *not*
 #'   be included.
-#' @param folderName Folder name on the \code{baseURL} containing LAS/LAZ files.
-#' @param pointFolder Folder under \code{folderName} containing point files.
+#' @param folderName Folder name on the \code{basePath} containing LAS/LAZ files.
+#'   Can be an empty string.
+#' @param pointFolder Folder under \code{folderName} containing point files. Can be
+#'   an empty string.
 #' @param outputFile Full path and filename on the local file system for the index
 #'   file.
 #' @param projString A valid projection string that can be used with the \code{crs}
@@ -205,7 +207,7 @@ ReadLocalLASHeader <- function(
 #' }
 #' @export
 BuildIndexFromLocalPoints <- function (
-  baseURL,
+  basePath,
   folderName,
   pointFolder,
   outputFile,
@@ -219,19 +221,26 @@ BuildIndexFromLocalPoints <- function (
 ) {
   if (file.exists(outputFile) && !rebuild) {
     cat("Index already exist...skipping: ", basename(outputFile),"\n")
-    return(TRUE);
+    return(TRUE)
   }
   
-  if (pointFolder == "") {
-    folderURL <- paste0(baseURL, "/", folderName)
+  if (folderName == "" && pointFolder != "") {
+    cat("folderName cannot be blank when pointFolder is not blank\n")
+    return(FALSE)
+  }
+  
+  if (pointFolder == "" && folderName == "") {
+    folderPath <- basePath
+  } else if (pointFolder == "") {
+    folderPath <- paste0(basePath, "/", folderName)
   } else {
-    folderURL <- paste0(baseURL, "/", folderName, "/", pointFolder)
+    folderPath <- paste0(basePath, "/", folderName, "/", pointFolder)
   }
   
   # we only need to get a list of files if fullFileList == NA
   if (length(fullFileList) == 0) {
     # get list of .laz & .las files...full directory info
-    flist <- LocalDirList(folderURL, fileType = fileType)
+    flist <- LocalDirList(folderPath, fileType = fileType)
   } else {
     flist <- fullFileList
   }
@@ -241,7 +250,7 @@ BuildIndexFromLocalPoints <- function (
     
     if (length(fullFileList) == 0) {
       # prepend folder path to file names
-      fileURLs <- paste0(folderURL, "/", flist)
+      fileURLs <- paste0(folderPath, "/", flist)
     } else {
       fileURLs <- flist
     }
@@ -309,9 +318,9 @@ BuildIndexFromLocalPoints <- function (
 #' reading only the file header \code{headerOnly = TRUE} or retrieving the entire
 #' file and reading the header \code{headerOnly = FALSE}. 
 #'
-#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#' @param basePath Path for a folder on a remote host. Trailing slash should *not*
 #'   be included.
-#' @param folderName Folder name on the \code{baseURL} containing LAS/LAZ
+#' @param folderName Folder name on the \code{basePath} containing LAS/LAZ
 #'   files.
 #' @param headerOnly Boolean. If TRUE, only the file header is read. If FALSE,
 #'   the entire LAS/LAZ file is retrieved and then the header is read to 
@@ -326,7 +335,7 @@ BuildIndexFromLocalPoints <- function (
 #' }
 #' @export
 ExtractCRSFromLocalPoints <- function (
-  baseURL,
+  basePath,
   folderName,
   headerOnly = TRUE,
   quiet = FALSE,
@@ -334,7 +343,7 @@ ExtractCRSFromLocalPoints <- function (
 ) {
   crs <- NA
   
-  t <- paste0(baseURL, "/", folderName, "/")
+  t <- paste0(basePath, "/", folderName, "/")
   
   # build directory list...first file will be smallest
   fileList <- LocalDirList(t, fileType = "\\.las|\\.laz")
@@ -366,7 +375,7 @@ ExtractCRSFromLocalPoints <- function (
     }
   }
   if (!quiet) {
-    cat(basename(baseURL), ":", crs, "\n")
+    cat(basename(basePath), ":", crs, "\n")
   }
   
   return(crs)
@@ -380,9 +389,9 @@ ExtractCRSFromLocalPoints <- function (
 #' different extensions) and then reads CRS information from the projection 
 #' file.
 #'
-#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#' @param basePath Path for a folder on a remote host. Trailing slash should *not*
 #'   be included.
-#' @param folderName Folder name on the \code{baseURL} containing the shapefile.
+#' @param folderName Folder name on the \code{basePath} containing the shapefile.
 #' @param fileName A string containing the name of a single file. All
 #'   files with the same name (but different extensions) will be retrieved. The 
 #'   projection file is then read to provide CRS information.
@@ -399,7 +408,7 @@ ExtractCRSFromLocalPoints <- function (
 #' }
 #' @export
 ExtractCRSFromLocalIndex <- function (
-  baseURL,
+  basePath,
   folderName,
   fileName,
   quiet = FALSE,
@@ -407,7 +416,7 @@ ExtractCRSFromLocalIndex <- function (
 ) {
   crs <- NA
   
-  t <- paste0(baseURL, "/", folderName, "/")
+  t <- paste0(basePath, "/", folderName, "/")
   
   # this returns a list of files with the same name but different extensions
   filenames <- LocalDirListByName(t, fileName)
@@ -423,7 +432,7 @@ ExtractCRSFromLocalIndex <- function (
     }
   }
   if (!quiet) {
-    cat(basename(baseURL), ":", crs, "\n")
+    cat(basename(basePath), ":", crs, "\n")
   }
   
   return(crs)
@@ -437,9 +446,9 @@ ExtractCRSFromLocalIndex <- function (
 #' \code{fileName} but with .prj extensions) and then reads CRS information 
 #' from the projection file.
 #'
-#' @param baseURL URL for a folder on a remote host. Trailing slash should *not*
+#' @param basePath Path for a folder on a remote host. Trailing slash should *not*
 #'   be included.
-#' @param folderName Folder name on the \code{baseURL} containing the shapefile.
+#' @param folderName Folder name on the \code{basePath} containing the shapefile.
 #' @param fileName A string containing the name of a single file. The projection
 #'   file with the same name (but extension of .prj) will be retrieved. The 
 #'   projection file is then read to provide CRS information.
@@ -456,7 +465,7 @@ ExtractCRSFromLocalIndex <- function (
 #' }
 #' @export
 ExtractCRSFromLocalPrj <- function (
-  baseURL,
+  basePath,
   folderName,
   fileName,             # must be .prj file
   quiet = FALSE,
@@ -464,7 +473,7 @@ ExtractCRSFromLocalPrj <- function (
 ) {
   crs <- NA
   
-  t <- paste0(baseURL, "/", folderName)
+  t <- paste0(basePath, "/", folderName)
   cat (t, "\n")
   
   # # this returns a list of files with the same name but different extensions
@@ -490,7 +499,7 @@ ExtractCRSFromLocalPrj <- function (
     }
 #  }
   if (!quiet) {
-    cat(basename(baseURL), ":", crs, "\n")
+    cat(basename(basePath), ":", crs, "\n")
   }
   
   return(crs)
@@ -507,7 +516,7 @@ ExtractCRSFromLocalPrj <- function (
 #' Retrieve a directory listing from a remote host as either a simple list
 #' of file/folder names or a data frame with file/folder information.
 #'
-#' @param URL URL for a folder on a remote host. Trailing slash is optional.
+#' @param path Path for a folder on a remote host. Trailing slash is optional.
 #' @param fileType Any valid string for the pattern parameter in \code{grep()}.
 #'   "$" will be appended to the string to search for file/folder names ending
 #'   with values in \code{fileType}.
@@ -516,7 +525,7 @@ ExtractCRSFromLocalPrj <- function (
 #' @param directoryOnly Boolean indicating you only want folder names included
 #'   in the list of returned files/folders.
 #' @param ... Arguments passed to \code{RCurl::getURL()}. This is ignored
-#'   if the URL uses http or https schemes.
+#'   if the path uses http or https schemes.
 #' @return A list of file names or a data frame with file names and attribute
 #'   information. The return value depends on \code{namesOnly}.
 #' @examples
@@ -528,7 +537,7 @@ ExtractCRSFromLocalPrj <- function (
 #' }
 #' @export
 LocalDirList <- function (
-  URL,
+  path,
   fileType = NULL,
   namesOnly = TRUE,
   directoryOnly = FALSE,
@@ -537,9 +546,9 @@ LocalDirList <- function (
   # get folder listing and parse into individual files
   # create an empty character vector on error
   if (directoryOnly) {
-    filenames <- list.dirs(URL, full.names = FALSE, recursive = FALSE)
+    filenames <- list.dirs(path, full.names = FALSE, recursive = FALSE)
   } else {
-    filenames <- list.files(URL, pattern = fileType)    
+    filenames <- list.files(path, pattern = fileType)    
   }
   
   if (length(filenames)) {
@@ -548,7 +557,7 @@ LocalDirList <- function (
       # create a dataframe and sort on the attribute (size for files)
       if (!namesOnly) {
         # build full paths to filenames
-        tnames <- paste0(URL, "/", filenames)
+        tnames <- paste0(path, "/", filenames)
         
         # get file info
         df <- file.info(tnames, extra_cols = FALSE)
@@ -575,14 +584,14 @@ LocalDirList <- function (
 #' Retrieve a directory listing from a remote host as a simple list
 #' of file names.
 #' 
-#' DirListByType is an alias for \code{DirList(URL, fileType = fileType, namesOnly = TRUE, ...)}
+#' DirListByType is an alias for \code{DirList(path, fileType = fileType, namesOnly = TRUE, ...)}
 #'
-#' @param URL URL for a folder on a remote host. Trailing slash is optional.
+#' @param path Path for a folder on a remote host. Trailing slash is optional.
 #' @param fileType Any valid string for the pattern parameter in \code{grep()}.
 #'   "$" will be appended to the string to search for file/folder names ending
 #'   with values in \code{fileType}.
 #' @param ... Arguments passed to \code{RCurl::getURL()}. This is ignored
-#'   if the URL uses http or https schemes.
+#'   if the path uses http or https schemes.
 #' @return A list of file names.
 #' @examples
 #' \dontrun{
@@ -592,13 +601,13 @@ LocalDirList <- function (
 #' }
 #' @export
 LocalDirListByType <- function (
-  URL,
+  path,
   fileType,
   ...
 ) {
   # get folder listing and parse into individual files
   # create an empty character vector on error
-  filenames <- list.files(URL, pattern = fileType)
+  filenames <- list.files(path, pattern = fileType)
   return(filenames)
 }
 
@@ -610,7 +619,7 @@ LocalDirListByType <- function (
 #' Retrieve a simple list of all files with the specified name but various
 #' extensions.
 #'
-#' @param URL URL for a folder on a remote host. Trailing slash is optional.
+#' @param path Path for a folder on a remote host. Trailing slash is optional.
 #' @param fileName A string containing the name of a single file. All files
 #'   with the same name (but different extensions) will be returned.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
@@ -623,11 +632,11 @@ LocalDirListByType <- function (
 #' }
 #' @export
 LocalDirListByName <- function (
-  URL,
+  path,
   fileName,
   ...
 ) {
-  filenames <- list.files(paste0(URL), pattern = paste0(fileName, ".*"))
+  filenames <- list.files(paste0(path), pattern = paste0(fileName, ".*"))
   return(filenames)
 }
 
@@ -835,12 +844,12 @@ if (FALSE) {
     proj4string_prj[i] <- NA
     
     if (is.na(projects$proj4string[i])) {
-      url <- paste0(ServerRoot, "/", projects$Project[i])
-      #cat(url, "\n")
+      path <- paste0(ServerRoot, "/", projects$Project[i])
+      #cat(path, "\n")
       
       # try folders
       for (f in potentialIndexFolders) {
-        url2 <- paste0(url, "/", f)
+        url2 <- paste0(path, "/", f)
         #cat(url2, "\n")
         
         # look for .prj
@@ -854,7 +863,7 @@ if (FALSE) {
               IndexFolder[i] <- f
               IndexFile[i] <- l[1]
               
-              proj4string_prj[i] <- ExtractCRSFromLocalPrj(url, IndexFolder[i], IndexFile[i], quiet = TRUE)
+              proj4string_prj[i] <- ExtractCRSFromLocalPrj(path, IndexFolder[i], IndexFile[i], quiet = TRUE)
               
               break
             }
@@ -1145,10 +1154,10 @@ if (FALSE) {
   # merge all tiles
   tiles_webmercator <- do.call(rbind, tilelist)
   
-  # remove drive letter from URL
-  tiles_webmercator$URL <- gsub("Z:", "", tiles_webmercator$URL)
+  # remove drive letter from path
+  tiles_webmercator$path <- gsub("Z:", "", tiles_webmercator$path)
   
-  # rename URL to FullPath
+  # rename path to FullPath
   colnames(tiles_webmercator)[1] <- "FullPath"
   
   # move project column to first position
@@ -1478,8 +1487,8 @@ if (FALSE) {
   mapview(index)
   
   
-  url <- paste0(ServerRoot, "/", good_projects$Project[i], "/1_LAZ", "/", "LAZ_FRESY1_502088_966808_20180629.laz")
-  t <- tryCatch(lidR::readLASheader(url), error = function(e) {NA})
+  path <- paste0(ServerRoot, "/", good_projects$Project[i], "/1_LAZ", "/", "LAZ_FRESY1_502088_966808_20180629.laz")
+  t <- tryCatch(lidR::readLASheader(path), error = function(e) {NA})
   if (is.object(t@VLR$GeoAsciiParamsTag)) {
     
   }
