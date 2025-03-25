@@ -2,13 +2,13 @@
 % Please edit documentation in R/LocalFileFunctions.R
 \name{LocalDirListByName}
 \alias{LocalDirListByName}
-\title{LidarIndexR -- Retrieve a directory listing from a remote host of all files
+\title{LidarIndexR -- Retrieve a directory listing of all files
 with a specific name (various extensions)}
 \usage{
-LocalDirListByName(URL, fileName, ...)
+LocalDirListByName(path, fileName, ...)
 }
 \arguments{
-\item{URL}{URL for a folder on a remote host. Trailing slash is optional.}
+\item{path}{Path for a folder. Trailing slash is optional.}
 
 \item{fileName}{A string containing the name of a single file. All files
 with the same name (but different extensions) will be returned.}
@@ -16,7 +16,7 @@ with the same name (but different extensions) will be returned.}
 \item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
-A list of file names.
+A list of file names (invisible).
 }
 \description{
 Retrieve a simple list of all files with the specified name but various

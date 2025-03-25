@@ -5,7 +5,7 @@
 \title{LidarIndexR -- Retrieve CRS information from a LAS/LAZ point file}
 \usage{
 ExtractCRSFromLocalPoints(
-  baseURL,
+  basePath,
   folderName,
   headerOnly = TRUE,
   quiet = FALSE,
@@ -13,10 +13,10 @@ ExtractCRSFromLocalPoints(
 )
 }
 \arguments{
-\item{baseURL}{URL for a folder on a remote host. Trailing slash should \emph{not}
+\item{basePath}{Path for a folder on a remote host. Trailing slash should \emph{not}
 be included.}
 
-\item{folderName}{Folder name on the \code{baseURL} containing LAS/LAZ
+\item{folderName}{Folder name on the \code{basePath} containing LAS/LAZ
 files.}
 
 \item{headerOnly}{Boolean. If TRUE, only the file header is read. If FALSE,
@@ -29,7 +29,7 @@ information is \emph{not} displayed. Otherwise, status information is displayed.
 \item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
-String containing a valid input value for \code{st_crs()}.
+String (invisible) containing a valid input value for \code{st_crs()}.
 }
 \description{
 Reads CRS information from local LAS/LAZ files. This is done by

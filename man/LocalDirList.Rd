@@ -2,10 +2,10 @@
 % Please edit documentation in R/LocalFileFunctions.R
 \name{LocalDirList}
 \alias{LocalDirList}
-\title{LidarIndexR -- Retrieve a directory listing from a remote host}
+\title{LidarIndexR -- Retrieve a directory listing}
 \usage{
 LocalDirList(
-  URL,
+  path,
   fileType = NULL,
   namesOnly = TRUE,
   directoryOnly = FALSE,
@@ -13,7 +13,7 @@ LocalDirList(
 )
 }
 \arguments{
-\item{URL}{URL for a folder on a remote host. Trailing slash is optional.}
+\item{path}{Path for a folder. Trailing slash is optional.}
 
 \item{fileType}{Any valid string for the pattern parameter in \code{grep()}.
 "$" will be appended to the string to search for file/folder names ending
@@ -26,21 +26,18 @@ directory information (FALSE).}
 in the list of returned files/folders.}
 
 \item{...}{Arguments passed to \code{RCurl::getURL()}. This is ignored
-if the URL uses http or https schemes.}
+if the path uses http or https schemes.}
 }
 \value{
-A list of file names or a data frame with file names and attribute
+A list of file names (invisible) or a data frame (invisible) with file names and attribute
 information. The return value depends on \code{namesOnly}.
 }
 \description{
-Retrieve a directory listing from a remote host as either a simple list
+Retrieve a directory listing from a local file system as either a simple list
 of file/folder names or a data frame with file/folder information.
 }
 \examples{
 \dontrun{
-DirList("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/")
-DirList(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
-   "Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"),
-    "\\\\.las|\\\\.laz")
+DirList("vdelivery/Datasets/Staged/")
 }
 }

@@ -4,21 +4,21 @@
 \alias{ReadLocalLASProjection}
 \title{LidarIndexR -- Read LAS/LAZ header and extract CRS information}
 \usage{
-ReadLocalLASProjection(url, quiet = FALSE)
+ReadLocalLASProjection(path, quiet = FALSE)
 }
 \arguments{
+\item{path}{Path for a LAS/LAZ file.}
+
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}
-
-\item{URL}{URL for a LAS/LAZ file on a remote host.}
 }
 \value{
-A string containing the CRS information retrieved from the LAS/LAZ
-header.
+A string (invisible) containing the CRS WKT information retrieved from the LAS/LAZ
+header. Returns an empty string if file has no CRS information.
 }
 \description{
-Download the header for a LAS/LAZ file and read CRS information from the header.
-Only the file header is downloaded (including VLRs) so you don't have to worry
+Read the header for a LAS/LAZ file and read CRS information from the header.
+Only the file header is read (including VLRs) so you don't have to worry
 about the size of the LAS/LAZ file.
 }
 \examples{

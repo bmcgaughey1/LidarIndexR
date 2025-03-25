@@ -4,13 +4,13 @@
 \alias{ExtractCRSFromLocalIndex}
 \title{LidarIndexR -- Retrieve a shapefile (all files) and read CRS information}
 \usage{
-ExtractCRSFromLocalIndex(baseURL, folderName, fileName, quiet = FALSE, ...)
+ExtractCRSFromLocalIndex(basePath, folderName, fileName, quiet = FALSE, ...)
 }
 \arguments{
-\item{baseURL}{URL for a folder on a remote host. Trailing slash should \emph{not}
+\item{basePath}{Path for a folder on a remote host. Trailing slash should \emph{not}
 be included.}
 
-\item{folderName}{Folder name on the \code{baseURL} containing the shapefile.}
+\item{folderName}{Folder name on the \code{basePath} containing the shapefile.}
 
 \item{fileName}{A string containing the name of a single file. All
 files with the same name (but different extensions) will be retrieved. The
@@ -22,7 +22,7 @@ information is \emph{not} displayed. Otherwise, status information is displayed.
 \item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
-String containing a valid input value for \code{st_crs()}.
+String (invisible) containing a valid input value for \code{st_crs()}.
 }
 \description{
 Retrieves all files related to a shapefile (same name as \code{fileName} but

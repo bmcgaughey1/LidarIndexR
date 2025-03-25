@@ -4,13 +4,13 @@
 \alias{ExtractCRSFromLocalPrj}
 \title{LidarIndexR -- Retrieve a projection file and read CRS information}
 \usage{
-ExtractCRSFromLocalPrj(baseURL, folderName, fileName, quiet = FALSE, ...)
+ExtractCRSFromLocalPrj(basePath, folderName, fileName, quiet = FALSE, ...)
 }
 \arguments{
-\item{baseURL}{URL for a folder on a remote host. Trailing slash should \emph{not}
+\item{basePath}{Path for a folder on a remote host. Trailing slash should \emph{not}
 be included.}
 
-\item{folderName}{Folder name on the \code{baseURL} containing the shapefile.}
+\item{folderName}{Folder name on the \code{basePath} containing the shapefile.}
 
 \item{fileName}{A string containing the name of a single file. The projection
 file with the same name (but extension of .prj) will be retrieved. The
@@ -22,7 +22,7 @@ information is \emph{not} displayed. Otherwise, status information is displayed.
 \item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
-String containing a valid input value for \code{st_crs()}.
+String (invisible) containing a valid input value for \code{st_crs()}.
 }
 \description{
 Retrieves only the projection file related to a shapefile (same name as

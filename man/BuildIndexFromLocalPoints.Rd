@@ -5,7 +5,7 @@
 \title{LidarIndexR -- Create spatial index by reading LAS/LAZ file headers}
 \usage{
 BuildIndexFromLocalPoints(
-  baseURL,
+  basePath,
   folderName,
   pointFolder,
   outputFile,
@@ -19,12 +19,14 @@ BuildIndexFromLocalPoints(
 )
 }
 \arguments{
-\item{baseURL}{URL for a folder on a remote host. Trailing slash should \emph{not}
+\item{basePath}{Path for a folder. Trailing slash should \emph{not}
 be included.}
 
-\item{folderName}{Folder name on the \code{baseURL} containing LAS/LAZ files.}
+\item{folderName}{Folder name on the \code{basePath} containing LAS/LAZ files.
+Can be an empty string.}
 
-\item{pointFolder}{Folder under \code{folderName} containing point files.}
+\item{pointFolder}{Folder under \code{folderName} containing point files. Can be
+an empty string.}
 
 \item{outputFile}{Full path and filename on the local file system for the index
 file.}
@@ -55,7 +57,7 @@ the index is only created if it does not already exist.}
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
 \value{
-Boolean indicating success (TRUE) or failure (FALSE).
+Boolean (invisible) indicating success (TRUE) or failure (FALSE).
 }
 \description{
 Longer description

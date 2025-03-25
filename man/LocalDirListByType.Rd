@@ -2,29 +2,29 @@
 % Please edit documentation in R/LocalFileFunctions.R
 \name{LocalDirListByType}
 \alias{LocalDirListByType}
-\title{LidarIndexR -- Retrieve a directory listing from a remote host}
+\title{LidarIndexR -- Retrieve a directory listing}
 \usage{
-LocalDirListByType(URL, fileType, ...)
+LocalDirListByType(path, fileType, ...)
 }
 \arguments{
-\item{URL}{URL for a folder on a remote host. Trailing slash is optional.}
+\item{path}{Path for a folder on a remote host. Trailing slash is optional.}
 
 \item{fileType}{Any valid string for the pattern parameter in \code{grep()}.
 "$" will be appended to the string to search for file/folder names ending
 with values in \code{fileType}.}
 
 \item{...}{Arguments passed to \code{RCurl::getURL()}. This is ignored
-if the URL uses http or https schemes.}
+if the path uses http or https schemes.}
 }
 \value{
-A list of file names.
+A list of file names (invisible).
 }
 \description{
-Retrieve a directory listing from a remote host as a simple list
+Retrieve a directory listing from a local file system as a simple list
 of file names.
 }
 \details{
-DirListByType is an alias for \code{DirList(URL, fileType = fileType, namesOnly = TRUE, ...)}
+DirListByType is an alias for \code{DirList(path, fileType = fileType, namesOnly = TRUE, ...)}
 }
 \examples{
 \dontrun{

@@ -19,15 +19,15 @@
 #
 #' LidarIndexR -- Read LAS/LAZ header and extract CRS information
 #'
-#' Download the header for a LAS/LAZ file and read CRS information from the header.
-#' Only the file header is downloaded (including VLRs) so you don't have to worry 
+#' Read the header for a LAS/LAZ file and read CRS information from the header.
+#' Only the file header is read (including VLRs) so you don't have to worry 
 #' about the size of the LAS/LAZ file.
 #'
-#' @param path Path for a LAS/LAZ file on a remote host.
+#' @param path Path for a LAS/LAZ file.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A string containing the CRS information retrieved from the LAS/LAZ
-#'   header.
+#' @return A string (invisible) containing the CRS WKT information retrieved from the LAS/LAZ
+#'   header. Returns an empty string if file has no CRS information.
 #' @examples
 #' \dontrun{
 #' ReadLocalLASProjection()
@@ -37,7 +37,7 @@ ReadLocalLASProjection <- function (
   path,
   quiet = FALSE
 ) {
-  crs <- NA
+  crs <- ""
   
   if (file.exists(path)) {
     # read header
@@ -46,14 +46,17 @@ ReadLocalLASProjection <- function (
       crs <- lidR::st_crs(t)
       
       # check for bad crs but geotiff VLR records
-      if (is.na(crs)) {
-        flag <- tryCatch(grepl("NAD_1983_USFS_R6_Albers", t@VLR$GeoAsciiParamsTag$tags[1]), error = function(e) {NA})
-        if (length(flag)) {
-          if (!is.na(flag)) {
-            if (flag)
-              crs <- "+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +vunits=m +no_defs" #R6Albers
-          }
-        }
+      if (is.na(crs$wkt)) {
+        crs <- ""
+        # flag <- tryCatch(grepl("NAD_1983_USFS_R6_Albers", t@VLR$GeoAsciiParamsTag$tags[1]), error = function(e) {NA})
+        # if (length(flag)) {
+        #   if (!is.na(flag)) {
+        #     if (flag)
+        #       crs <- "+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +vunits=m +no_defs" #R6Albers
+        #   }
+        # }
+      } else {
+        crs <- crs$wkt
       }
     } else {
       if (!quiet) cat("Invalid LAS/LAZ file:", path, "\n")
@@ -64,20 +67,20 @@ ReadLocalLASProjection <- function (
 
   if (!quiet) cat(basename(path), ":", crs, "\n")
 
-  return(crs)
+  return(invisible(crs))
 }
 
 # ---------- ReadLocalLASHeader
 #
-#' LidarIndexR -- Read the header for a remote LAS/LAZ file
+#' LidarIndexR -- Read the header for a local LAS/LAZ file
 #'
 #' Reads the header of a LAS/LAZ file and returns header information in a
 #' data frame. Only the header is read.
 #'
-#' @param path Path for a LAS/LAZ file on a remote host.
+#' @param path Path for a LAS/LAZ file.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A data frame containing header information.
+#' @return A data frame (invisible) containing header information.
 #' @examples
 #' \dontrun{
 #' ReadLocalLASHeader()
@@ -165,7 +168,7 @@ ReadLocalLASHeader <- function(
     "MaxZ" = MaxZ
   )
   
-  return(df)
+  return(invisible(df))
 }
 
 # ---------- BuildIndexFromLocalPoints
@@ -174,7 +177,7 @@ ReadLocalLASHeader <- function(
 #'
 #' Longer description
 #'
-#' @param basePath Path for a folder on a remote host. Trailing slash should *not*
+#' @param basePath Path for a folder. Trailing slash should *not*
 #'   be included.
 #' @param folderName Folder name on the \code{basePath} containing LAS/LAZ files.
 #'   Can be an empty string.
@@ -200,7 +203,7 @@ ReadLocalLASHeader <- function(
 #'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return Boolean indicating success (TRUE) or failure (FALSE).
+#' @return Boolean (invisible) indicating success (TRUE) or failure (FALSE).
 #' @examples
 #' \dontrun{
 #' BuildIndexFromPoints()
@@ -220,12 +223,12 @@ BuildIndexFromLocalPoints <- function (
   quiet = FALSE
 ) {
   if (file.exists(outputFile) && !rebuild) {
-    cat("Index already exist...skipping: ", basename(outputFile),"\n")
+    if (!quiet) cat("Index already exist...skipping: ", basename(outputFile),"\n")
     return(TRUE)
   }
   
   if (folderName == "" && pointFolder != "") {
-    cat("folderName cannot be blank when pointFolder is not blank\n")
+    if (!quiet) cat("folderName cannot be blank when pointFolder is not blank\n")
     return(FALSE)
   }
   
@@ -246,7 +249,7 @@ BuildIndexFromLocalPoints <- function (
   }
   
   if (length(flist) > 0) {
-    cat("Building index: ", basename(outputFile), "\n")
+    if (!quiet) cat("Building index: ", basename(outputFile), "\n")
     
     if (length(fullFileList) == 0) {
       # prepend folder path to file names
@@ -257,12 +260,12 @@ BuildIndexFromLocalPoints <- function (
     
     # if we don't have projection info, try to get it from the first point file
     if (is.na(projString)) {
-      c <- ReadLocalLASProjection(fileURLs[1])
+      c <- ReadLocalLASProjection(fileURLs[1], quiet = quiet)
       projString <- lidR::crs(c, asText = TRUE)
     }
     
     # read headers
-    t <- lapply(fileURLs, ReadLocalLASHeader)    # returns a list of dataframes
+    t <- lapply(fileURLs, ReadLocalLASHeader, quiet = quiet)    # returns a list of dataframes
     
     # convert to a simple dataframe
     t_df <- do.call("rbind", t)
@@ -299,7 +302,7 @@ BuildIndexFromLocalPoints <- function (
       # write output
       sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
       
-      return(TRUE)
+      return(invisible(TRUE))
     } else {
       cat("   ***No LAS polygons\n")
     }
@@ -307,7 +310,7 @@ BuildIndexFromLocalPoints <- function (
     cat("   ***No LAS files\n")
   }
   
-  return(FALSE)
+  return(invisible(FALSE))
 }
 
 # ---------- ExtractCRSFromLocalPoints
@@ -328,7 +331,7 @@ BuildIndexFromLocalPoints <- function (
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return String containing a valid input value for \code{st_crs()}.
+#' @return String (invisible) containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromPoints()
@@ -341,7 +344,7 @@ ExtractCRSFromLocalPoints <- function (
   quiet = FALSE,
   ...
 ) {
-  crs <- NA
+  crs <- ""
   
   t <- paste0(basePath, "/", folderName, "/")
   
@@ -360,17 +363,20 @@ ExtractCRSFromLocalPoints <- function (
         crs <- lidR::st_crs(las)
         
         # check for bad crs but geotiff VLR records
-        if (is.na(crs)) {
-          flag <- tryCatch(grepl("NAD_1983_USFS_R6_Albers", las@VLR$GeoAsciiParamsTag$tags[1]), error = function(e) {NA})
-          if (length(flag)) {
-            if (!is.na(flag)) {
-              if (flag)
-                crs <- "+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +vunits=m +no_defs" #R6Albers
-            }
-          }
+        if (is.na(crs$wkt)) {
+          crs <- ""
+          # flag <- tryCatch(grepl("NAD_1983_USFS_R6_Albers", las@VLR$GeoAsciiParamsTag$tags[1]), error = function(e) {NA})
+          # if (length(flag)) {
+          #   if (!is.na(flag)) {
+          #     if (flag)
+          #       crs <- "+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +vunits=m +no_defs" #R6Albers
+          #   }
+          # }
+        } else {
+          crs <- crs$wkt
         }
       } else {
-        crs <- NA
+        crs <- ""
       }
     }
   }
@@ -378,7 +384,7 @@ ExtractCRSFromLocalPoints <- function (
     cat(basename(basePath), ":", crs, "\n")
   }
   
-  return(crs)
+  return(invisible(crs))
 }
 
 # ---------- ExtractCRSFromLocalIndex
@@ -398,7 +404,7 @@ ExtractCRSFromLocalPoints <- function (
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return String containing a valid input value for \code{st_crs()}.
+#' @return String (invisible) containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' ExtractCRSFromLocalIndex("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
@@ -414,7 +420,7 @@ ExtractCRSFromLocalIndex <- function (
   quiet = FALSE,
   ...
 ) {
-  crs <- NA
+  crs <- ""
   
   t <- paste0(basePath, "/", folderName, "/")
   
@@ -427,15 +433,16 @@ ExtractCRSFromLocalIndex <- function (
     index <- tryCatch(sf::st_read(paste0(t, fileName)), error = function(e) {NA})
     if (is.object(index)) {
       crs <- lidR::st_crs(index)
+      crs <- crs$wkt
     } else {
-      crs <- NA
+      crs <- ""
     }
   }
   if (!quiet) {
     cat(basename(basePath), ":", crs, "\n")
   }
   
-  return(crs)
+  return(invisible(crs))
 }
 
 # ---------- ExtractCRSFromLocalPrj
@@ -455,7 +462,7 @@ ExtractCRSFromLocalIndex <- function (
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return String containing a valid input value for \code{st_crs()}.
+#' @return String (invisible) containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromPrj("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
@@ -471,7 +478,7 @@ ExtractCRSFromLocalPrj <- function (
   quiet = FALSE,
   ...
 ) {
-  crs <- NA
+  crs <- ""
   
   t <- paste0(basePath, "/", folderName)
   cat (t, "\n")
@@ -495,14 +502,14 @@ ExtractCRSFromLocalPrj <- function (
       
       crs <- sp::CRS(l)@projargs
     } else {
-      crs <- NA
+      crs <- ""
     }
 #  }
   if (!quiet) {
     cat(basename(basePath), ":", crs, "\n")
   }
   
-  return(crs)
+  return(invisible(crs))
 }
 
 # syntax for fileType can be any valid grep pattern but the "$" will be appended to
@@ -511,12 +518,12 @@ ExtractCRSFromLocalPrj <- function (
 
 # ---------- LocalDirList
 #
-#' LidarIndexR -- Retrieve a directory listing from a remote host
+#' LidarIndexR -- Retrieve a directory listing
 #'
-#' Retrieve a directory listing from a remote host as either a simple list
+#' Retrieve a directory listing from a local file system as either a simple list
 #' of file/folder names or a data frame with file/folder information.
 #'
-#' @param path Path for a folder on a remote host. Trailing slash is optional.
+#' @param path Path for a folder. Trailing slash is optional.
 #' @param fileType Any valid string for the pattern parameter in \code{grep()}.
 #'   "$" will be appended to the string to search for file/folder names ending
 #'   with values in \code{fileType}.
@@ -526,14 +533,11 @@ ExtractCRSFromLocalPrj <- function (
 #'   in the list of returned files/folders.
 #' @param ... Arguments passed to \code{RCurl::getURL()}. This is ignored
 #'   if the path uses http or https schemes.
-#' @return A list of file names or a data frame with file names and attribute
+#' @return A list of file names (invisible) or a data frame (invisible) with file names and attribute
 #'   information. The return value depends on \code{namesOnly}.
 #' @examples
 #' \dontrun{
-#' DirList("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/")
-#' DirList(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
-#'    "Staged/Elevation/LPC/Projects/AK_BrooksCamp_2012/laz/"),
-#'     "\\.las|\\.laz")
+#' DirList("vdelivery/Datasets/Staged/")
 #' }
 #' @export
 LocalDirList <- function (
@@ -570,18 +574,18 @@ LocalDirList <- function (
         
         df <- df[, c(7, 1:6)]
 
-        return(df)
+        return(invisible(df))
       }
     }
   }
-  return(filenames)
+  return(invisible(filenames))
 }
 
 # ---------- LocalDirListByType
 #
-#' LidarIndexR -- Retrieve a directory listing from a remote host
+#' LidarIndexR -- Retrieve a directory listing
 #'
-#' Retrieve a directory listing from a remote host as a simple list
+#' Retrieve a directory listing from a local file system as a simple list
 #' of file names.
 #' 
 #' DirListByType is an alias for \code{DirList(path, fileType = fileType, namesOnly = TRUE, ...)}
@@ -592,7 +596,7 @@ LocalDirList <- function (
 #'   with values in \code{fileType}.
 #' @param ... Arguments passed to \code{RCurl::getURL()}. This is ignored
 #'   if the path uses http or https schemes.
-#' @return A list of file names.
+#' @return A list of file names (invisible).
 #' @examples
 #' \dontrun{
 #' DirListByType(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
@@ -608,22 +612,22 @@ LocalDirListByType <- function (
   # get folder listing and parse into individual files
   # create an empty character vector on error
   filenames <- list.files(path, pattern = fileType)
-  return(filenames)
+  return(invisible(filenames))
 }
 
 # ---------- LocalDirListByName
 #
-#' LidarIndexR -- Retrieve a directory listing from a remote host of all files
+#' LidarIndexR -- Retrieve a directory listing of all files
 #'   with a specific name (various extensions)
 #'
 #' Retrieve a simple list of all files with the specified name but various
 #' extensions.
 #'
-#' @param path Path for a folder on a remote host. Trailing slash is optional.
+#' @param path Path for a folder. Trailing slash is optional.
 #' @param fileName A string containing the name of a single file. All files
 #'   with the same name (but different extensions) will be returned.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return A list of file names.
+#' @return A list of file names (invisible).
 #' @examples
 #' \dontrun{
 #' DirListByName(paste0("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
@@ -637,7 +641,7 @@ LocalDirListByName <- function (
   ...
 ) {
   filenames <- list.files(paste0(path), pattern = paste0(fileName, ".*"))
-  return(filenames)
+  return(invisible(filenames))
 }
 
 # *****************************************************************************

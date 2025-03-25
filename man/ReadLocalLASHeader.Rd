@@ -2,18 +2,18 @@
 % Please edit documentation in R/LocalFileFunctions.R
 \name{ReadLocalLASHeader}
 \alias{ReadLocalLASHeader}
-\title{LidarIndexR -- Read the header for a remote LAS/LAZ file}
+\title{LidarIndexR -- Read the header for a local LAS/LAZ file}
 \usage{
-ReadLocalLASHeader(url, quiet = FALSE)
+ReadLocalLASHeader(path, quiet = FALSE)
 }
 \arguments{
+\item{path}{Path for a LAS/LAZ file.}
+
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}
-
-\item{URL}{URL for a LAS/LAZ file on a remote host.}
 }
 \value{
-A data frame containing header information.
+A data frame (invisible) containing header information.
 }
 \description{
 Reads the header of a LAS/LAZ file and returns header information in a
