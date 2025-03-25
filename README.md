@@ -7,22 +7,24 @@
 <!-- badges: end -->
 
 The goal of LidarIndexR is to provide functions to build index files for
-lidar projects. The functions in the package have been tested using FTP
-and HTTPS servers. USGS changed the format of the XML generated for
-directory listing on the rockyweb server (or changed the server
-software) sometime between 2022 and 2024. Code was modified in June 2024
-to correctly parse the new output. However, I can’t guarantee that the
-directory functions work with all HTTP(S) servers due to differences in
-the HTML generated to show directory contents. The changes in 2024
-should make the functions more reliable given different formats but I
-haven’t tested functions using other servers.
+lidar projects. There are functions specific to local file systems and
+functions for remote servers using FTP and HTTPS protocols. USGS changed
+the format of the XML generated for directory listing on the rockyweb
+server (or changed the server software) sometime between 2022 and 2024.
+Code was modified in June 2024 to correctly parse the new output.
+However, I can’t guarantee that the directory functions work with all
+HTTP(S) servers due to differences in the HTML generated to show
+directory contents. The changes in 2024 should make the functions more
+reliable given different formats but I haven’t tested functions using
+other servers.
 
 ## Installation
 
-LidarIndexR is not available on CRAN.
+LidarIndexR is NOT available on CRAN.
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/). If you don’t already have the devtools
+package installed, uncomment the first line.
 
 ``` r
 # install.packages("devtools")
