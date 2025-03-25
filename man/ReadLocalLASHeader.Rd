@@ -4,7 +4,7 @@
 \alias{ReadLocalLASHeader}
 \title{LidarIndexR -- Read the header for a local LAS/LAZ file}
 \usage{
-ReadLocalLASHeader(path, quiet = FALSE)
+ReadLocalLASHeader(path, quiet = TRUE)
 }
 \arguments{
 \item{path}{Path for a LAS/LAZ file.}

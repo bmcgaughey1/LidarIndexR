@@ -37,7 +37,7 @@ information is \emph{not} displayed. Otherwise, status information is displayed.
 \item{...}{Arguments passed to \code{RCurl::getURL()}.}
 }
 \value{
-String containing a valid input value for \code{st_crs()}.
+String (invisible) containing a valid input value for \code{st_crs()}.
 }
 \description{
 Reads CRS information from LAS/LAZ files on a remote host. This is done by

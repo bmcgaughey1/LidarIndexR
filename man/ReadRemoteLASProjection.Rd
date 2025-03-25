@@ -16,7 +16,7 @@ temporarily stored. The header file is deleted after use.}
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
 \value{
-A string containing the CRS information retrieved from the LAS/LAZ
+A string (invisible) containing the CRS information retrieved from the LAS/LAZ
 header.
 }
 \description{

@@ -429,7 +429,7 @@ DirListByName <- function (
 #'   temporarily stored. The header file is deleted after use.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A string containing the CRS information retrieved from the LAS/LAZ
+#' @return A string (invisible) containing the CRS information retrieved from the LAS/LAZ
 #'   header.
 #' @examples
 #' \dontrun{
@@ -448,7 +448,7 @@ ReadRemoteLASProjection <- function (
   # NOTE: we will get a larger offset to the point data due to the VLR for LAZ compression. LAZ readers
   # reduce the offset to compensate for this VLR (effectively ignore that it exists)
   OffsettoPointData <- 0
-  crs <- NA
+  crs <- ""
 
   con <- tryCatch(url(URL, open = "rb"), error = function(e) {NA})
   if (is.object(con)) {
@@ -482,7 +482,7 @@ ReadRemoteLASProjection <- function (
       t <- tryCatch(lidR::readLASheader(file.path(tempFolder, "__temp__.las")), error = function(e) {NA})
       if (is.object(t)) {
         crs <- lidR::st_crs(t)
-#        crs <- raster::projection(t)
+        crs <- crs$wkt
       }
 
       # delete temp file
@@ -492,7 +492,7 @@ ReadRemoteLASProjection <- function (
     }
   }
   if (!quiet) message(basename(url), ": ", crs)
-  return(crs)
+  return(invisible(crs))
 }
 
 # ---------- ReadRemoteLASHeader
@@ -627,7 +627,7 @@ ReadRemoteLASHeader <- function(
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return String containing a valid input value for \code{st_crs()}.
+#' @return String (invisible) containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromPoints()
@@ -642,7 +642,7 @@ FetchAndExtractCRSFromPoints <- function (
   quiet = FALSE,
   ...
 ) {
-  crs <- NA
+  crs <- ""
 
   t <- paste0(baseURL, "/", folderName, "/")
 
@@ -663,9 +663,9 @@ FetchAndExtractCRSFromPoints <- function (
       las <- tryCatch(lidR::readLASheader(file.path(tempFolder, fileList$Name[1])), error = function(e) {NA})
       if (is.object(las)) {
         crs <- lidR::st_crs(las)
-#        crs <- raster::projection(las)
+        crs <- crs$wkt
       } else {
-        crs <- NA
+        crs <- ""
       }
     }
   }
@@ -673,7 +673,7 @@ FetchAndExtractCRSFromPoints <- function (
     message(basename(baseURL), ": ", crs)
   }
 
-  return(crs)
+  return(invisible(crs))
 }
 
 # function to download a shapefile, load it with st_read and
@@ -701,7 +701,7 @@ FetchAndExtractCRSFromPoints <- function (
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return String containing a valid input value for \code{st_crs()}.
+#' @return String (invisible) containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromIndex("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
@@ -719,7 +719,7 @@ FetchAndExtractCRSFromIndex <- function (
   quiet = FALSE,
   ...
 ) {
-  crs <- NA
+  crs <- ""
 
   t <- paste0(baseURL, "/", folderName, "/")
 
@@ -738,16 +738,17 @@ FetchAndExtractCRSFromIndex <- function (
     index <- tryCatch(sf::st_read(file.path(tempFolder, fileName)), error = function(e) {NA})
     if (is.object(index)) {
       crs <- lidR::st_crs(index)
+      crs <- crs$wkt
 #      crs <- raster::projection(index)
     } else {
-      crs <- NA
+      crs <- ""
     }
   }
   if (!quiet) {
     message(basename(baseURL), ": ", crs)
   }
 
-  return(crs)
+  return(invisible(crs))
 }
 
 # function to download .prj file associated with the .shp file passed in fileName
@@ -775,7 +776,7 @@ FetchAndExtractCRSFromIndex <- function (
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
 #' @param ... Arguments passed to \code{RCurl::getURL()}.
-#' @return String containing a valid input value for \code{st_crs()}.
+#' @return String (invisible) containing a valid input value for \code{st_crs()}.
 #' @examples
 #' \dontrun{
 #' FetchAndExtractCRSFromPrj("ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/",
@@ -793,7 +794,7 @@ FetchAndExtractCRSFromPrj <- function (
   quiet = FALSE,
   ...
 ) {
-  crs <- NA
+  crs <- ""
 
   t <- paste0(baseURL, "/", folderName, "/")
 
@@ -820,14 +821,14 @@ FetchAndExtractCRSFromPrj <- function (
 
       crs <- sp::CRS(l)@projargs
     } else {
-      crs <- NA
+      crs <- ""
     }
   }
   if (!quiet) {
     message(basename(baseURL), ": ", crs)
   }
 
-  return(crs)
+  return(invisible(crs))
 }
 
 # ---------- BuildIndexFromPoints

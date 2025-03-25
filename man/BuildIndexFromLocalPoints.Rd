@@ -46,7 +46,7 @@ with values in \code{fileType}.}
 new list.}
 
 \item{dimensionThreshold}{Size threshold used to omit files from the index.
-This is intended to help omit invalid LAS.LAZ files from the index. If
+This is intended to help omit invalid LAS/LAZ files from the index. If
 the height or width of the point tile exceeds the threshold, the tile
 will be omitted.}
 

@@ -15,6 +15,92 @@
 #   d
 # }
 
+# ---------- ReadLocalLASInfo
+#
+#' LidarIndexR -- Read LAS/LAZ header info and CRS information
+#'
+#' Read the header information for a LAS/LAZ file including CRS information.
+#' Only the file header is read (including VLRs) so you don't have to worry 
+#' about the size of the LAS/LAZ file.
+#'
+#' @param path Path for a LAS/LAZ file.
+#' @param quiet Boolean to control display of status information. If TRUE,
+#'   information is *not* displayed. Otherwise, status information is displayed.
+#' @return A list (invisible) containing the CRS WKT information string and a 
+#'   data frame with header info. If file has no CRS information, the first element
+#'   in the list is an empty string.
+#' @examples
+#' \dontrun{
+#' ReadLocalLASInfo()
+#' }
+#' @export
+ReadLocalLASInfo <- function (
+    path,
+    quiet = TRUE
+) {
+  crs <- ""
+  hdf <- data.frame()
+  
+  if (file.exists(path)) {
+    # get file size
+    filesize <- file.info(path)$size
+    
+    # read header
+    t <- tryCatch(lidR::readLASheader(path), error = function(e) {NA})
+    if (is.object(t)) {
+      crs <- lidR::st_crs(t)
+      
+      # check for bad crs
+      if (is.na(crs$wkt)) {
+        crs <- ""
+      } else {
+        crs <- crs$wkt
+      }
+      
+      # build data frame with header info
+      #
+      # there should be a better way to deterimine if file is compressed or copc
+      # lidR has is_file_compressed() but it only takes an LAS object so you would
+      # have to read the entire file. EVLR has a 'copc' identifier but it doesn't
+      # look like lidR is ready EVLRs
+      hdf <- data.frame(
+        "filespec" = path,
+        "filesize" = filesize,
+        #"filename" = basename(path),
+        "pointcount" = t@PHB$`Number of point records`,
+        "compressed" = grepl(".laz", tolower(basename(path))),
+        "copc" = grepl(".copc.laz", tolower(basename(path))),
+        "creation_day" = t@PHB$`File Creation Day of Year`,
+        "creation_year" = t@PHB$`File Creation Year`,
+        "point_record_format" = t@PHB$`Point Data Format ID`,
+        "point_record_length" = t@PHB$`Point Data Record Length`,
+        "major_version" = t@PHB$`Version Major`,
+        "minor_version" = t@PHB$`Version Minor`,
+        #"HeaderSize" = HeaderSize,
+        #"VLRCount" = VLRCount,
+        "minx" = t@PHB$`Min X`,
+        "miny" = t@PHB$`Min Y`,
+        "minz" = t@PHB$`Min Z`,
+        "maxx" = t@PHB$`Max X`,
+        "maxy" = t@PHB$`Max Y`,
+        "maxz" = t@PHB$`Max Z`
+      )
+      
+    } else {
+      if (!quiet) cat("Invalid LAS/LAZ file:", path, "\n")
+    }
+  } else {
+    if (!quiet) cat("File does not exist:", path, "\n")
+  }
+  
+  if (!quiet) {
+    print(crs)
+    print(hdf)
+  }
+  
+  return(invisible(list(crs = crs, info = hdf)))
+}
+
 # ---------- ReadLocalLASProjection
 #
 #' LidarIndexR -- Read LAS/LAZ header and extract CRS information
@@ -34,8 +120,8 @@
 #' }
 #' @export
 ReadLocalLASProjection <- function (
-  path,
-  quiet = FALSE
+    path,
+    quiet = TRUE
 ) {
   crs <- ""
   
@@ -45,16 +131,9 @@ ReadLocalLASProjection <- function (
     if (is.object(t)) {
       crs <- lidR::st_crs(t)
       
-      # check for bad crs but geotiff VLR records
+      # check for bad crs
       if (is.na(crs$wkt)) {
         crs <- ""
-        # flag <- tryCatch(grepl("NAD_1983_USFS_R6_Albers", t@VLR$GeoAsciiParamsTag$tags[1]), error = function(e) {NA})
-        # if (length(flag)) {
-        #   if (!is.na(flag)) {
-        #     if (flag)
-        #       crs <- "+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +vunits=m +no_defs" #R6Albers
-        #   }
-        # }
       } else {
         crs <- crs$wkt
       }
@@ -65,8 +144,8 @@ ReadLocalLASProjection <- function (
     if (!quiet) cat("File does not exist:", path, "\n")
   }
 
-  if (!quiet) cat(basename(path), ":", crs, "\n")
-
+  if (!quiet) print(crs)
+  
   return(invisible(crs))
 }
 
@@ -88,85 +167,112 @@ ReadLocalLASProjection <- function (
 #' @export
 ReadLocalLASHeader <- function(
   path,
-  quiet = FALSE
+  quiet = TRUE
 ) {
-  # open file and read header...value by value
-  con = file(path, open = "rb")
-  Signaturebytes <- readBin(con, "raw", n = 4, size = 1, endian = "little")
+  df <- data.frame
   
-  Signature <- readBin(Signaturebytes, "character", size = 4, endian = "little")
-  if (Signature == "LASF") {
-    readBin(con, "raw", 4) # skip bytes
-    readBin(con, "raw", 16) # skip bytes
-    VersionMajor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
-    VersionMinor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
-    readBin(con, "raw", 64) # skip bytes
-    DayOfYear <- readBin(con, "int", n = 1, size = 2, signed = FALSE)
-    Year <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
-    HeaderSize <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
-    readBin(con, "raw", 4) # skip bytes
-    VLRCount <- readBin(con, "integer", n = 1, size = 4)
-    VLRCount <- unsignedFourByteIntToDouble(VLRCount)
-    PointRecordFormat <- readBin(con, "integer", n = 1, size = 1, signed = FALSE)
-    if (PointRecordFormat > 127) PointRecordFormat <- (PointRecordFormat - 128)
-    PointRecordLength <- readBin(con, "int", 1, size = 2, signed = FALSE)
-    PointCount <- readBin(con, "integer", 1, size = 4)
-    PointCount <- unsignedFourByteIntToDouble(PointCount)
-    readBin(con, "raw", 68) # skip bytes
-    MaxX <- readBin(con, "numeric", 1, size = 8)
-    MinX <- readBin(con, "numeric", 1, size = 8)
-    MaxY <- readBin(con, "numeric", 1, size = 8)
-    MinY <- readBin(con, "numeric", 1, size = 8)
-    MaxZ <- readBin(con, "numeric", 1, size = 8)
-    MinZ <- readBin(con, "numeric", 1, size = 8)
-    if (VersionMajor == 1 && VersionMinor > 3) {
-      readBin(con, "raw", 20) # skip bytes
-      PointCount <- readBin(con, "integer", 1, size = 8)
+  if (file.exists(path)) {
+    # get file size
+    filesize <- file.info(path)$size
+    
+    # open file and read header...value by value
+    con = file(path, open = "rb")
+    Signaturebytes <- readBin(con, "raw", n = 4, size = 1, endian = "little")
+    
+    Signature <- readBin(Signaturebytes, "character", size = 4, endian = "little")
+    if (Signature == "LASF") {
+      readBin(con, "raw", 4) # skip bytes
+      readBin(con, "raw", 16) # skip bytes
+      VersionMajor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
+      VersionMinor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
+      readBin(con, "raw", 64) # skip bytes
+      DayOfYear <- readBin(con, "int", n = 1, size = 2, signed = FALSE)
+      Year <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
+      HeaderSize <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
+      readBin(con, "raw", 4) # skip bytes
+      VLRCount <- readBin(con, "integer", n = 1, size = 4)
+      VLRCount <- unsignedFourByteIntToDouble(VLRCount)
+      PointRecordFormat <- readBin(con, "integer", n = 1, size = 1, signed = FALSE)
+      if (PointRecordFormat > 127) PointRecordFormat <- (PointRecordFormat - 128)
+      PointRecordLength <- readBin(con, "int", 1, size = 2, signed = FALSE)
+      PointCount <- readBin(con, "integer", 1, size = 4)
+      PointCount <- unsignedFourByteIntToDouble(PointCount)
+      readBin(con, "raw", 68) # skip bytes
+      MaxX <- readBin(con, "numeric", 1, size = 8)
+      MinX <- readBin(con, "numeric", 1, size = 8)
+      MaxY <- readBin(con, "numeric", 1, size = 8)
+      MinY <- readBin(con, "numeric", 1, size = 8)
+      MaxZ <- readBin(con, "numeric", 1, size = 8)
+      MinZ <- readBin(con, "numeric", 1, size = 8)
+      if (VersionMajor == 1 && VersionMinor > 3) {
+        readBin(con, "raw", 20) # skip bytes
+        PointCount <- readBin(con, "integer", 1, size = 8)
+      }
+    } else {
+      VersionMajor <- NA
+      VersionMinor <- NA
+      DayOfYear <- NA
+      Year <- NA
+      HeaderSize <- NA
+      VLRCount <- NA
+      PointRecordFormat <- NA
+      PointRecordLength <- NA
+      PointCount <- NA
+      MaxX <- NA
+      MinX <- NA
+      MaxY <- NA
+      MinY <- NA
+      MaxZ <- NA
+      MinZ <- NA
     }
+    close(con)
     
-    if (!quiet)
-      cat("Read extent of", basename(path), "\n")
+    # build data frame to return
+    df <- data.frame(
+      "filespec" = path,
+      "filesize" = filesize,
+      #"filename" = basename(path),
+      "pointcount" = PointCount,
+      "compressed" = grepl(".laz", tolower(basename(path))),
+      "copc" = grepl(".copc.laz", tolower(basename(path))),
+      "creation_day" = DayOfYear,
+      "creation_year" = Year,
+      "point_record_format" = PointRecordFormat,
+      "point_record_length" = PointRecordLength,
+      "major_version" = VersionMajor,
+      "minor_version" = VersionMinor,
+      #"HeaderSize" = HeaderSize,
+      #"VLRCount" = VLRCount,
+      "minx" = MinX,
+      "miny" = MinY,
+      "minz" = MinZ,
+      "maxx" = MaxX,
+      "maxy" = MaxY,
+      "maxz" = MaxZ
+    )
+    # df <- data.frame(
+    #   "path" = path,
+    #   "FileName" = basename(path),
+    #   "LASVersion" = VersionMajor + VersionMinor / 10,
+    #   "FileDayOfYear" = DayOfYear,
+    #   "FileYear" = Year,
+    #   "HeaderSize" = HeaderSize,
+    #   "VLRCount" = VLRCount,
+    #   "PointRecordFormat" = PointRecordFormat,
+    #   "PointRecordLength" = PointRecordLength,
+    #   "PointCount" = PointCount,
+    #   "MinX" = MinX,
+    #   "MinY" = MinY,
+    #   "MinZ" = MinZ,
+    #   "MaxX" = MaxX,
+    #   "MaxY" = MaxY,
+    #   "MaxZ" = MaxZ
+    # )
   } else {
-    VersionMajor <- NA
-    VersionMinor <- NA
-    DayOfYear <- NA
-    Year <- NA
-    HeaderSize <- NA
-    VLRCount <- NA
-    PointRecordFormat <- NA
-    PointRecordLength <- NA
-    PointCount <- NA
-    MaxX <- NA
-    MinX <- NA
-    MaxY <- NA
-    MinY <- NA
-    MaxZ <- NA
-    MinZ <- NA
-    
-    if (!quiet)
-      cat("Failed to read extent of", basename(path), "\n")
+    stop(paste("File:", path, "doesn't exist!!"))
   }
-  close(con)
   
-  # build data frame to return
-  df <- data.frame(
-    "path" = path,
-    "FileName" = basename(path),
-    "LASVersion" = VersionMajor + VersionMinor / 10,
-    "FileDayOfYear" = DayOfYear,
-    "FileYear" = Year,
-    "HeaderSize" = HeaderSize,
-    "VLRCount" = VLRCount,
-    "PointRecordFormat" = PointRecordFormat,
-    "PointRecordLength" = PointRecordLength,
-    "PointCount" = PointCount,
-    "MinX" = MinX,
-    "MinY" = MinY,
-    "MinZ" = MinZ,
-    "MaxX" = MaxX,
-    "MaxY" = MaxY,
-    "MaxZ" = MaxZ
-  )
+  if (!quiet) print(df)
   
   return(invisible(df))
 }
@@ -196,7 +302,7 @@ ReadLocalLASHeader <- function(
 #' @param fullFileList List of point tiles. Will be used instead of generating 
 #'   new list.
 #' @param dimensionThreshold Size threshold used to omit files from the index.
-#'   This is intended to help omit invalid LAS.LAZ files from the index. If
+#'   This is intended to help omit invalid LAS/LAZ files from the index. If
 #'   the height or width of the point tile exceeds the threshold, the tile
 #'   will be omitted.
 #' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
