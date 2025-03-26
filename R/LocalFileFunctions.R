@@ -26,9 +26,9 @@
 #' @param path Path for a LAS/LAZ file.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A list (invisible) containing the CRS WKT information string and a 
-#'   data frame with header info. If file has no CRS information, the first element
-#'   in the list is an empty string.
+#' @return A data frame (invisible) containing the CRS WKT information string and
+#'   header info. If file has no CRS information, the crs column in the data frame
+#'   will be an empty string.
 #' @examples
 #' \dontrun{
 #' ReadLocalLASInfo()
@@ -46,6 +46,11 @@ ReadLocalLASInfo <- function (
     filesize <- file.info(path)$size
     
     # read header
+    # lidR (rlas) strips off VLRs related to compression and COPC so you can't
+    # tell if a file is compressed or COPC without relying on the file extensions
+    #
+    # lidR offers as las_is_compressed() function but it only works when you read
+    # data from the file (not just the header)
     t <- tryCatch(lidR::readLASheader(path), error = function(e) {NA})
     if (is.object(t)) {
       crs <- lidR::st_crs(t)
@@ -83,7 +88,8 @@ ReadLocalLASInfo <- function (
         "minz" = t@PHB$`Min Z`,
         "maxx" = t@PHB$`Max X`,
         "maxy" = t@PHB$`Max Y`,
-        "maxz" = t@PHB$`Max Z`
+        "maxz" = t@PHB$`Max Z`,
+        "crs" = crs
       )
       
     } else {
@@ -94,11 +100,10 @@ ReadLocalLASInfo <- function (
   }
   
   if (!quiet) {
-    print(crs)
     print(hdf)
   }
   
-  return(invisible(list(crs = crs, info = hdf)))
+  return(invisible(hdf))
 }
 
 # ---------- ReadLocalLASProjection
@@ -153,13 +158,17 @@ ReadLocalLASProjection <- function (
 #
 #' LidarIndexR -- Read the header for a local LAS/LAZ file
 #'
-#' Reads the header of a LAS/LAZ file and returns header information in a
-#' data frame. Only the header is read.
+#' Read the header information for a LAS/LAZ file including CRS information.
+#' Only the file header is read (including VLRs) so you don't have to worry 
+#' about the size of the LAS/LAZ file. *Does not rely on the lidR package.*
 #'
 #' @param path Path for a LAS/LAZ file.
+#' @param useVLRs Read VLRs to determine if file is compressed and COPC format.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return A data frame (invisible) containing header information.
+#' @return A data frame (invisible) containing the CRS WKT information string and
+#'   header info. If file has no CRS information, the crs column in the data frame
+#'   will be an empty string.
 #' @examples
 #' \dontrun{
 #' ReadLocalLASHeader()
@@ -167,9 +176,13 @@ ReadLocalLASProjection <- function (
 #' @export
 ReadLocalLASHeader <- function(
   path,
+  useVLRs = TRUE,
   quiet = TRUE
 ) {
+  crs <- ""
   df <- data.frame
+  copc <- FALSE
+  compressed <- FALSE
   
   if (file.exists(path)) {
     # get file size
@@ -177,79 +190,107 @@ ReadLocalLASHeader <- function(
     
     # open file and read header...value by value
     con = file(path, open = "rb")
-    Signaturebytes <- readBin(con, "raw", n = 4, size = 1, endian = "little")
-    
-    Signature <- readBin(Signaturebytes, "character", size = 4, endian = "little")
-    if (Signature == "LASF") {
-      readBin(con, "raw", 4) # skip bytes
-      readBin(con, "raw", 16) # skip bytes
-      VersionMajor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
-      VersionMinor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
-      readBin(con, "raw", 64) # skip bytes
-      DayOfYear <- readBin(con, "int", n = 1, size = 2, signed = FALSE)
-      Year <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
-      HeaderSize <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
-      readBin(con, "raw", 4) # skip bytes
-      VLRCount <- readBin(con, "integer", n = 1, size = 4)
-      VLRCount <- unsignedFourByteIntToDouble(VLRCount)
-      PointRecordFormat <- readBin(con, "integer", n = 1, size = 1, signed = FALSE)
-      if (PointRecordFormat > 127) PointRecordFormat <- (PointRecordFormat - 128)
-      PointRecordLength <- readBin(con, "int", 1, size = 2, signed = FALSE)
-      PointCount <- readBin(con, "integer", 1, size = 4)
-      PointCount <- unsignedFourByteIntToDouble(PointCount)
-      readBin(con, "raw", 68) # skip bytes
-      MaxX <- readBin(con, "numeric", 1, size = 8)
-      MinX <- readBin(con, "numeric", 1, size = 8)
-      MaxY <- readBin(con, "numeric", 1, size = 8)
-      MinY <- readBin(con, "numeric", 1, size = 8)
-      MaxZ <- readBin(con, "numeric", 1, size = 8)
-      MinZ <- readBin(con, "numeric", 1, size = 8)
-      if (VersionMajor == 1 && VersionMinor > 3) {
-        readBin(con, "raw", 20) # skip bytes
-        PointCount <- readBin(con, "integer", 1, size = 8)
+    if (isOpen(con)) {
+      Signaturebytes <- readBin(con, "raw", n = 4, size = 1, endian = "little")
+
+      Signature <- readBin(Signaturebytes, "character", size = 4, endian = "little")
+      if (Signature == "LASF") {
+        if (!quiet) print(paste("Reading header for ", basename(path)))
+        readBin(con, "raw", 4) # skip bytes
+        readBin(con, "raw", 16) # skip bytes
+        VersionMajor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
+        VersionMinor <- readBin(con, "integer", size = 1, n = 1, signed = FALSE)
+        readBin(con, "raw", 64) # skip bytes
+        DayOfYear <- readBin(con, "int", n = 1, size = 2, signed = FALSE)
+        Year <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
+        HeaderSize <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
+        readBin(con, "raw", 4) # skip bytes
+        VLRCount <- readBin(con, "integer", n = 1, size = 4)
+        VLRCount <- unsignedFourByteIntToDouble(VLRCount)
+        PointRecordFormat <- readBin(con, "integer", n = 1, size = 1, signed = FALSE)
+        if (PointRecordFormat > 127) PointRecordFormat <- (PointRecordFormat - 128)
+        PointRecordLength <- readBin(con, "int", 1, size = 2, signed = FALSE)
+        PointCount <- readBin(con, "integer", 1, size = 4)
+        PointCount <- unsignedFourByteIntToDouble(PointCount)
+        readBin(con, "raw", 68) # skip bytes
+        MaxX <- readBin(con, "numeric", 1, size = 8)
+        MaxY <- readBin(con, "numeric", 1, size = 8)
+        MaxZ <- readBin(con, "numeric", 1, size = 8)
+        MinX <- readBin(con, "numeric", 1, size = 8)
+        MinY <- readBin(con, "numeric", 1, size = 8)
+        MinZ <- readBin(con, "numeric", 1, size = 8)
+        if (VersionMajor == 1 && VersionMinor > 3) {
+          readBin(con, "raw", 20) # skip bytes
+          PointCount <- readBin(con, "integer", 1, size = 8)
+        }
+        
+        if (useVLRs) {
+          # close file and reopen...seek is not recommended on windows
+          close(con)
+          con = file(path, open = "rb")
+          
+          # read to start of VLRs
+          readBin(con, "raw", HeaderSize) # skip bytes
+          
+          # read VLRs looking for user id 'copc' or 'laszip encoded' in User ID
+          for (i in 1:VLRCount) {
+            readBin(con, "raw", 2) # skip bytes...reserved
+            b <- readBin(con, "raw", n = 16, size = 1, endian = "little")
+            userid <- readBin(b, "character", size = 16, endian = "little")
+            if (userid == 'copc') copc <- TRUE
+            if (userid == 'laszip encoded') compressed <- TRUE
+            
+            recordID <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
+            
+            vlrLength <- readBin(con, "integer", n = 1, size = 2, signed = FALSE)
+            b <- readBin(con, "raw", n = 32, size = 1, endian = "little")
+            desc <- readBin(b, "character", size = 32, endian = "little")
+            if (userid == 'LASF_Projection' && recordID == 2112) {
+              # read WKT  
+              b <- readBin(con, "raw", n = vlrLength, size = 1, endian = "little")
+              crs <- readBin(b, "character", size = vlrLength, endian = "little")
+            } else
+              readBin(con, "raw", vlrLength)    # skip description and VLR content
+            
+            #print(paste(userid, recordID, desc, vlrLength))
+          }
+        } else {
+          compressed <- grepl(".laz", tolower(basename(path)))
+          copc <- grepl(".copc.laz", tolower(basename(path)))
+        }
       }
+      close(con)
+      
+      # build data frame to return
+      df <- data.frame(
+        "filespec" = path,
+        "filesize" = filesize,
+        #"filename" = basename(path),
+        "pointcount" = PointCount,
+        #"compressed" = grepl(".laz", tolower(basename(path))),
+        #"copc" = grepl(".copc.laz", tolower(basename(path))),
+        "compressed" = compressed,
+        "copc" = copc,
+        "creation_day" = DayOfYear,
+        "creation_year" = Year,
+        "point_record_format" = PointRecordFormat,
+        "point_record_length" = PointRecordLength,
+        "major_version" = VersionMajor,
+        "minor_version" = VersionMinor,
+        #"HeaderSize" = HeaderSize,
+        #"VLRCount" = VLRCount,
+        "minx" = MinX,
+        "miny" = MinY,
+        "minz" = MinZ,
+        "maxx" = MaxX,
+        "maxy" = MaxY,
+        "maxz" = MaxZ,
+        "crs" = crs
+      )
     } else {
-      VersionMajor <- NA
-      VersionMinor <- NA
-      DayOfYear <- NA
-      Year <- NA
-      HeaderSize <- NA
-      VLRCount <- NA
-      PointRecordFormat <- NA
-      PointRecordLength <- NA
-      PointCount <- NA
-      MaxX <- NA
-      MinX <- NA
-      MaxY <- NA
-      MinY <- NA
-      MaxZ <- NA
-      MinZ <- NA
+      stop(paste("File:", path, "could not be opened!!"))
     }
-    close(con)
     
-    # build data frame to return
-    df <- data.frame(
-      "filespec" = path,
-      "filesize" = filesize,
-      #"filename" = basename(path),
-      "pointcount" = PointCount,
-      "compressed" = grepl(".laz", tolower(basename(path))),
-      "copc" = grepl(".copc.laz", tolower(basename(path))),
-      "creation_day" = DayOfYear,
-      "creation_year" = Year,
-      "point_record_format" = PointRecordFormat,
-      "point_record_length" = PointRecordLength,
-      "major_version" = VersionMajor,
-      "minor_version" = VersionMinor,
-      #"HeaderSize" = HeaderSize,
-      #"VLRCount" = VLRCount,
-      "minx" = MinX,
-      "miny" = MinY,
-      "minz" = MinZ,
-      "maxx" = MaxX,
-      "maxy" = MaxY,
-      "maxz" = MaxZ
-    )
     # df <- data.frame(
     #   "path" = path,
     #   "FileName" = basename(path),
@@ -272,7 +313,9 @@ ReadLocalLASHeader <- function(
     stop(paste("File:", path, "doesn't exist!!"))
   }
   
-  if (!quiet) print(df)
+  if (!quiet) {
+    print(df)
+  }
   
   return(invisible(df))
 }
@@ -285,12 +328,12 @@ ReadLocalLASHeader <- function(
 #'
 #' @param basePath Path for a folder. Trailing slash should *not*
 #'   be included.
+#' @param outputFile Full path and filename on the local file system for the index
+#'   file.
 #' @param folderName Folder name on the \code{basePath} containing LAS/LAZ files.
 #'   Can be an empty string.
 #' @param pointFolder Folder under \code{folderName} containing point files. Can be
 #'   an empty string.
-#' @param outputFile Full path and filename on the local file system for the index
-#'   file.
 #' @param projString A valid projection string that can be used with the \code{crs}
 #'   parameter in \code{st_sf}. \code{projString} should represent the projection
 #'   pf the point data. If using EPSG codes, do not enclose the EPSG number in quotes.
@@ -317,14 +360,15 @@ ReadLocalLASHeader <- function(
 #' @export
 BuildIndexFromLocalPoints <- function (
   basePath,
-  folderName,
-  pointFolder,
   outputFile,
+  folderName = "",
+  pointFolder = "",
   projString = NA,
   outputCRS = NA,
   fileType = "\\.las|\\.laz",
   fullFileList = character(0),
   dimensionThreshold = 50000,
+  headerMethod = "direct",        #direct: binary read of header, lidr: use lidR package
   rebuild = FALSE,
   quiet = FALSE
 ) {
@@ -364,33 +408,35 @@ BuildIndexFromLocalPoints <- function (
       fileURLs <- flist
     }
     
-    # if we don't have projection info, try to get it from the first point file
-    if (is.na(projString)) {
-      c <- ReadLocalLASProjection(fileURLs[1], quiet = quiet)
-      projString <- lidR::crs(c, asText = TRUE)
-    }
-    
     # read headers
-    t <- lapply(fileURLs, ReadLocalLASHeader, quiet = quiet)    # returns a list of dataframes
+    if (headerMethod == 'direct')
+      t <- lapply(fileURLs, ReadLocalLASHeader, quiet = quiet)    # returns a list of dataframes
+    else
+      t <- lapply(fileURLs, ReadLocalLASInfo, quiet = quiet)    # returns a list of dataframes
     
     # convert to a simple dataframe
     t_df <- do.call("rbind", t)
     
     # drop any rows with NA values...bad LAS file...only check min/max XYZ values
-    t_df <- t_df[stats::complete.cases(t_df[, 11:16]), ]
+    t_df <- t_df[stats::complete.cases(t_df[, 12:17]), ]
     
     # drop rows where width or height is >dimensionThreshold units
-    t_df <- t_df[((t_df$MaxX - t_df$MinX) < dimensionThreshold & (t_df$MaxY - t_df$MinY) < dimensionThreshold), ]
+    t_df <- t_df[((t_df$maxx - t_df$minx) < dimensionThreshold & (t_df$maxy - t_df$miny) < dimensionThreshold), ]
+    
+    # if we don't have projection info, try to get it from the first point file
+    if (is.na(projString)) {
+      projString <- t_df$crs[1]
+    }
     
     # create sf set of tile polygons
     if (nrow(t_df) > 0) {
       lst <- lapply(1:nrow(t_df), function(x) {
         # create a matrix of coordinates that also 'close' the polygon
-        res <- matrix(c(t_df[x, 'MinX'], t_df[x, 'MinY'],
-                        t_df[x, 'MinX'], t_df[x, 'MaxY'],
-                        t_df[x, 'MaxX'], t_df[x, 'MaxY'],
-                        t_df[x, 'MaxX'], t_df[x, 'MinY'],
-                        t_df[x, 'MinX'], t_df[x, 'MinY'])  ## need to close the polygon
+        res <- matrix(c(t_df[x, 'minx'], t_df[x, 'miny'],
+                        t_df[x, 'minx'], t_df[x, 'maxy'],
+                        t_df[x, 'maxx'], t_df[x, 'maxy'],
+                        t_df[x, 'maxx'], t_df[x, 'miny'],
+                        t_df[x, 'minx'], t_df[x, 'miny'])  ## need to close the polygon
                       , ncol =2, byrow = TRUE
         )
         # create polygon objects

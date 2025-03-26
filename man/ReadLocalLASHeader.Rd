@@ -4,20 +4,25 @@
 \alias{ReadLocalLASHeader}
 \title{LidarIndexR -- Read the header for a local LAS/LAZ file}
 \usage{
-ReadLocalLASHeader(path, quiet = TRUE)
+ReadLocalLASHeader(path, useVLRs = TRUE, quiet = TRUE)
 }
 \arguments{
 \item{path}{Path for a LAS/LAZ file.}
+
+\item{useVLRs}{Read VLRs to determine if file is compressed and COPC format.}
 
 \item{quiet}{Boolean to control display of status information. If TRUE,
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
 \value{
-A data frame (invisible) containing header information.
+A data frame (invisible) containing the CRS WKT information string and
+header info. If file has no CRS information, the crs column in the data frame
+will be an empty string.
 }
 \description{
-Reads the header of a LAS/LAZ file and returns header information in a
-data frame. Only the header is read.
+Read the header information for a LAS/LAZ file including CRS information.
+Only the file header is read (including VLRs) so you don't have to worry
+about the size of the LAS/LAZ file. \emph{Does not rely on the lidR package.}
 }
 \examples{
 \dontrun{

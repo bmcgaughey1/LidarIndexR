@@ -13,9 +13,9 @@ ReadLocalLASInfo(path, quiet = TRUE)
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
 \value{
-A list (invisible) containing the CRS WKT information string and a
-data frame with header info. If file has no CRS information, the first element
-in the list is an empty string.
+A data frame (invisible) containing the CRS WKT information string and
+header info. If file has no CRS information, the crs column in the data frame
+will be an empty string.
 }
 \description{
 Read the header information for a LAS/LAZ file including CRS information.

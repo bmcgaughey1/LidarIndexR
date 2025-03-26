@@ -6,14 +6,15 @@
 \usage{
 BuildIndexFromLocalPoints(
   basePath,
-  folderName,
-  pointFolder,
   outputFile,
+  folderName = "",
+  pointFolder = "",
   projString = NA,
   outputCRS = NA,
   fileType = "\\\\.las|\\\\.laz",
   fullFileList = character(0),
   dimensionThreshold = 50000,
+  headerMethod = "direct",
   rebuild = FALSE,
   quiet = FALSE
 )
@@ -22,14 +23,14 @@ BuildIndexFromLocalPoints(
 \item{basePath}{Path for a folder. Trailing slash should \emph{not}
 be included.}
 
+\item{outputFile}{Full path and filename on the local file system for the index
+file.}
+
 \item{folderName}{Folder name on the \code{basePath} containing LAS/LAZ files.
 Can be an empty string.}
 
 \item{pointFolder}{Folder under \code{folderName} containing point files. Can be
 an empty string.}
-
-\item{outputFile}{Full path and filename on the local file system for the index
-file.}
 
 \item{projString}{A valid projection string that can be used with the \code{crs}
 parameter in \code{st_sf}. \code{projString} should represent the projection
