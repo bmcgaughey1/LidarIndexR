@@ -8,10 +8,10 @@ using namespace Rcpp;
 using namespace std;
 
 // [[Rcpp::export]]
-DataFrame ReadLASHeader(std::string path) {
+Rcpp::DataFrame ReadLASHeader(std::string path) {
   // declare variables
-  unsigned long long fileSize;
-  unsigned char signature[4];
+  size_t fileSize;
+  char signature[4];
   unsigned char VersionMajor;
   unsigned char VersionMinor;
   unsigned short HeaderSize;
@@ -25,63 +25,64 @@ DataFrame ReadLASHeader(std::string path) {
   unsigned char PointRecordFormat;
   unsigned short PointRecordLength;
   double MinX, MinY, MinZ, MaxX, MaxY, MaxZ;
-  unsigned char trash[128];
-  
+  std::vector<char> trash(128);
+
   // VLR variables
   unsigned short reserved;
-  unsigned char userID[17];
+  char userID[17];
   unsigned short recordID;
   unsigned short recordLength;
-  unsigned char description[33];
+  char description[33];
   
   std::string crs;
   
-  ifstream infile;
+  std::ifstream infile;
   
   // open file and read header information into local variables
-  infile.open(path, ios::in | ios::binary);
+  infile.open(path, std::ios::binary);
   
   // get file size...seek to end and ask
-  infile.seekg(0, infile.end);
+  infile.seekg(0, std::ios::end);
   fileSize = infile.tellg();
-  infile.seekg(0, infile.beg);
+  infile.seekg(0, std::ios::beg);
   
-  infile.read(signature, sizeof(signature));
+  infile.read(&signature[0], sizeof(signature));
   if (signature[0] == 'L' && signature[1] == 'A' && signature[2] == 'S' && signature[3] == 'F') {
-    infile.read(trash, 20);
-    infile.read(versionMajor, sizeof(VersionMajor));
-    infile.read(versionMinor, sizeof(VersionMinor));
-    infile.read(trash, 64);
-    infile.read(DayOfYear, sizeof(DayOfYear));
-    infile.read(Year, sizeof(Year));
-    infile.read(HeaderSize, sizeof(HeaderSize));
-    infile.read(trash, 4);
-    infile.read(VLRCount, sizeof(VLRCount));
-    infile.read(PointRecordFormat, sizeof(PointRecordFormat));
-    infile.read(PointRecordLength, sizeof(PointRecordLength));
-    infile.read(LegacyPointCount, sizeof(LegacyPointCount));
+    infile.read(trash.data(), 20);
+    infile.read(reinterpret_cast<char *>(&VersionMajor), sizeof(VersionMajor));
+    infile.read(reinterpret_cast<char *>(&VersionMinor), sizeof(VersionMinor));
+    infile.read(trash.data(), 64);
+    infile.read(reinterpret_cast<char *>(&DayOfYear), sizeof(DayOfYear));
+    infile.read(reinterpret_cast<char *>(&Year), sizeof(Year));
+    infile.read(reinterpret_cast<char *>(&HeaderSize), sizeof(HeaderSize));
+    infile.read(trash.data(), 4);
+    infile.read(reinterpret_cast<char *>(&VLRCount), sizeof(VLRCount));
+    infile.read(reinterpret_cast<char *>(&PointRecordFormat), sizeof(PointRecordFormat));
+    infile.read(reinterpret_cast<char *>(&PointRecordLength), sizeof(PointRecordLength));
+    infile.read(reinterpret_cast<char *>(&LegacyPointCount), sizeof(LegacyPointCount));
     PointCount = (unsigned long long) LegacyPointCount;
-    infile.read(trash, 68);
-    infile.read(MaxX, sizeof(MaxX));
-    infile.read(MaxY, sizeof(MaxY));
-    infile.read(MaxZ, sizeof(MaxZ));
-    infile.read(MinX, sizeof(MinX));
-    infile.read(MinY, sizeof(MinY));
-    infile.read(MinZ, sizeof(MinZ));
+    infile.read(trash.data(), 68);
+    infile.read(reinterpret_cast<char *>(&MaxX), sizeof(MaxX));
+    infile.read(reinterpret_cast<char *>(&MaxY), sizeof(MaxY));
+    infile.read(reinterpret_cast<char *>(&MaxZ), sizeof(MaxZ));
+    infile.read(reinterpret_cast<char *>(&MinX), sizeof(MinX));
+    infile.read(reinterpret_cast<char *>(&MinY), sizeof(MinY));
+    infile.read(reinterpret_cast<char *>(&MinZ), sizeof(MinZ));
     if (VersionMajor == 1 && VersionMinor > 3) {
-      infile.read(trash, 20);
-      infile.read(PointCount, sizeof(PointCount));
+      infile.read(trash.data(), 20);
+      infile.read(reinterpret_cast<char *>(&PointCount), sizeof(PointCount));
     }
     
     // read VLRs
     if (VLRCount > 0) {
-      infile.seekg(HeaderSize, infile.beg);
+      // seek to end of header
+      infile.seekg(HeaderSize, std::ios::beg);
       for(unsigned long vlr = 0; vlr < VLRCount; vlr++) {
-        infile.read(reserved, sizeof(reserved));
-        infile.read(userID, sizeof(userID) - 1);
-        infile.read(recordID, sizeof(recordID));
-        infile.read(recordLength, sizeof(recordLength));
-        infile.read(description, sizeof(description) - 1);
+        infile.read(reinterpret_cast<char *>(&reserved), sizeof(reserved));
+        infile.read(&userID[0], sizeof(userID) - 1);
+        infile.read(reinterpret_cast<char *>(&recordID), sizeof(recordID));
+        infile.read(reinterpret_cast<char *>(&recordLength), sizeof(recordLength));
+        infile.read(&description[0], sizeof(description) - 1);
         
         // terminate strings
         userID[16] = '\0';
@@ -92,7 +93,7 @@ DataFrame ReadLASHeader(std::string path) {
         if (strcmp(userID, "laszip encoded") == 0) compressed = true;
         
         // check for WKT
-        if (strcmp(userID, ""LASF_Projection") == 0 && recordID == 2112) {
+        if (strcmp(userID, "LASF_Projection") == 0 && recordID == 2112) {
           // read WKT into crs
           std::vector<char> buffer(recordLength);
           infile.read(buffer.data(), recordLength);
@@ -105,7 +106,7 @@ DataFrame ReadLASHeader(std::string path) {
     }
     
     // create DataFrame using local variables
-    DataFrame df = DataFrame::create(
+    Rcpp::DataFrame df = DataFrame::create(
       Named("filespec") = path,
       Named("filesize") = fileSize,
       Named("pointcount") = PointCount,
@@ -125,6 +126,7 @@ DataFrame ReadLASHeader(std::string path) {
       Named("maxz") = MaxZ,
       Named("crs") = crs
     );
+    return df;
   }
-  return df;
+  return Rcpp::DataFrame();
 }
