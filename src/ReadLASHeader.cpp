@@ -1,6 +1,8 @@
 #include <Rcpp.h>
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <vector>
 
 using namespace Rcpp;
 using namespace std;
@@ -8,6 +10,7 @@ using namespace std;
 // [[Rcpp::export]]
 DataFrame ReadLASHeader(std::string path) {
   // declare variables
+  unsigned long long fileSize;
   unsigned char signature[4];
   unsigned char VersionMajor;
   unsigned char VersionMinor;
@@ -24,12 +27,25 @@ DataFrame ReadLASHeader(std::string path) {
   double MinX, MinY, MinZ, MaxX, MaxY, MaxZ;
   unsigned char trash[128];
   
+  // VLR variables
+  unsigned short reserved;
+  unsigned char userID[17];
+  unsigned short recordID;
+  unsigned short recordLength;
+  unsigned char description[33];
+  
   std::string crs;
   
   ifstream infile;
   
   // open file and read header information into local variables
   infile.open(path, ios::in | ios::binary);
+  
+  // get file size...seek to end and ask
+  infile.seekg(0, infile.end);
+  fileSize = infile.tellg();
+  infile.seekg(0, infile.beg);
+  
   infile.read(signature, sizeof(signature));
   if (signature[0] == 'L' && signature[1] == 'A' && signature[2] == 'S' && signature[3] == 'F') {
     infile.read(trash, 20);
@@ -59,16 +75,39 @@ DataFrame ReadLASHeader(std::string path) {
     
     // read VLRs
     if (VLRCount > 0) {
+      infile.seekg(HeaderSize, infile.beg);
       for(unsigned long vlr = 0; vlr < VLRCount; vlr++) {
-        infile.seekg(HeaderSize, infile.beg);
+        infile.read(reserved, sizeof(reserved));
+        infile.read(userID, sizeof(userID) - 1);
+        infile.read(recordID, sizeof(recordID));
+        infile.read(recordLength, sizeof(recordLength));
+        infile.read(description, sizeof(description) - 1);
         
+        // terminate strings
+        userID[16] = '\0';
+        description[32] = '\0';
+        
+        // check for LAZ and COPC VLRs
+        if (strcmp(userID, "copc") == 0) copc = true;
+        if (strcmp(userID, "laszip encoded") == 0) compressed = true;
+        
+        // check for WKT
+        if (strcmp(userID, ""LASF_Projection") == 0 && recordID == 2112) {
+          // read WKT into crs
+          std::vector<char> buffer(recordLength);
+          infile.read(buffer.data(), recordLength);
+          crs = std::string(buffer.begin(), buffer.end());
+        } else {
+          // seek past VLR data
+          infile.seekg(recordLength, infile.cur);
+        }
       }
     }
-    
     
     // create DataFrame using local variables
     DataFrame df = DataFrame::create(
       Named("filespec") = path,
+      Named("filesize") = fileSize,
       Named("pointcount") = PointCount,
       Named("compressed") = compressed,
       Named("copc") = copc,

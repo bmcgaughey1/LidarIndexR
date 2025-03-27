@@ -19,7 +19,8 @@ Imports:
     readr,
     stringr,
     urltools,
-    XML
+    XML,
+    Rcpp
 License: CC0
 Encoding: UTF-8
 LazyData: true
@@ -29,3 +30,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp
