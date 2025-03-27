@@ -214,10 +214,10 @@ ReadLocalLASHeader <- function(
         PointCount <- unsignedFourByteIntToDouble(PointCount)
         readBin(con, "raw", 68) # skip bytes
         MaxX <- readBin(con, "numeric", 1, size = 8)
-        MaxY <- readBin(con, "numeric", 1, size = 8)
-        MaxZ <- readBin(con, "numeric", 1, size = 8)
         MinX <- readBin(con, "numeric", 1, size = 8)
+        MaxY <- readBin(con, "numeric", 1, size = 8)
         MinY <- readBin(con, "numeric", 1, size = 8)
+        MaxZ <- readBin(con, "numeric", 1, size = 8)
         MinZ <- readBin(con, "numeric", 1, size = 8)
         if (VersionMajor == 1 && VersionMinor > 3) {
           readBin(con, "raw", 20) # skip bytes
@@ -348,6 +348,8 @@ ReadLocalLASHeader <- function(
 #'   This is intended to help omit invalid LAS/LAZ files from the index. If
 #'   the height or width of the point tile exceeds the threshold, the tile
 #'   will be omitted.
+#' @param headerMethod String indicating the method that should be used to
+#'   read LAS file headers. Choices are: "direct", "lidr", or "rcpp".
 #' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
 #'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
@@ -411,50 +413,56 @@ BuildIndexFromLocalPoints <- function (
     # read headers
     if (headerMethod == 'direct')
       t <- lapply(fileURLs, ReadLocalLASHeader, quiet = quiet)    # returns a list of dataframes
-    else
+    else if (headerMethod == 'lidr')
       t <- lapply(fileURLs, ReadLocalLASInfo, quiet = quiet)    # returns a list of dataframes
+    else
+      t <- lapply(fileURLs, ReadLASHeader)    # returns a list of dataframes
     
-    # convert to a simple dataframe
-    t_df <- do.call("rbind", t)
-    
-    # drop any rows with NA values...bad LAS file...only check min/max XYZ values
-    t_df <- t_df[stats::complete.cases(t_df[, 12:17]), ]
-    
-    # drop rows where width or height is >dimensionThreshold units
-    t_df <- t_df[((t_df$maxx - t_df$minx) < dimensionThreshold & (t_df$maxy - t_df$miny) < dimensionThreshold), ]
-    
-    # if we don't have projection info, try to get it from the first point file
-    if (is.na(projString)) {
-      projString <- t_df$crs[1]
-    }
-    
-    # create sf set of tile polygons
-    if (nrow(t_df) > 0) {
-      lst <- lapply(1:nrow(t_df), function(x) {
-        # create a matrix of coordinates that also 'close' the polygon
-        res <- matrix(c(t_df[x, 'minx'], t_df[x, 'miny'],
-                        t_df[x, 'minx'], t_df[x, 'maxy'],
-                        t_df[x, 'maxx'], t_df[x, 'maxy'],
-                        t_df[x, 'maxx'], t_df[x, 'miny'],
-                        t_df[x, 'minx'], t_df[x, 'miny'])  ## need to close the polygon
-                      , ncol =2, byrow = TRUE
+    if (length(t)) {
+      # convert to a simple dataframe
+      t_df <- do.call("rbind", t)
+      
+      # drop any rows with NA values...bad LAS file...only check min/max XYZ values
+      t_df <- t_df[stats::complete.cases(t_df[, 12:17]), ]
+      
+      # drop rows where width or height is >dimensionThreshold units
+      t_df <- t_df[((t_df$maxx - t_df$minx) < dimensionThreshold & (t_df$maxy - t_df$miny) < dimensionThreshold), ]
+      
+      # if we don't have projection info, try to get it from the first point file
+      if (is.na(projString)) {
+        projString <- t_df$crs[1]
+      }
+      
+      # create sf set of tile polygons
+      if (nrow(t_df) > 0) {
+        lst <- lapply(1:nrow(t_df), function(x) {
+          # create a matrix of coordinates that also 'close' the polygon
+          res <- matrix(c(t_df[x, 'minx'], t_df[x, 'miny'],
+                          t_df[x, 'minx'], t_df[x, 'maxy'],
+                          t_df[x, 'maxx'], t_df[x, 'maxy'],
+                          t_df[x, 'maxx'], t_df[x, 'miny'],
+                          t_df[x, 'minx'], t_df[x, 'miny'])  ## need to close the polygon
+                        , ncol =2, byrow = TRUE
+          )
+          # create polygon objects
+          sf::st_polygon(list(res))
+        }
         )
-        # create polygon objects
-        sf::st_polygon(list(res))
+        
+        tiles_sf <- sf::st_sf(t_df, sf::st_sfc(lst), crs = projString)
+        
+        # reproject to outputCRS
+        if (!is.na(projString) && !is.na(outputCRS)) {
+          tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
+        }
+        
+        # write output
+        sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
+        
+        return(invisible(TRUE))
+      } else {
+        cat("   ***Could not read LAS file headers\n")
       }
-      )
-      
-      tiles_sf <- sf::st_sf(t_df, sf::st_sfc(lst), crs = projString)
-      
-      # reproject to outputCRS
-      if (!is.na(projString) && !is.na(outputCRS)) {
-        tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
-      }
-      
-      # write output
-      sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
-      
-      return(invisible(TRUE))
     } else {
       cat("   ***No LAS polygons\n")
     }

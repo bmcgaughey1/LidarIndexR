@@ -51,6 +51,9 @@ This is intended to help omit invalid LAS/LAZ files from the index. If
 the height or width of the point tile exceeds the threshold, the tile
 will be omitted.}
 
+\item{headerMethod}{String indicating the method that should be used to
+read LAS file headers. Choices are: "direct", "lidr", or "rcpp".}
+
 \item{rebuild}{Boolean. If TRUE, the index is always created. If FALSE,
 the index is only created if it does not already exist.}
 
