@@ -324,12 +324,21 @@ ReadLocalLASHeader <- function(
 #
 #' LidarIndexR -- Create spatial index by reading LAS/LAZ file headers
 #'
-#' Longer description
-#'
+#' Reads LAS/LAZ file headers to build bounding boxes for each tile and
+#' stores header attributes with each bounding box. Optionally writes
+#' information to \code{outputFile}. Typically used by passing a folder
+#' name in \code{basePath} and a file extension template such as "//.las|//.laz".
+#' You can also specify folders under the \code{basePath} using \code{folderName}
+#' and \code{pointFolder}. You can omit all folder information and provide a 
+#' list of point files in \code{fullFileList}. CRS information is read from 
+#' point files. If you provide \code{projString}, it will override the CRS
+#' found in the point files.
+#' 
 #' @param basePath Path for a folder. Trailing slash should *not*
 #'   be included.
-#' @param outputFile Full path and filename on the local file system for the index
-#'   file.
+#' @param fileType Any valid string for the pattern parameter in \code{grep()}.
+#'   "$" will be appended to the string to search for file/folder names ending
+#'   with values in \code{fileType}.
 #' @param folderName Folder name on the \code{basePath} containing LAS/LAZ files.
 #'   Can be an empty string.
 #' @param pointFolder Folder under \code{folderName} containing point files. Can be
@@ -339,9 +348,6 @@ ReadLocalLASHeader <- function(
 #'   pf the point data. If using EPSG codes, do not enclose the EPSG number in quotes.
 #' @param outputCRS A valid projection string that can be used with the \code{crs}
 #'     parameter in \code{st_transform} to reproject the index.
-#' @param fileType Any valid string for the pattern parameter in \code{grep()}.
-#'   "$" will be appended to the string to search for file/folder names ending
-#'   with values in \code{fileType}.
 #' @param fullFileList List of point tiles. Will be used instead of generating 
 #'   new list.
 #' @param dimensionThreshold Size threshold used to omit files from the index.
@@ -350,33 +356,37 @@ ReadLocalLASHeader <- function(
 #'   will be omitted.
 #' @param headerMethod String indicating the method that should be used to
 #'   read LAS file headers. Choices are: "direct", "lidr", or "rcpp".
+#' @param outputFile Full path and filename on the local file system for the index
+#'   file.
 #' @param rebuild Boolean. If TRUE, the index is always created. If FALSE,
 #'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return Boolean (invisible) indicating success (TRUE) or failure (FALSE).
+#' @return An \code{sf} object (invisible) containing tile bounding boxes and attributes.
 #' @examples
 #' \dontrun{
 #' BuildIndexFromPoints()
 #' }
 #' @export
 BuildIndexFromLocalPoints <- function (
-  basePath,
-  outputFile,
+  basePath = "",
+  fileType = "\\.las|\\.laz",
   folderName = "",
   pointFolder = "",
   projString = NA,
   outputCRS = NA,
-  fileType = "\\.las|\\.laz",
   fullFileList = character(0),
   dimensionThreshold = 50000,
-  headerMethod = "direct",        #direct: binary read of header, lidr: use lidR package
+  headerMethod = "rcpp",        #direct: binary read of header, lidr: use lidR package
+  outputFile = NULL,
   rebuild = FALSE,
   quiet = FALSE
 ) {
-  if (file.exists(outputFile) && !rebuild) {
-    if (!quiet) cat("Index already exist...skipping: ", basename(outputFile),"\n")
-    return(TRUE)
+  if (!is.null(outputFile)) {
+    if (file.exists(outputFile) && !rebuild) {
+      if (!quiet) cat("Index already exist...skipping: ", basename(outputFile),"\n")
+      return(TRUE)
+    }
   }
   
   if (folderName == "" && pointFolder != "") {
@@ -401,7 +411,7 @@ BuildIndexFromLocalPoints <- function (
   }
   
   if (length(flist) > 0) {
-    if (!quiet) cat("Building index: ", basename(outputFile), "\n")
+    if (!quiet) cat("Building index...")
     
     if (length(fullFileList) == 0) {
       # prepend folder path to file names
@@ -456,10 +466,13 @@ BuildIndexFromLocalPoints <- function (
           tiles_sf <- sf::st_transform(tiles_sf, crs = outputCRS)
         }
         
-        # write output
-        sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
+        if (!quiet) cat("Done!!\n")
         
-        return(invisible(TRUE))
+        # write output
+        if (!is.null(outputFile))
+          sf::st_write(tiles_sf, outputFile, delete_dsn = TRUE, quiet = TRUE)
+        
+        return(invisible(tiles_sf))
       } else {
         cat("   ***Could not read LAS file headers\n")
       }
@@ -470,7 +483,7 @@ BuildIndexFromLocalPoints <- function (
     cat("   ***No LAS files\n")
   }
   
-  return(invisible(FALSE))
+  return(invisible(data.frame()))
 }
 
 # ---------- ExtractCRSFromLocalPoints

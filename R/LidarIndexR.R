@@ -1151,6 +1151,7 @@ BuildIndexFromUSGSProjectIndexItem <- function (
 #'   to merge polygons.
 #' @param ny Integer specifying the number of cells (height) of the raster used
 #'   to merge polygons.
+#' @param layer Layer name in \code{indexFile} to use for the polygon creation.
 #' @param outputCRS A valid projection string that can be used with the \code{crs}
 #'   parameter in \code{st_transform} to reproject the index. If using EPSG codes,
 #'   do not enclose the EPSG number in quotes.
@@ -1175,6 +1176,7 @@ BuildProjectPolygonFromIndex <- function (
   projectIdentifier,
   nx = 512,
   ny = 512,
+  layer = "",
   outputCRS = NULL,
   appendInfo = NULL,
   outputFile = NULL,
@@ -1189,7 +1191,10 @@ BuildProjectPolygonFromIndex <- function (
     }
   }
   
-  t_sf <- sf::st_read(indexFile, quiet = TRUE)
+  if (layer == "")
+    t_sf <- sf::st_read(indexFile, quiet = TRUE)
+  else
+    t_sf <- sf::st_read(indexFile, layer = layer, quiet = TRUE)
   
   if (is.object(t_sf)) {
     t_sf$PID <- 1

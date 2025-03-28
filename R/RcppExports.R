@@ -14,7 +14,7 @@
 #'   will be an empty string.
 #' @examples
 #' \dontrun{
-#' ReadLocalLASHeader()
+#' ReadLASHeader("C:/data")
 #' }
 #' @export
 ReadLASHeader <- function(path) {

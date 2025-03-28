@@ -5,16 +5,16 @@
 \title{LidarIndexR -- Create spatial index by reading LAS/LAZ file headers}
 \usage{
 BuildIndexFromLocalPoints(
-  basePath,
-  outputFile,
+  basePath = "",
+  fileType = "\\\\.las|\\\\.laz",
   folderName = "",
   pointFolder = "",
   projString = NA,
   outputCRS = NA,
-  fileType = "\\\\.las|\\\\.laz",
   fullFileList = character(0),
   dimensionThreshold = 50000,
-  headerMethod = "direct",
+  headerMethod = "rcpp",
+  outputFile = NULL,
   rebuild = FALSE,
   quiet = FALSE
 )
@@ -23,8 +23,9 @@ BuildIndexFromLocalPoints(
 \item{basePath}{Path for a folder. Trailing slash should \emph{not}
 be included.}
 
-\item{outputFile}{Full path and filename on the local file system for the index
-file.}
+\item{fileType}{Any valid string for the pattern parameter in \code{grep()}.
+"$" will be appended to the string to search for file/folder names ending
+with values in \code{fileType}.}
 
 \item{folderName}{Folder name on the \code{basePath} containing LAS/LAZ files.
 Can be an empty string.}
@@ -39,10 +40,6 @@ pf the point data. If using EPSG codes, do not enclose the EPSG number in quotes
 \item{outputCRS}{A valid projection string that can be used with the \code{crs}
 parameter in \code{st_transform} to reproject the index.}
 
-\item{fileType}{Any valid string for the pattern parameter in \code{grep()}.
-"$" will be appended to the string to search for file/folder names ending
-with values in \code{fileType}.}
-
 \item{fullFileList}{List of point tiles. Will be used instead of generating
 new list.}
 
@@ -54,6 +51,9 @@ will be omitted.}
 \item{headerMethod}{String indicating the method that should be used to
 read LAS file headers. Choices are: "direct", "lidr", or "rcpp".}
 
+\item{outputFile}{Full path and filename on the local file system for the index
+file.}
+
 \item{rebuild}{Boolean. If TRUE, the index is always created. If FALSE,
 the index is only created if it does not already exist.}
 
@@ -61,10 +61,18 @@ the index is only created if it does not already exist.}
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
 \value{
-Boolean (invisible) indicating success (TRUE) or failure (FALSE).
+An \code{sf} object (invisible) containing tile bounding boxes and attributes.
 }
 \description{
-Longer description
+Reads LAS/LAZ file headers to build bounding boxes for each tile and
+stores header attributes with each bounding box. Optionally writes
+information to \code{outputFile}. Typically used by passing a folder
+name in \code{basePath} and a file extension template such as "//.las|//.laz".
+You can also specify folders under the \code{basePath} using \code{folderName}
+and \code{pointFolder}. You can omit all folder information and provide a
+list of point files in \code{fullFileList}. CRS information is read from
+point files. If you provide \code{projString}, it will override the CRS
+found in the point files.
 }
 \examples{
 \dontrun{

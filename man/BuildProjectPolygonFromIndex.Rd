@@ -9,6 +9,7 @@ BuildProjectPolygonFromIndex(
   projectIdentifier,
   nx = 512,
   ny = 512,
+  layer = "",
   outputCRS = NULL,
   appendInfo = NULL,
   outputFile = NULL,
@@ -28,6 +29,8 @@ to merge polygons.}
 
 \item{ny}{Integer specifying the number of cells (height) of the raster used
 to merge polygons.}
+
+\item{layer}{Layer name in \code{indexFile} to use for the polygon creation.}
 
 \item{outputCRS}{A valid projection string that can be used with the \code{crs}
 parameter in \code{st_transform} to reproject the index. If using EPSG codes,

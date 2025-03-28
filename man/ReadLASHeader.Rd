@@ -22,6 +22,6 @@ and is 2+ orders of magnitude faster than \code{ReadLocalLASHeader()}.
 }
 \examples{
 \dontrun{
-ReadLocalLASHeader()
+ReadLASHeader("C:/data")
 }
 }
