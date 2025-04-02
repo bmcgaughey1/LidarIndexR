@@ -53,7 +53,8 @@ the index is only created if it does not already exist.}
 information is \emph{not} displayed. Otherwise, status information is displayed.}
 }
 \value{
-Boolean (invisible) indicating success or failure.
+Boolean (invisible) indicating success or failure. If \code{rebuild = FALSE}
+and \code{outputFile} exists, returns TRUE.
 }
 \description{
 Reads LAS/LAZ file headers to build bounding boxes for each tile and

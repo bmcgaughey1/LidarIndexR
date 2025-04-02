@@ -38,7 +38,8 @@
 #'   the index is only created if it does not already exist.
 #' @param quiet Boolean to control display of status information. If TRUE,
 #'   information is *not* displayed. Otherwise, status information is displayed.
-#' @return Boolean (invisible) indicating success or failure.
+#' @return Boolean (invisible) indicating success or failure. If \code{rebuild = FALSE} 
+#'   and \code{outputFile} exists, returns TRUE.
 #' @examples
 #' \dontrun{
 #' BuildAssetCatalog()
@@ -56,6 +57,12 @@ BuildAssetCatalog <- function (
     rebuild = FALSE,
     quiet = TRUE
 ) {
+  # check for existing outputFile
+  if (rebuild == FALSE && file.exists(outputFile)) {
+    cat("Index aleady exists\n")
+    return(TRUE)
+  }
+  
   # clean up the folder...deals with slashes and trailing slash
   folder <- normalizePath(folder)
   
@@ -88,10 +95,10 @@ BuildAssetCatalog <- function (
       assetsize = sum(tileIndex$filesize),
       totalpointcount = sum(tileIndex$pointcount),
       hasCRS = (tileIndex$crs[1] != ""),
-      minx = as.list(ext(tileIndex))[[1]],
-      miny = as.list(ext(tileIndex))[[3]],
-      maxx = as.list(ext(tileIndex))[[2]],
-      maxy = as.list(ext(tileIndex))[[4]],
+      minx = as.list(sf::st_bbox(tileIndex))[[1]],
+      miny = as.list(sf::st_bbox(tileIndex))[[3]],
+      maxx = as.list(sf::st_bbox(tileIndex))[[2]],
+      maxy = as.list(sf::st_bbox(tileIndex))[[4]],
       crs = tileIndex$crs[1]
     )
     

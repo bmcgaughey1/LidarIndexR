@@ -36,8 +36,8 @@ Rcpp::DataFrame ReadLASHeader(std::string path) {
   unsigned long VLRCount;
   unsigned long LegacyPointCount;
   unsigned long long PointCount;
-  bool compressed;
-  bool copc;
+  bool compressed = false;
+  bool copc = false;
   unsigned short DayOfYear;
   unsigned short Year;
   unsigned char PointRecordFormat;
