@@ -44,7 +44,11 @@ if (Test) {
       cat("LAS...")
       BuildAssetCatalog(folders$Folder[i], "\\.las", outputFile = paste0(outputFolder, name, "_LAS.gpkg"), rebuild = FALSE)
     }
-
+    # if (folders$X..zlas[i]) {
+    #   cat("zLAS...")
+    #   BuildAssetCatalog(folders$Folder[i], "\\.zlas", outputFile = paste0(outputFolder, name, "_zLAS.gpkg"), rebuild = FALSE)
+    # }
+    
     cat("Done!\n")
     
     # if (i > 2)
