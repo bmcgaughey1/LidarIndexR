@@ -11,13 +11,18 @@ if (Test) {
   # outputFolder <- "h:\\R6_IndexFiles\\"
   # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r06/R06_DRM_Deliverables/PointCloud/"
   # folderList <- "data/TDrive_R6_FileList.csv"
+  # summaryCSVFile <- "Documents/R6IndexEntries.csv"
   outputFolder <- "h:\\R10_TNF_IndexFiles\\"
   rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_tnf/RSImagery/Geo/DEM/LiDAR/"
   folderList <- "data/R10_TNF_FileList.csv"
+  summaryCSVFile <- "Documents/R10_TNF_IndexEntries.csv"
   # outputFolder <- "h:\\R10_CNF_IndexFiles\\"
   # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_cnf/RSImagery/Geo/DEM/LiDAR/"
   # folderList <- "data/R10_CNF_FileList.csv"
+  # summaryCSVFile <- "Documents/R10_CNF_IndexEntries.csv"
   slashReplacement <- "_][_"
+  
+  if (!dir.exists(outputFolder)) {dir.create(outputFolder)}
   
   # read list of folders
   folders <- utils::read.csv(folderList, stringsAsFactors = FALSE)
@@ -58,7 +63,6 @@ if (Test) {
   # step through index files and build CSV table with boundary attributes...useful for summarizing and 
   # further analyses
   library(terra)
-  summaryCSVFile <- "Documents/R6IndexEntries.csv"
   
   files <- list.files(outputFolder, "\\.gpkg", full.names = TRUE, ignore.case = TRUE)
   
@@ -74,11 +78,11 @@ if (Test) {
   
   df3DEP <- df[grepl("3dep", tolower(df$base)),]
   if (nrow(df3DEP) > 0) {
-    sprintf("   Total 3DEP data size: %f Tb", sum(df3DEP$assetsize)/1024/1024/1024/1024)
-    sprintf("   Total non-3DEP data size: %f Tb", sum(df$assetsize)/1024/1024/1024/1024 - sum(df3DEP$assetsize)/1024/1024/1024/1024)
+    sprintf("   Total 3DEP data size: %f Tb", sum(df3DEP$assetsize/1024/1024/1024/1024))
+    sprintf("   Total non-3DEP data size: %f Tb", sum(df$assetsize/1024/1024/1024/1024) - sum(df3DEP$assetsize)/1024/1024/1024/1024)
   }
-  print("Summary for", outputFolder, ":")
-  sprintf("   Total size: %f Tb", sum(df$assetsize)/1024/1024/1024/1024)
+  cat("Summary for", outputFolder, ":\n")
+  cat(sprintf("   Total size: %f Tb", sum(df$assetsize/1024/1024/1024/1024)), "\n")
   
 }
 

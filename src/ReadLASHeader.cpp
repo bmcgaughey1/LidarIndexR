@@ -66,8 +66,10 @@ Rcpp::DataFrame ReadLASHeader(std::string path) {
     fileSize = infile.tellg();
     infile.seekg(0, std::ios::beg);
     
+    // signature for LAS/LAZ is "LASF", signature for zLIDAR is "ZLDR" (otherwise header is the same)
     infile.read(&signature[0], sizeof(signature));
-    if (signature[0] == 'L' && signature[1] == 'A' && signature[2] == 'S' && signature[3] == 'F') {
+    if ((signature[0] == 'L' && signature[1] == 'A' && signature[2] == 'S' && signature[3] == 'F') || 
+        (signature[0] == 'Z' && signature[1] == 'L' && signature[2] == 'D' && signature[3] == 'R')) {
       infile.read(trash.data(), 20);
       infile.read(reinterpret_cast<char *>(&VersionMajor), sizeof(VersionMajor));
       infile.read(reinterpret_cast<char *>(&VersionMinor), sizeof(VersionMinor));
