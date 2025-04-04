@@ -99,7 +99,8 @@ BuildAssetCatalog <- function (
       miny = as.list(sf::st_bbox(tileIndex))[[3]],
       maxx = as.list(sf::st_bbox(tileIndex))[[2]],
       maxy = as.list(sf::st_bbox(tileIndex))[[4]],
-      crs = tileIndex$crs[1]
+      crs = tileIndex$crs[1],
+      assignedCRS = ""
     )
     
     # build wrapping polygon

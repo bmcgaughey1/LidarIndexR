@@ -1,4 +1,4 @@
-# code to deal with missing CRS for lidar index file
+# code to deal with missing CRS for R6 lidar index files
 #
 # strategy is to read index files and look for files that don't have CRS ($hasCRS == FALSE)
 # for index files without CRS, look at folder name to see if "magic" strings are 
@@ -8,6 +8,9 @@
 # This also means I need to add the new field to index files that have CRS but
 # set value to a blank string. Not a big deal but does mean all index files
 # will be touched and rewritten.
+#
+# I think this code is only useful for R6 index files. Other regions do not have
+# projects label ed with CRS information or whether or not data are also held in 2DEP.
 #
 if (FALSE) {
   library(terra)
