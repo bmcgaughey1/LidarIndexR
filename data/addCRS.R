@@ -27,6 +27,7 @@ if (FALSE) {
   # there are a few folders that appear to have mixed UTM 10N and 11N data...can't 
   # do much with these.
   prjs <- list(
+    c("r6albers", 9674), # NAD83 R6 albers equal area
     c("usfsalbers_meters", 9674), # NAD83 R6 albers equal area
     c("wasp_north_feet", 2926), # 2285:NAD83 WASP north usFt, 2926: NAD83(HARN), 6597: NAD83(2011)
     c("wasp_south_feet", 2927), # 2286:NAD83 WASP south usFt, 2927: NAD83(HARN), 6599: NAD83(2011)
@@ -41,6 +42,10 @@ if (FALSE) {
     c("orsp_north_feet", 6885), #6885: NAD83(CORS96) ORSP north feet
     c("utm10_3dep", 6339), # 6339: NAD83(2011), 26910: NAD83. 3740: NAD83(HARN)
     c("utm11_3dep", 6340), # 6340: NAD83(2011), 26911: NAD83. 3741: NAD83(HARN)
+    c("utm10_laz", 6339), # 6339: NAD83(2011), 26910: NAD83. 3740: NAD83(HARN)
+    c("utm11_laz", 6340), # 6340: NAD83(2011), 26911: NAD83. 3741: NAD83(HARN)
+    c("utm10_las", 6339), # 6339: NAD83(2011), 26910: NAD83. 3740: NAD83(HARN)
+    c("utm11_las", 6340), # 6340: NAD83(2011), 26911: NAD83. 3741: NAD83(HARN)
     c("umt11_3dep", 6340) # typo in folder name
   )
   
@@ -52,16 +57,16 @@ if (FALSE) {
   totalNon3DEPStorage <- 0
   countNon3DEP <- 0
   
-  assignCRS <- function(index, epsg) {
+  assignCRS <- function(index, wkt) {
     bb <- vect(index, layer = "boundingbox")
     wb <- vect(index, layer = "boundary")
     ass <- vect(index, layer = "assets")
     
-    if (epsg != "") {
+    if (wkt != "") {
       # assign CRS
-      crs(bb) <- paste0("EPSG:", epsg)
-      crs(wb) <- paste0("EPSG:", epsg)
-      crs(ass) <- paste0("EPSG:", epsg)
+      crs(bb) <- wkt
+      crs(wb) <- wkt
+      crs(ass) <- wkt
       
       # add field
       bb$assignedCRS <- crs(bb)
@@ -110,7 +115,7 @@ if (FALSE) {
          match <- TRUE
          
          # assign new CRS using EPSG code
-         assignCRS(file, prjs[[i]][2])
+         assignCRS(file, paste0("EPSG:", prjs[[i]][2]))
        }
       }
       if (!match) {
@@ -159,42 +164,105 @@ if (FALSE) {
 }
 
 # found problems with 86, 91, 108, 124, 125, 173, 191 as in for (i in 1:length(files))
-
-# oregon lambert (DOGAMI data)
-# NAD83 / Oregon GIC Lambert (ft)
-# EPSG:2992 with transformation: 1188
-# 
-# NAD83(NSRS2007) / Oregon GIC Lambert (ft)
-# EPSG:3644 with transformation: 15931
-# 
-# NAD83(2011) / Oregon GIC Lambert (ft)
-# EPSG:6557 with transformation: 9774
-# 
-# NAD83(HARN) / Oregon GIC Lambert (ft)
-# EPSG:2994 with transformation: 1580
-# 
-# NAD83(CORS96) / Oregon GIC Lambert (ft)
-# EPSG:6868
+# these areas have completely wrong crs information (show up in the wrong place)
 
 
-# UTM zone 10
-# NAD83 / UTM zone 10N
-# EPSG:26910 with transformation: 1188
-# 
-# NAD83(2011) / UTM zone 10N
-# EPSG:6339 with transformation: 9774
-# 
-# NAD83(CSRS) / UTM zone 10N
-# EPSG:3157 with transformation: 1946
-# 
-# NAD83(NSRS2007) / UTM zone 10N
-# EPSG:3717 with transformation: 15931
-# 
-# NAD83(HARN) / UTM zone 10N
-# EPSG:3740 with transformation: 1580
-# 
-# WGS 84 / UTM zone 10N
-# EPSG:32610
-# 
-# NAD 1983 (CORS96) UTM zone 10N
-# ESRI:102410
+# ******************************************************************************
+# the code below worked for all data that didn't have CRS information. You could
+# probably skip the code that relies on projection information in the folder name.
+#
+# code to build PDAL pipelines to get CRS from first point file in each project
+# PDAL info --metadata is used to write a json file with information for the files
+# then the CRS is extracted from the json files and used to set the CRS for index
+# files. First bit of code creates the commands to extract the metadata. These commands
+# need to be run in a python prompt with PDAL installed. Once run, the next block of code
+# reads the json outputs and gets the CRS, and assigns it to the index.
+#
+# code uses the assignCRS function from the code above
+#
+if (FALSE) {
+  library(terra)
+  library(tools)
+  library(jsonlite)
+  
+  folder <- "H:/R6_IndexFiles"
+  folder <- "h:/R10_TNF_IndexFiles"
+  folder <- "h:/R10_CNF_IndexFiles"
+  folder <- "H:/R3_IndexFiles"
+  
+  commandFile <- "data/PDAL_commands.bat"
+  
+  files <- list.files(folder, "\\.gpkg", full.names = TRUE, ignore.case = TRUE)
+  
+  # delete the existing command file to create a new one
+  if (!file.exists(commandFile)) {
+    # open command file...write
+    cmdFile <- file(commandFile, "wt")
+    
+    for (file in files) {
+      # read layer from geopackage and check for CRS (use $hasCRS)
+      bb <- vect(file, layer = "boundingbox")
+  
+      # check for CRS    
+      if (!bb$hasCRS) {
+        # read tile assets
+        ass <- vect(file, layer = "assets")
+        
+        # write PDAL command line to read header
+        writeLines(paste0("pdal info ", shQuote(ass$filespec[1]), " --metadata>", folder, "/", file_path_sans_ext(basename(ass$filespec[1])), ".json"), cmdFile)
+      }
+    }
+    close(cmdFile)
+  }
+  
+  # *****************************
+  # ***** Run the PDAL commands!!
+  # *****************************
+  
+  # read json files to get CRS
+  for (file in files) {
+    # read layer from geopackage and check for CRS (use $hasCRS)
+    bb <- vect(file, layer = "boundingbox")
+    
+    # check for CRS    
+    if (!bb$hasCRS) {
+      # read tile assets
+      ass <- vect(file, layer = "assets")
+      
+      # check for json file
+      jsonFile <- paste0(folder, "/", file_path_sans_ext(basename(ass$filespec[1])), ".json")
+      if (file.exists(jsonFile) && file.info(jsonFile)$size > 0) {
+        df <- fromJSON(jsonFile)
+        if (!is.null(df$metadata$srs$compoundwkt)) {
+          if (df$metadata$srs$compoundwkt == "") {
+            cat("CRS (compoundwkt) is empty for:", file_path_sans_ext(basename(file)), "\n")
+          } else {
+            assignCRS(file, df$metadata$srs$compoundwkt)
+          }
+        } else {
+          cat("No CRS (compoundwkt) string in json file:", file_path_sans_ext(basename(ass$filespec[1])), "\n")
+        }
+      } else {
+        cat("No json file", jsonFile, "or file is empty. Did you run the PDAL commands?\n")
+      }
+    }
+  }
+  
+  # count files that still don't have CRS
+  cnt <- 0
+  #file <- files[153]
+  for (file in files) {
+    # read layer from geopackage and check for CRS (use $hasCRS)
+    bb <- vect(file, layer = "boundingbox")
+    
+    # check for CRS    
+    if (!bb$hasCRS && bb$assignedCRS == "") {
+      cnt <- cnt + 1
+    }
+  }
+  cat("Files without CRS info:", cnt, "\n")  
+  
+  # *****************************
+  # ***** Run lines 16-124 for R6 to use the projeciton information in the folder name
+  # *****************************
+}

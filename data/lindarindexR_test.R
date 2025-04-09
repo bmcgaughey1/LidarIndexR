@@ -4,22 +4,32 @@
 #
 # ***** this is the code that actually builds the index files
 #
+# you have to get the list of folders with point files using the ScanLocalFiles program (compiled C++)
+# for R3 data stored on GTAC NAS and mounted as Q:, this is the command:
+#    ScanLocalFiles.exe q: "*.las|*.laz" R3_FileList.csv 25
+#
 Test <- FALSE
 if (Test) {
   library(LidarIndexR)
+  library(tools)
   
   # outputFolder <- "h:\\R6_IndexFiles\\"
   # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r06/R06_DRM_Deliverables/PointCloud/"
   # folderList <- "data/TDrive_R6_FileList.csv"
   # summaryCSVFile <- "Documents/R6IndexEntries.csv"
-  outputFolder <- "h:\\R10_TNF_IndexFiles\\"
-  rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_tnf/RSImagery/Geo/DEM/LiDAR/"
-  folderList <- "data/R10_TNF_FileList.csv"
-  summaryCSVFile <- "Documents/R10_TNF_IndexEntries.csv"
+  # outputFolder <- "h:\\R10_TNF_IndexFiles\\"
+  # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_tnf/RSImagery/Geo/DEM/LiDAR/"
+  # folderList <- "data/R10_TNF_FileList.csv"
+  # summaryCSVFile <- "Documents/R10_TNF_IndexEntries.csv"
   # outputFolder <- "h:\\R10_CNF_IndexFiles\\"
-  # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_cnf/RSImagery/Geo/DEM/LiDAR/"
+  # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_cnf/RSImagery/Geo/DEM/LIDAR/"
   # folderList <- "data/R10_CNF_FileList.csv"
   # summaryCSVFile <- "Documents/R10_CNF_IndexEntries.csv"
+  outputFolder <- "h:\\R3_IndexFiles\\"
+  rootFolder <- "q:"
+  folderList <- "data/R3_FileList.csv"
+  summaryCSVFile <- "Documents/R3_IndexEntries.csv"
+  
   slashReplacement <- "_][_"
   
   if (!dir.exists(outputFolder)) {dir.create(outputFolder)}
@@ -28,7 +38,7 @@ if (Test) {
   folders <- utils::read.csv(folderList, stringsAsFactors = FALSE)
   
   # drop folders with no data
-  folders <- folders[folders$X..laz == 1 | folders$X..las == 1 | folders$X..zlas == 1, ]
+  folders <- folders[folders$X..laz == 1 | folders$X..las == 1, ]
 
   folders$Folder <- gsub("\\\\", "/", folders$Folder)
   
@@ -76,6 +86,7 @@ if (Test) {
   
   write.csv(df, summaryCSVFile, row.names = FALSE)
   
+  # summary information
   df3DEP <- df[grepl("3dep", tolower(df$base)),]
   if (nrow(df3DEP) > 0) {
     sprintf("   Total 3DEP data size: %f Tb", sum(df3DEP$assetsize/1024/1024/1024/1024))
@@ -84,38 +95,29 @@ if (Test) {
   cat("Summary for", outputFolder, ":\n")
   cat(sprintf("   Total size: %f Tb", sum(df$assetsize/1024/1024/1024/1024)), "\n")
   
+  # build shapefiles using the wrapping polygon ("boundary" layer). These can be easily 
+  # loaded in GIS to look for overlap with USGS 3DEP holdings.
+  outputFolder <- "h:\\R6_IndexFiles\\"
+  # outputFolder <- "h:\\R10_TNF_IndexFiles\\"
+  # outputFolder <- "h:\\R10_CNF_IndexFiles\\"
+  # outputFolder <- "h:\\R3_IndexFiles\\"
+  
+  shpFolder <- paste0(outputFolder, "Shapefiles\\")
+  
+  if (!dir.exists(shpFolder)) {dir.create(shpFolder)}
+  
+  files <- list.files(outputFolder, "\\.gpkg", full.names = TRUE, ignore.case = TRUE)
+  
+  #file <- paste0(outputFolder, "WIL_SIU_2013_2014_Lane_Del_1to9_ORlambert_feet_][_1_LAZ_LAZ.gpkg")
+  for (file in files) {
+    # read layer from geopackage
+    bb <- vect(file, layer = "boundary")
+    #ass <- vect(file, layer = "assets")
+    
+    writeVector(bb, paste0(shpFolder, file_path_sans_ext(basename(file)), ".shp"), overwrite = TRUE)
+  }
 }
 
 
 
 
-# ignore the code below. It doesn't run and never will...
-runMe <- FALSE
-if (runMe) {
-  # started looking at parallelizing the code to improve performance but didn't get this finished.
-  # ****** needs work...how to call with row of a data frame?
-  library(parallel)
-  library(MASS)
-  
-  # function to do one folder
-  doFolder <- function(folderName, baseFolder, hasLAZ, hasLAS, slashReplacement, outputFolder, rebuild) {
-    name <- sub(baseFolder, "", foldeName)
-    
-    cat("Processing", name, ":", i, "of", nrow(folders), "...")
-    
-    name <- gsub("/", slashReplacement, name)
-    
-    # work through file types
-    if (hasLAZ) {
-      cat("LAZ...")
-      BuildAssetCatalog(folderName, "\\.laz", outputFile = paste0(outputFolder, name, "_LAZ.gpkg"), rebuild = rebuild)
-    }
-    if (hasLAS) {
-      cat("LAS...")
-      BuildAssetCatalog(folderName, "\\.las", outputFile = paste0(outputFolder, name, "_LAS.gpkg"), rebuild = rebuild)
-    }
-  } 
-  
-  # use mclapply to run 
-  mclapply
-}

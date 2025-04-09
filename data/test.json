@@ -1,0 +1,236 @@
+{
+  "file_size": 1356038075,
+  "filename": "T:\\FS\\Reference\\RSImagery\\ProcessedData\\r06\\R06_DRM_Deliverables\\PointCloud\\GIP_2017_GiffordPinchotNorth_and_SpiritLake_usfsAlbers_meters\\FPC_GIPGPN_433500_1366500_20170927.las",
+  "metadata":
+  {
+    "comp_spatialreference": "COMPD_CS[\"NAD83 / USFS R6 Albers + unknown\",PROJCS[\"NAD83 / USFS R6 Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",34],PARAMETER[\"longitude_of_center\",-120],PARAMETER[\"standard_parallel_1\",43],PARAMETER[\"standard_parallel_2\",48],PARAMETER[\"false_easting\",600000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]],VERT_CS[\"NAVD88 height\",VERT_DATUM[\"North American Vertical Datum 1988\",2005,AUTHORITY[\"EPSG\",\"5103\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Up\",UP],AUTHORITY[\"EPSG\",\"5703\"]]]",
+    "compressed": false,
+    "copc": false,
+    "count": 48429879,
+    "creation_doy": 90,
+    "creation_year": 2020,
+    "dataformat_id": 1,
+    "dataoffset": 1463,
+    "filesource_id": 0,
+    "global_encoding": 1,
+    "global_encoding_base64": "AQA=",
+    "gtiff": "Geotiff_Information:\n   Version: 1\n   Key_Revision: 1.0\n   Tagged_Information:\n      End_Of_Tags.\n   Keyed_Information:\n      GTModelTypeGeoKey (Short,1): ModelTypeProjected\n      GTCitationGeoKey (Ascii,35): \"PCS Name = NAD_1983_USFS_R6_Albers\"\n      GeographicTypeGeoKey (Short,1): GCS_NAD83\n      GeogCitationGeoKey (Ascii,103): \"GCS Name = GCS_North_American_1983|Datum = North_American_1983|Ellipsoid = GRS_1980|Primem = Greenwich\"\n      GeogGeodeticDatumGeoKey (Short,1): Datum_North_American_Datum_1983\n      GeogPrimeMeridianGeoKey (Short,1): PM_Greenwich\n      GeogAngularUnitsGeoKey (Short,1): Angular_Degree\n      GeogAngularUnitSizeGeoKey (Double,1): 0.0174532925199433\n      GeogEllipsoidGeoKey (Short,1): Ellipse_GRS_1980\n      GeogSemiMajorAxisGeoKey (Double,1): 6378137          \n      GeogInvFlatteningGeoKey (Double,1): 298.257222101004 \n      GeogPrimeMeridianLongGeoKey (Double,1): 0                \n      ProjectedCSTypeGeoKey (Short,1): User-Defined\n      PCSCitationGeoKey (Ascii,54): \"NAD_1983_USFS_R6_Albers|projection: Albers Equal Area\"\n      ProjectionGeoKey (Short,1): User-Defined\n      ProjCoordTransGeoKey (Short,1): CT_AlbersEqualArea\n      ProjLinearUnitsGeoKey (Short,1): Linear_Meter\n      ProjLinearUnitSizeGeoKey (Double,1): 1                \n      ProjStdParallel1GeoKey (Double,1): 43               \n      ProjStdParallel2GeoKey (Double,1): 48               \n      ProjNatOriginLatGeoKey (Double,1): 34               \n      ProjFalseEastingGeoKey (Double,1): 600000           \n      ProjFalseNorthingGeoKey (Double,1): 0                \n      ProjCenterLongGeoKey (Double,1): -120             \n      VerticalCitationGeoKey (Ascii,27): \"NAVD88 - Geoid12B (Meters)\"\n      VerticalUnitsGeoKey (Short,1): Linear_Meter\n      End_Of_Keys.\n   End_Of_Geotiff.\n",
+    "header_size": 227,
+    "major_version": 1,
+    "maxx": 434999.99,
+    "maxy": 1367999.99,
+    "maxz": 1834.88,
+    "minor_version": 2,
+    "minx": 433500,
+    "miny": 1366500,
+    "minz": 1090.23,
+    "offset_x": 0,
+    "offset_y": 0,
+    "offset_z": 0,
+    "point_length": 28,
+    "project_id": "BA3AFB07-D1E6-A54D-B442-2E523C90FD83",
+    "scale_x": 0.01,
+    "scale_y": 0.01,
+    "scale_z": 0.01,
+    "software_id": "GeoCue LAS Updater",
+    "spatialreference": "COMPD_CS[\"NAD83 / USFS R6 Albers + unknown\",PROJCS[\"NAD83 / USFS R6 Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",34],PARAMETER[\"longitude_of_center\",-120],PARAMETER[\"standard_parallel_1\",43],PARAMETER[\"standard_parallel_2\",48],PARAMETER[\"false_easting\",600000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]],VERT_CS[\"NAVD88 height\",VERT_DATUM[\"North American Vertical Datum 1988\",2005,AUTHORITY[\"EPSG\",\"5103\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Up\",UP],AUTHORITY[\"EPSG\",\"5703\"]]]",
+    "srs":
+    {
+      "compoundwkt": "COMPD_CS[\"NAD83 / USFS R6 Albers + unknown\",PROJCS[\"NAD83 / USFS R6 Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",34],PARAMETER[\"longitude_of_center\",-120],PARAMETER[\"standard_parallel_1\",43],PARAMETER[\"standard_parallel_2\",48],PARAMETER[\"false_easting\",600000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]],VERT_CS[\"NAVD88 height\",VERT_DATUM[\"North American Vertical Datum 1988\",2005,AUTHORITY[\"EPSG\",\"5103\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Up\",UP],AUTHORITY[\"EPSG\",\"5703\"]]]",
+      "horizontal": "PROJCS[\"NAD83 / USFS R6 Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",34],PARAMETER[\"longitude_of_center\",-120],PARAMETER[\"standard_parallel_1\",43],PARAMETER[\"standard_parallel_2\",48],PARAMETER[\"false_easting\",600000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "isgeocentric": false,
+      "isgeographic": false,
+      "json": {
+  "type": "CompoundCRS",
+  "name": "NAD83 / USFS R6 Albers + unknown",
+  "components": [
+    {
+      "type": "ProjectedCRS",
+      "name": "NAD83 / USFS R6 Albers",
+      "base_crs": {
+        "name": "NAD83",
+        "datum": {
+          "type": "GeodeticReferenceFrame",
+          "name": "North American Datum 1983",
+          "ellipsoid": {
+            "name": "GRS 1980",
+            "semi_major_axis": 6378137,
+            "inverse_flattening": 298.257222101004
+          }
+        },
+        "coordinate_system": {
+          "subtype": "ellipsoidal",
+          "axis": [
+            {
+              "name": "Geodetic latitude",
+              "abbreviation": "Lat",
+              "direction": "north",
+              "unit": "degree"
+            },
+            {
+              "name": "Geodetic longitude",
+              "abbreviation": "Lon",
+              "direction": "east",
+              "unit": "degree"
+            }
+          ]
+        },
+        "id": {
+          "authority": "EPSG",
+          "code": 4269
+        }
+      },
+      "conversion": {
+        "name": "unnamed",
+        "method": {
+          "name": "Albers Equal Area",
+          "id": {
+            "authority": "EPSG",
+            "code": 9822
+          }
+        },
+        "parameters": [
+          {
+            "name": "Latitude of false origin",
+            "value": 34,
+            "unit": "degree",
+            "id": {
+              "authority": "EPSG",
+              "code": 8821
+            }
+          },
+          {
+            "name": "Longitude of false origin",
+            "value": -120,
+            "unit": "degree",
+            "id": {
+              "authority": "EPSG",
+              "code": 8822
+            }
+          },
+          {
+            "name": "Latitude of 1st standard parallel",
+            "value": 43,
+            "unit": "degree",
+            "id": {
+              "authority": "EPSG",
+              "code": 8823
+            }
+          },
+          {
+            "name": "Latitude of 2nd standard parallel",
+            "value": 48,
+            "unit": "degree",
+            "id": {
+              "authority": "EPSG",
+              "code": 8824
+            }
+          },
+          {
+            "name": "Easting at false origin",
+            "value": 600000,
+            "unit": "metre",
+            "id": {
+              "authority": "EPSG",
+              "code": 8826
+            }
+          },
+          {
+            "name": "Northing at false origin",
+            "value": 0,
+            "unit": "metre",
+            "id": {
+              "authority": "EPSG",
+              "code": 8827
+            }
+          }
+        ]
+      },
+      "coordinate_system": {
+        "subtype": "Cartesian",
+        "axis": [
+          {
+            "name": "Easting",
+            "abbreviation": "",
+            "direction": "east",
+            "unit": "metre"
+          },
+          {
+            "name": "Northing",
+            "abbreviation": "",
+            "direction": "north",
+            "unit": "metre"
+          }
+        ]
+      }
+    },
+    {
+      "type": "VerticalCRS",
+      "name": "NAVD88 height",
+      "datum": {
+        "type": "VerticalReferenceFrame",
+        "name": "North American Vertical Datum 1988"
+      },
+      "coordinate_system": {
+        "subtype": "vertical",
+        "axis": [
+          {
+            "name": "Up",
+            "abbreviation": "",
+            "direction": "up",
+            "unit": "metre"
+          }
+        ]
+      },
+      "id": {
+        "authority": "EPSG",
+        "code": 5703
+      }
+    }
+  ]
+},
+      "prettycompoundwkt": "COMPD_CS[\"NAD83 / USFS R6 Albers + unknown\",\n    PROJCS[\"NAD83 / USFS R6 Albers\",\n        GEOGCS[\"NAD83\",\n            DATUM[\"North_American_Datum_1983\",\n                SPHEROID[\"GRS 1980\",6378137,298.257222101004,\n                    AUTHORITY[\"EPSG\",\"7019\"]],\n                AUTHORITY[\"EPSG\",\"6269\"]],\n            PRIMEM[\"Greenwich\",0],\n            UNIT[\"degree\",0.0174532925199433,\n                AUTHORITY[\"EPSG\",\"9122\"]],\n            AUTHORITY[\"EPSG\",\"4269\"]],\n        PROJECTION[\"Albers_Conic_Equal_Area\"],\n        PARAMETER[\"latitude_of_center\",34],\n        PARAMETER[\"longitude_of_center\",-120],\n        PARAMETER[\"standard_parallel_1\",43],\n        PARAMETER[\"standard_parallel_2\",48],\n        PARAMETER[\"false_easting\",600000],\n        PARAMETER[\"false_northing\",0],\n        UNIT[\"metre\",1,\n            AUTHORITY[\"EPSG\",\"9001\"]],\n        AXIS[\"Easting\",EAST],\n        AXIS[\"Northing\",NORTH]],\n    VERT_CS[\"NAVD88 height\",\n        VERT_DATUM[\"North American Vertical Datum 1988\",2005,\n            AUTHORITY[\"EPSG\",\"5103\"]],\n        UNIT[\"metre\",1,\n            AUTHORITY[\"EPSG\",\"9001\"]],\n        AXIS[\"Up\",UP],\n        AUTHORITY[\"EPSG\",\"5703\"]]]",
+      "prettywkt": "PROJCS[\"NAD83 / USFS R6 Albers\",\n    GEOGCS[\"NAD83\",\n        DATUM[\"North_American_Datum_1983\",\n            SPHEROID[\"GRS 1980\",6378137,298.257222101004,\n                AUTHORITY[\"EPSG\",\"7019\"]],\n            AUTHORITY[\"EPSG\",\"6269\"]],\n        PRIMEM[\"Greenwich\",0],\n        UNIT[\"degree\",0.0174532925199433,\n            AUTHORITY[\"EPSG\",\"9122\"]],\n        AUTHORITY[\"EPSG\",\"4269\"]],\n    PROJECTION[\"Albers_Conic_Equal_Area\"],\n    PARAMETER[\"latitude_of_center\",34],\n    PARAMETER[\"longitude_of_center\",-120],\n    PARAMETER[\"standard_parallel_1\",43],\n    PARAMETER[\"standard_parallel_2\",48],\n    PARAMETER[\"false_easting\",600000],\n    PARAMETER[\"false_northing\",0],\n    UNIT[\"metre\",1,\n        AUTHORITY[\"EPSG\",\"9001\"]],\n    AXIS[\"Easting\",EAST],\n    AXIS[\"Northing\",NORTH]]",
+      "proj4": "+proj=aea +lat_0=34 +lon_0=-120 +lat_1=43 +lat_2=48 +x_0=600000 +y_0=0 +datum=NAD83 +units=m +vunits=m +no_defs",
+      "units":
+      {
+        "horizontal": "metre",
+        "vertical": "metre"
+      },
+      "vertical": "VERT_CS[\"NAVD88 height\",VERT_DATUM[\"North American Vertical Datum 1988\",2005,AUTHORITY[\"EPSG\",\"5103\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Up\",UP],AUTHORITY[\"EPSG\",\"5703\"]]",
+      "wkt": "PROJCS[\"NAD83 / USFS R6 Albers\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",34],PARAMETER[\"longitude_of_center\",-120],PARAMETER[\"standard_parallel_1\",43],PARAMETER[\"standard_parallel_2\",48],PARAMETER[\"false_easting\",600000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"
+    },
+    "system_id": "ALS70",
+    "vlr_0":
+    {
+      "data": "AQABAAAAGgAABAAAAQABAAIEsYcjADYAAAgAAAEArRABCLGHZwB0AAIIAAABAH0YAwgAAAEAxSIGCAAAAQCOIwcIsIcBAAoACAgAAAEAaxsJCLCHAQAHAAsIsIcBAAgADQiwhwEACQAADAAAAQD/fwEMsYc2AAAAAgwAAAEA/38DDAAAAQALAAQMAAABACkjBQywhwEABgAGDLCHAQAAAAcMsIcBAAEACQywhwEAAgAKDLCHAQADAAsMsIcBAAQAEAywhwEABQABELGHGwBZAAMQAAABACkj",
+      "description": "GeoTiff Projection Keys",
+      "record_id": 34735,
+      "user_id": "LASF_Projection"
+    },
+    "vlr_1":
+    {
+      "data": "AAAAAACARUAAAAAAAABIQAAAAAAAAEFAAAAAAIBPIkEAAAAAAAAAAAAAAAAAAF7AAAAAAAAA8D8AAABAplRYQfH565QdpHJAAAAAAAAAAAA0nVKiRt+RPw==",
+      "description": "GeoTiff double parameters",
+      "record_id": 34736,
+      "user_id": "LASF_Projection"
+    },
+    "vlr_2":
+    {
+      "data": "TkFEXzE5ODNfVVNGU19SNl9BbGJlcnN8cHJvamVjdGlvbjogQWxiZXJzIEVxdWFsIEFyZWF8UENTIE5hbWUgPSBOQURfMTk4M19VU0ZTX1I2X0FsYmVyc3xOQVZEODggLSBHZW9pZDEyQiAoTWV0ZXJzKXxHQ1MgTmFtZSA9IEdDU19Ob3J0aF9BbWVyaWNhbl8xOTgzfERhdHVtID0gTm9ydGhfQW1lcmljYW5fMTk4M3xFbGxpcHNvaWQgPSBHUlNfMTk4MHxQcmltZW0gPSBHcmVlbndpY2h8AA==",
+      "description": "GeoTiff ASCII parameters",
+      "record_id": 34737,
+      "user_id": "LASF_Projection"
+    },
+    "vlr_3":
+    {
+      "data": "MQlEZWZhdWx0AAAAAAAAAAANCjIJR3JvdW5kAAAAAAAAAAAADQozCUxvdyB2ZWdldGF0aW9uAA0KNAlNZWRpdW0gdmVnZXRhdGkNCjUJSGlnaCB2ZWdldGF0aW9uDQo2CUJ1aWxkaW5nAAAAAAAAAA0KNwlMb3cgcG9pbnQAAAAAAAANCjgJTW9kZWwga2V5cG9pbnRzDQo5CVdhdGVyAAAAAAAAAAAAAA0KMTAJQnJpZGdlAAAAAAAAAAAADQoxMQlJbmFjdGl2ZQAAAAAAAAANCjEyCU92ZXJsYXAAAAAAAAAAAA0KMTMJV2FsbAAAAAAAAAAAAAAADQoxNAlXYWxsIHN0cnVjdHVyZQANCjE1CVJvb2Ygc3RydWN0dXJlAA0KMTYJVHJlZQAAAAAAAAAAAAAADQoxNwlWZWdldGF0aW9uAAAAAAANCjE4CVBvbGUAAAAAAAAAAAAAAA0KMTkJQ2FyAAAAAAAAAAAAAAAADQoyMAlQb3RlbnRpYWwgd2lyZQANCjIxCVdpcmUAAAAAAAAAAAAAAA0KMjIJVG93ZXIAAAAAAAAAAAAADQozMAlMb25nIHJhbmdlAAAAAAANCjMxCVRlbXAgMQAAAAAAAAAAAA0KMzIJVGVtcCAyAAAAAAAAAAAADQoA",
+      "description": "Classification Lookup",
+      "record_id": 0,
+      "user_id": "LASF_Spec"
+    }
+  },
+  "now": "2025-04-07T16:39:45-0400",
+  "pdal_version": "2.8.4 (git-version: Release)",
+  "reader": "readers.las"
+}

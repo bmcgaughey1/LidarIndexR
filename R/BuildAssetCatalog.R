@@ -96,8 +96,8 @@ BuildAssetCatalog <- function (
       totalpointcount = sum(tileIndex$pointcount),
       hasCRS = (tileIndex$crs[1] != ""),
       minx = as.list(sf::st_bbox(tileIndex))[[1]],
-      miny = as.list(sf::st_bbox(tileIndex))[[3]],
-      maxx = as.list(sf::st_bbox(tileIndex))[[2]],
+      miny = as.list(sf::st_bbox(tileIndex))[[2]],
+      maxx = as.list(sf::st_bbox(tileIndex))[[3]],
       maxy = as.list(sf::st_bbox(tileIndex))[[4]],
       crs = tileIndex$crs[1],
       assignedCRS = ""
