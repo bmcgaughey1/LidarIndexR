@@ -9,8 +9,11 @@
 # set value to a blank string. Not a big deal but does mean all index files
 # will be touched and rewritten.
 #
+# The first part of this code is specific to R6 data where CRS labels are included
+# in some folder names. The second part works for any/all regions.
+#
 # I think this code is only useful for R6 index files. Other regions do not have
-# projects label ed with CRS information or whether or not data are also held in 2DEP.
+# projects labeled with CRS information or whether or not data are also held in 2DEP.
 #
 if (FALSE) {
   library(terra)
@@ -145,31 +148,38 @@ if (FALSE) {
   #   }
   # }
   
+  # ****************************************************************************
   # step through index files and build CSV table with boundary attributes...useful for summarizing and 
   # further analyses
-  df <- data.frame()
-  for (i in 1:length(files)) {
-    # read layer from geopackage and check for CRS (use $hasCRS)
-    bb <- vect(files[i], layer = "boundingbox")
-    
-    df <- rbind(df, as.data.frame(bb))
-  }
-  
-  write.csv(df, "Documents/R6IndexEntries.csv", row.names = FALSE)
-  
-  df3DEP <- df[grepl("3dep", tolower(df$base)),]
-  sprintf("Total size: %f Tb", sum(df$assetsize)/1024/1024/1024/1024)
-  sprintf("Total 3DEP data size: %f Tb", sum(df3DEP$assetsize)/1024/1024/1024/1024)
-  sprintf("Total non-3DEP data size: %f Tb", sum(df$assetsize)/1024/1024/1024/1024 - sum(df3DEP$assetsize)/1024/1024/1024/1024)
+  #
+  # *****this is also done in the lidarIndexR_test.R file after adding CRS information
+  #
+  # df <- data.frame()
+  # for (i in 1:length(files)) {
+  #   # read layer from geopackage and check for CRS (use $hasCRS)
+  #   bb <- vect(files[i], layer = "boundingbox")
+  #   
+  #   df <- rbind(df, as.data.frame(bb))
+  # }
+  # 
+  # write.csv(df, "Documents/R6IndexEntries.csv", row.names = FALSE)
+  # 
+  # df3DEP <- df[grepl("3dep", tolower(df$base)),]
+  # sprintf("Total size: %f Tb", sum(df$assetsize)/1024/1024/1024/1024)
+  # sprintf("Total 3DEP data size: %f Tb", sum(df3DEP$assetsize)/1024/1024/1024/1024)
+  # sprintf("Total non-3DEP data size: %f Tb", sum(df$assetsize)/1024/1024/1024/1024 - sum(df3DEP$assetsize)/1024/1024/1024/1024)
 }
 
+# old comment: several R6 projects have the wrong CRS...even after name matching and 
+# reading CRS info from geoTIFF tags in point files
+#
 # found problems with 86, 91, 108, 124, 125, 173, 191 as in for (i in 1:length(files))
 # these areas have completely wrong crs information (show up in the wrong place)
 
 
 # ******************************************************************************
 # the code below worked for all data that didn't have CRS information. You could
-# probably skip the code that relies on projection information in the folder name.
+# might be able to skip the code that relies on projection information in the folder name.
 #
 # code to build PDAL pipelines to get CRS from first point file in each project
 # PDAL info --metadata is used to write a json file with information for the files
@@ -178,13 +188,39 @@ if (FALSE) {
 # need to be run in a python prompt with PDAL installed. Once run, the next block of code
 # reads the json outputs and gets the CRS, and assigns it to the index.
 #
-# code uses the assignCRS function from the code above
+# code uses the assignCRS function duplicated from the code above
 #
 if (FALSE) {
   library(terra)
   library(tools)
   library(jsonlite)
   
+  assignCRS <- function(index, wkt) {
+    bb <- vect(index, layer = "boundingbox")
+    wb <- vect(index, layer = "boundary")
+    ass <- vect(index, layer = "assets")
+    
+    if (wkt != "") {
+      # assign CRS
+      crs(bb) <- wkt
+      crs(wb) <- wkt
+      crs(ass) <- wkt
+      
+      # add field
+      bb$assignedCRS <- crs(bb)
+      wb$assignedCRS <- crs(wb)
+    } else {
+      # add empty string to assigned CRS
+      bb$assignedCRS <- ""
+      wb$assignedCRS <- ""
+    }  
+    
+    # write new index (overwrite)
+    writeVector(bb, index, layer = "boundingbox", overwrite = TRUE)
+    writeVector(wb, index, layer = "boundary", overwrite = TRUE, insert = TRUE)
+    writeVector(ass, index, layer = "assets", overwrite = TRUE, insert = TRUE)
+  }
+
   folder <- "H:/R6_IndexFiles"
   folder <- "h:/R10_TNF_IndexFiles"
   folder <- "h:/R10_CNF_IndexFiles"
@@ -263,6 +299,7 @@ if (FALSE) {
   cat("Files without CRS info:", cnt, "\n")  
   
   # *****************************
-  # ***** Run lines 16-124 for R6 to use the projeciton information in the folder name
+  # ***** This logic doesn't work for projects that have no CRS in point files...you 
+  # ***** can use the code in lines 16-124 for R6 to use the projection information in the folder name
   # *****************************
 }

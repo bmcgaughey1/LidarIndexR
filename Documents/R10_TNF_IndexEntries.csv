@@ -1,172 +1,1385 @@
 "base","pattern","assettype","assetcount","assetsize","totalpointcount","hasCRS","minx","miny","maxx","maxy","crs","assignedCRS"
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\gravina\lasdata\NAD27","\.las","points",1,40407967,2020387,FALSE,3078050.5,3102322.5,1239684.75,1258007.13,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\gravina\lasdata\NAD83","\.las","points",1,40407967,2020387,FALSE,3078050.5,3102322.5,1239684.75,1258007.13,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD27\bald","\.las","points",1,11889747,594476,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD27\merged","\.las","points",1,20224767,1011227,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD27\veg","\.las","points",1,8335247,416751,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD83\bald","\.las","points",1,11889747,594476,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD83\merged","\.las","points",1,20224767,1011227,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD83\veg","\.las","points",1,8335247,416751,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD27\bald","\.las","points",1,8992687,449623,FALSE,2772290.75,2779657,2039084.63,2044397.63,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD27\merged","\.las","points",1,41393187,2069648,FALSE,2772290.75,2779657,2039084.25,2044397.63,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD27\veg","\.las","points",1,32400727,1620025,FALSE,2772292.25,2779657,2039084.25,2044397.13,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD83\bald","\.las","points",1,8992687,449623,FALSE,2772290.75,2779657,2039084.63,2044397.63,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD83\merged","\.las","points",1,41393187,2069648,FALSE,2772290.75,2779657,2039084.25,2044397.63,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD83\veg","\.las","points",1,32400727,1620025,FALSE,2772292.25,2779657,2039084.25,2044397.13,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD27\baldearth","\.las","points",53,217453451,10872071,FALSE,2345023.56,2425729.42,2319880.61,2418936.9,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD27\merged","\.las","points",53,591009851,29549891,FALSE,2343695.61,2428090.74,2317043.56,2419781.41,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD27\veg","\.las","points",53,214828631,10740830,FALSE,2343695.61,2428090.74,2317043.56,2419781.41,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD83\baldearth","\.las","points",53,217453451,10872071,FALSE,2345023.56,2425729.42,2319880.61,2418936.9,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD83\merged","\.las","points",53,591009851,29549891,FALSE,2343695.61,2428090.74,2317043.56,2419781.41,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD83\veg","\.las","points",53,214828631,10740830,FALSE,2343695.61,2428090.74,2317043.56,2419781.41,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD27\baldearth","\.las","points",1,10696767,534827,FALSE,2505647.49,2520729.13,2397347.68,2412073.83,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD27\merged","\.las","points",1,66636627,3331820,FALSE,2503525.48,2522859.94,2395340.65,2414052.08,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD27\vegetation","\.las","points",1,25370987,1268538,FALSE,2503525.48,2522859.94,2395340.65,2414052.08,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD83\baldearth","\.las","points",1,10696767,534827,FALSE,2505647.49,2520729.13,2397347.68,2412073.83,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD83\merged","\.las","points",1,66636627,3331820,FALSE,2503525.48,2522859.94,2395340.65,2414052.08,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD83\vegetation","\.las","points",1,25370987,1268538,FALSE,2503525.48,2522859.94,2395340.65,2414052.08,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD27\baldearth","\.las","points",1,144312967,7215637,FALSE,2713338.03,2758515.82,2056214.22,2092714.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD27\vegetation","\.las","points",1,740944227,37047200,FALSE,2713337.98,2758569.02,2056214.32,2092669.03,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD83\baldearth","\.las","points",1,144312967,7215637,FALSE,2713338.03,2758515.82,2056214.22,2092714.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD83\vegetation","\.las","points",1,740944227,37047200,FALSE,2713337.98,2758569.02,2056214.32,2092669.03,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobarts\lasdata\NAD27\vegetation","\.las","points",1,20971727,1048575,FALSE,2772292.25,2779657,2039084.25,2044396.88,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobarts\lasdata\NAD83\vegetation","\.las","points",1,20971727,1048575,FALSE,2772292.25,2779657,2039084.25,2044396.88,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD27\baldearth","\.las","points",13,24971651,1248435,FALSE,3108765.43,3121614.68,1325976.09,1339462.36,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD27\merged","\.las","points",13,120126331,6006169,FALSE,3108764.4,3121619.93,1325976.09,1339463.16,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD27\vegetation","\.las","points",13,38465831,1923144,FALSE,3108764.4,3121619.93,1325976.13,1339463.16,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD83\baldearth","\.las","points",13,24971651,1248435,FALSE,3108765.43,3121614.68,1325976.09,1339462.36,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD83\merged","\.las","points",13,120126331,6006169,FALSE,3108764.4,3121619.93,1325976.09,1339463.16,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD83\vegetation","\.las","points",13,38465831,1923144,FALSE,3108764.4,3121619.93,1325976.13,1339463.16,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD27\baldearth","\.las","points",26,60666582,3033034,FALSE,3060419.55,3099700,1209614.81,1286088.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD27\merged","\.las","points",26,190700022,9534706,FALSE,3060413.94,3099700,1209560.67,1286088.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD27\vegetation","\.las","points",27,108741289,5436758,FALSE,3060413.94,3102322.5,1209560.67,1285985.44,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD83\baldearth","\.las","points",26,60666582,3033034,FALSE,3060419.55,3099700,1209614.81,1286088.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD83\merged","\.las","points",26,190700022,9534706,FALSE,3060413.94,3099700,1209560.67,1286088.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD83\vegetation","\.las","points",27,108741289,5436758,FALSE,3060413.94,3102322.5,1209560.67,1285985.44,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD27\baldearth","\.las","points",1,314347707,15717374,FALSE,3096795.87,3121375.44,1339008.58,1378866.61,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD27\vegetation","\.las","points",1,509454227,25472700,FALSE,3096795.56,3121380.07,1339009.65,1378876.27,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD83\baldearth","\.las","points",1,314347707,15717374,FALSE,3096795.87,3121375.44,1339008.58,1378866.61,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD83\vegetation","\.las","points",1,509454227,25472700,FALSE,3096795.56,3121380.07,1339009.65,1378876.27,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD27\baldearth","\.las","points",1,148594667,7429722,FALSE,3168178.84,3198536.34,1342614.51,1383226.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD27\vegetation","\.las","points",1,354193267,17709652,FALSE,3168111.37,3198525.61,1342612.3,1383240.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD83\baldearth","\.las","points",1,148594667,7429722,FALSE,3168178.84,3198536.34,1342614.51,1383226.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD83\vegetation","\.las","points",1,354193267,17709652,FALSE,3168111.37,3198525.61,1342612.3,1383240.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD27\baldearth","\.las","points",12,13810684,690398,FALSE,3082957.59,3093475.61,1316823.68,1325466.01,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD27\merged","\.las","points",11,49249937,2462372,FALSE,3082957.58,3093475.61,1316823.64,1325466.01,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD27\vegetation","\.las","points",10,35439030,1771838,FALSE,3082957.58,3093475.33,1316823.64,1325400,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD83\baldearth","\.las","points",12,13810684,690398,FALSE,3082957.59,3093475.61,1316823.68,1325466.01,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD83\merged","\.las","points",11,49249937,2462372,FALSE,3082957.58,3093475.61,1316823.64,1325466.01,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD83\vegetation","\.las","points",10,35439030,1771838,FALSE,3082957.58,3093475.33,1316823.64,1325400,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD27\baldearth","\.las","points",18,55044026,2751997,FALSE,2767888.81,2778408.66,1568065.47,1578708.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD27\merged","\.las","points",18,163354946,8167543,FALSE,2767888.81,2778408.75,1568065.28,1578708.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD27\vegetation","\.las","points",18,105653266,5282459,FALSE,2767889.19,2778408.75,1568065.28,1578707.92,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD83\baldearth","\.las","points",18,55044026,2751997,FALSE,2767888.81,2778408.66,1568065.47,1578708.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD83\merged","\.las","points",18,163354946,8167543,FALSE,2767888.81,2778408.75,1568065.28,1578708.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD83\vegetation","\.las","points",18,105653266,5282459,FALSE,2767889.19,2778408.75,1568065.28,1578707.92,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD27\ground_points","\.las","points",41,52917247,2645397,FALSE,2760104.12,2802458.56,1480139.61,1583616,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD27\merged","\.las","points",41,189888687,9493969,FALSE,2756406.2,2802465.73,1480139.61,1583616.88,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD27\veg_points","\.las","points",41,136543507,6826710,FALSE,2756406.2,2802465.73,1480189.83,1583616.88,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD83\ground_points","\.las","points",41,52917247,2645397,FALSE,2760104.12,2802458.56,1480139.61,1583616,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD83\merged","\.las","points",41,189888687,9493969,FALSE,2756406.2,2802465.73,1480139.61,1583616.88,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD83\veg_points","\.las","points",41,136543507,6826710,FALSE,2756406.2,2802465.73,1480189.83,1583616.88,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD27\baldearth","\.las","points",18,44687126,2234152,FALSE,2674657.13,2727969.51,1409479.37,1463309.05,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD27\vegetation","\.las","points",1,820267,41002,FALSE,2678729.22,2685602.62,1432607.81,1442429.86,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD83\baldearth","\.las","points",18,44687126,2234152,FALSE,2674657.13,2727969.51,1409479.37,1463309.05,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD83\vegetation","\.las","points",1,820267,41002,FALSE,2678729.22,2685602.62,1432607.81,1442429.86,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\kosciusko\lasdata\NAD27","\.las","points",30,113451830,5672251,FALSE,2653812.59,2720896.88,1482833.5,1554810.57,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\kosciusko\lasdata\NAD83","\.las","points",30,113451830,5672251,FALSE,2653812.59,2720896.88,1482833.5,1554810.57,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD27\baldearth","\.las","points",1,86947147,4347346,FALSE,2880310.81,2895448.75,1333546.8,1351605.21,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD27\vegetation","\.las","points",1,300457467,15022862,FALSE,2880310.82,2895448.74,1333546.81,1351605.2,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD83\baldearth","\.las","points",1,86947147,4347346,FALSE,2880310.81,2895448.75,1333546.8,1351605.21,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD83\vegetation","\.las","points",1,300457467,15022862,FALSE,2880310.82,2895448.74,1333546.81,1351605.2,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\naukati_road\lasdata\NAD27","\.las","points",8,20172976,1008558,FALSE,2776475.7,2785897.3,1474730.26,1485445.55,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\naukati_road\lasdata\NAD83","\.las","points",8,20172976,1008558,FALSE,2776475.7,2785897.3,1474730.26,1485445.55,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD27\ground_points","\.las","points",9,22093843,1104590,FALSE,2868535.35,2932757.37,1411144.3,1510698.17,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD27\merged","\.las","points",9,86500683,4324932,FALSE,2868501.62,2932757.37,1411144.3,1510700.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD27\veg_points","\.las","points",9,63707763,3185286,FALSE,2868501.62,2932729.8,1411144.49,1510700.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD83\ground_points","\.las","points",9,22093843,1104590,FALSE,2868535.35,2932757.37,1411144.3,1510698.17,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD83\merged","\.las","points",9,86500683,4324932,FALSE,2868501.62,2932757.37,1411144.3,1510700.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD83\veg_points","\.las","points",9,63707763,3185286,FALSE,2868501.62,2932729.8,1411144.49,1510700.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD27\baldearth","\.las","points",33,89227631,4461007,FALSE,2780659.36,2799368.87,1436193.44,1452100.12,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD27\merged","\.las","points",21,143145907,7157057,FALSE,2780656.86,2799369.44,1436193.44,1452100.12,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD27\vegetation","\.las","points",32,156134624,7806368,FALSE,2780656.86,2799369.44,1436193.94,1452099.35,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD83\baldearth","\.las","points",33,89227631,4461007,FALSE,2780659.36,2799368.87,1436193.44,1452100.12,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD83\merged","\.las","points",21,143145907,7157057,FALSE,2780656.86,2799369.44,1436193.44,1452100.12,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD83\vegetation","\.las","points",32,156134624,7806368,FALSE,2780656.86,2799369.44,1436193.94,1452099.35,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD27\baldearth","\.las","points",135,139857385,6991337,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD27\merged","\.las","points",4,226647848,11332347,FALSE,2670973.67,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD27\vegetation","\.las","points",1,40091367,2004557,FALSE,2671352.21,2677952.77,1785357.57,1796177.98,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD83\baldearth","\.las","points",135,139857385,6991337,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD83\merged","\.las","points",4,226647848,11332347,FALSE,2670973.67,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD83\vegetation","\.las","points",1,40091367,2004557,FALSE,2671352.21,2677952.77,1785357.57,1796177.98,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\merged","\.las","points",8,83045716,4152195,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\raw_point_data\ground","\.las","points",8,43235936,2161706,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\raw_point_data\veg","\.las","points",8,39810156,1990417,FALSE,2671352.21,2677952.77,1785357.57,1795907.66,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\revised_datis2_points_3_02","\.las","points",8,42952396,2147529,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\revised_datis2_veg","\.las","points",8,40092956,2004557,FALSE,2671352.21,2677952.77,1785357.57,1796177.98,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\merged","\.las","points",8,83045716,4152195,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\raw_point_data\ground","\.las","points",8,43235936,2161706,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\raw_point_data\veg","\.las","points",8,39810156,1990417,FALSE,2671352.21,2677952.77,1785357.57,1795907.66,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\revised_datis2_points_3_02","\.las","points",8,42952396,2147529,FALSE,2670966.58,2678109.48,1784864.17,1796366.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\revised_datis2_veg","\.las","points",8,40092956,2004557,FALSE,2671352.21,2677952.77,1785357.57,1796177.98,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Drivesurvey010911","\.las","points",1,189687,9473,FALSE,2632741.48,2676458.48,1848947.38,1876783.45,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Drivesurvey010913","\.las","points",6,1700002,84932,FALSE,2639792.21,2659426.8,1847593.98,1869843.67,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Ground_points","\.las","points",5,14777455,738816,FALSE,2639361.55,2660271.79,1847634.48,1871712.07,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\merged","\.las","points",4,44148788,2207394,FALSE,2639292.75,2660271.79,1847634.48,1871857.1,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Veg_points","\.las","points",4,36760408,1837975,FALSE,2639292.75,2660207.66,1847655.66,1871857.1,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Drivesurvey010911","\.las","points",1,189687,9473,FALSE,2632741.48,2676458.48,1848947.38,1876783.45,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Drivesurvey010913","\.las","points",6,1700002,84932,FALSE,2639792.21,2659426.8,1847593.98,1869843.67,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Ground_points","\.las","points",5,14777455,738816,FALSE,2639361.55,2660271.79,1847634.48,1871712.07,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\merged","\.las","points",4,44148788,2207394,FALSE,2639292.75,2660271.79,1847634.48,1871857.1,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Veg_points","\.las","points",4,36760408,1837975,FALSE,2639292.75,2660207.66,1847655.66,1871857.1,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD27\baldearth","\.las","points",20,222765820,11138064,FALSE,2772085.13,2839430.71,1833797.92,1884258.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD27\merged","\.las","points",5,744868995,37243393,FALSE,2784626.24,2839430.71,1833797.92,1884258.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD27\vegetation","\.las","points",165,729923695,36494312,FALSE,2772085.13,2839200.13,1833801.97,1883937.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD83\baldearth","\.las","points",20,222765820,11138064,FALSE,2772085.13,2839430.71,1833797.92,1884258.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD83\merged","\.las","points",5,744868995,37243393,FALSE,2784626.24,2839430.71,1833797.92,1884258.81,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD83\vegetation","\.las","points",7,27688049,1384323,FALSE,2784626.24,2822571.72,1843127.36,1875117.76,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\baldearth","\.las","points",55,891845325,44591642,FALSE,2979547.62,3028850.4,1604285.6,1664921.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\merged","\.las","points",26,549289482,27464179,FALSE,2979478.56,3028658.48,1605616.03,1664921.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\vegetation\3Di","\.las","points",18,310238486,15511720,FALSE,3000678.17,3027939.4,1604504.46,1661890.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\vegetation\Airborne1","\.las","points",36,1134246832,56711933,FALSE,2979478.56,3005024.92,1604282.74,1664921.72,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\vegetation","\.las","points",1,8335247,416751,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\baldearth","\.las","points",54,889941298,44496452,FALSE,2979547.62,3028850.4,1604285.6,1664921.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\merged","\.las","points",26,549289482,27464179,FALSE,2979478.56,3028658.48,1605616.03,1664921.73,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\vegetation\3Di","\.las","points",18,310238486,15511720,FALSE,3000678.17,3027939.4,1604504.46,1661890.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\vegetation\Airborne1","\.las","points",36,1134246832,56711933,FALSE,2979478.56,3005024.92,1604282.74,1664921.72,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\vegetation","\.las","points",1,8335247,416751,FALSE,3001621.5,3014022.25,1641126,1650789.38,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Anita_Bay\lidar\point_cloud\classified\classified_tiles","\.las","points",16,4576879828,163459679,FALSE,2942838.56,2951175.33,1592819.44,1603841.96,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Anita_Bay\lidar\point_cloud\unclassified\Strips","\.las","points",18,7390182526,263934736,FALSE,2941214.24,2953034.04,1589370.22,1605970.64,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Anita_Bay\lidar\point_cloud\unclassified\Tiles","\.las","points",16,4576879828,163459679,FALSE,2942838.56,2951175.33,1592819.44,1603841.96,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Bradfield_to_Behms\lidar\point_cloud\classified\classified_tiles","\.las","points",110,30887068678,1103107431,FALSE,3104079.3,3154820.41,1514322.58,1596826.6,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Bradfield_to_Behms\lidar\point_cloud\unclassified\Strips","\.las","points",35,16868756653,602454906,FALSE,3101449.16,3151134.18,1527525.33,1598831.21,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Bradfield_to_Behms\lidar\point_cloud\unclassified\Tiles","\.las","points",110,30887070330,1103107490,FALSE,3104079.3,3154820.41,1514322.58,1596826.6,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Hoonah\lidar\point_cloud\classified\classified_tiles","\.las","points",158,54106633370,1932376654,FALSE,2243098.53,2338220.81,2235963.86,2263848.32,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Hoonah\lidar\point_cloud\unclassified\Strips","\.las","points",161,89209251607,3186041532,FALSE,2241196.89,2342644.78,2233092.15,2266146.42,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Hoonah\lidar\point_cloud\unclassified\Tiles","\.las","points",158,54106635554,1932376732,FALSE,2243098.53,2338220.81,2235963.86,2263848.32,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\KAKE_ACCESS_LIDAR\01_LAS_Data","\.las","points",99,57754477409,2062656446,FALSE,2639112.37,2845566.34,1473443.38,1879217.15,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Revilla\lidar\point_cloud\classified\classified_tiles","\.las","points",81,33315574431,1189840350,FALSE,3135556.39,3157499.99,1437352.17,1506599.02,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Shelter Cove\Deliverables_4-2009\LAS","\.las","points",331,14072456904,502575736,FALSE,3094755.56,3170025.84,1317679.55,1366456.31,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Vallenar_Bay\point_cloud_data","\.laz","points",32,1080704151,208234661,FALSE,3063950.14,3089434.96,1275956.24,1311203.77,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Wrangell\lidar\point_cloud\classified\classified_tiles","\.las","points",33,8134640131,290522203,FALSE,2959408.54,2983817.75,1602123.95,1612442.86,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Wrangell\lidar\point_cloud\unclassified\Strips","\.las","points",26,18934269902,676223406,FALSE,2953554.46,2988190.64,1596453.02,1613896.25,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Wrangell\lidar\point_cloud\unclassified\Tiles","\.las","points",33,8134640131,290522203,FALSE,2959408.54,2983817.75,1602123.95,1612442.86,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2012Juneau_USGS_NOAA\PointCloudTiles\LAS","\.las","points",243,61396198957,2192717269,FALSE,-134.8499587,-134.2630574,58.2133515,58.5494605,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2012Juneau_USGS_NOAA\PointCloudTiles\LAZ","\.laz","points",243,9226845856,2192717269,FALSE,-134.8499587,-134.2630574,58.2133515,58.5494605,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Ketchikan_FEMA\02130C_Terrain\Source\Classified_Point_Cloud_Data","\.las","points",106,19933808734,711920495,FALSE,3056125.84,3144466.15,1269577.58,1350279.8,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Ketchikan_FEMA\02130C_Terrain\Source\Raw_Point_Cloud_Data","\.las","points",64,33703266128,1203687324,FALSE,3053861.4,3147606.07,1266127.69,1353251.74,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Sitka_FEMA\57135A2\POINTS\ALL_POINTS","\.las","points",27,4755816835,169850284,FALSE,2353907.6,2376588.72,1899496.92,1915558.7,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Sitka_FEMA\57135A3\POINTS\ALL_POINTS","\.las","points",50,8185377921,295175763,FALSE,2326819.53,2354267.17,1898719.99,1936813.06,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Sitka_FEMA\57135B3\POINTS\ALL_POINTS","\.las","points",3,461954059,16498324,FALSE,2342405.52,2349331.03,1936677.92,1940733.09,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\2021WrangellCityDroneLidar\LiDAR Ground","\.laz","points",27,722713794,68476913,FALSE,2942770,2952050.5,1687516.625,1702774.125,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\MGRA_EngContract2021","\.las","points",3,7206090125,475200785,FALSE,2507523.4034,2518385.0675,2402781.6975,2406917.3706,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_lidar_2021_07\Deliverables","\.las","points",13,80752231078,1144982075,FALSE,518114.5,616577.99,6178270.91799927,6476385.6875,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_NuggetCreek_lidar_2021_07\lidar","\.las","points",1,3233842990,59885877,TRUE,526937.344,527622.859,6476038.894,6476474.532,"COMPD_CS[""NAD83(2011) / UTM zone 8N + NAVD88 height - Geoid12B (Meters)"",PROJCS[""NAD83(2011) / UTM zone 8N"",GEOGCS[""NAD83(2011)"",DATUM[""NAD83_National_Spatial_Reference_System_2011"",SPHEROID[""GRS 1980"",6378137,298.257222101,AUTHORITY[""EPSG"",""7019""]],AUTHORITY[""EPSG"",""1116""]],PRIMEM[""Greenwich"",0,AUTHORITY[""EPSG"",""8901""]],UNIT[""degree"",0.0174532925199433,AUTHORITY[""EPSG"",""9122""]],AUTHORITY[""EPSG"",""6318""]],PROJECTION[""Transverse_Mercator""],PARAMETER[""latitude_of_origin"",0],PARAMETER[""central_meridian"",-135],PARAMETER[""scale_factor"",0.9996],PARAMETER[""false_easting"",500000],PARAMETER[""false_northing"",0],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Easting"",EAST],AXIS[""Northing"",NORTH],AUTHORITY[""EPSG"",""6337""]],VERT_CS[""NAVD88 height"",VERT_DATUM[""North American Vertical Datum 1988"",2005,AUTHORITY[""EPSG"",""5103""]],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Gravity-related height"",UP],AUTHORITY[""EPSG"",""5703""]]]",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_NuggetCreek_lidar_2021_07\NuggetCreek_dam_300ft","\.laz","points",1,215759303,20253329,FALSE,527241.274,527620.192,6476063.889,6476384.057,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_NuggetCreek_lidar_2021_07\photogrammetry\NuggetCreek_dam_closeup","\.laz","points",1,228404300,22086172,FALSE,527481.7713,527513.7724,6476127.7543,6476169.6545,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2022_23_SEAK_D22_USGS\AK_SE_Landslides_1_D22\point_cloud\tilecls","\.laz","points",776,131739739578,18171470067,FALSE,886737.11,965501.18,370711.56,513383.08,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2022_23_SEAK_D22_USGS\AK_SE_Landslides_2_D22\point_cloud\tilecls","\.laz","points",3834,780118278489,109689749347,FALSE,468293.48,887876.17,518936.82,882760.64,"",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2023sUAS\R10_RainbowFalls\outputs\pointclouds","\.las","points",231,52849840937,1056986992,TRUE,663442.933,665623.695,6255259.618,6256928.404,"COMPD_CS[""NAD83(2011) / UTM zone 8N + NAVD88 height - Geoid12B (Meters)"",PROJCS[""NAD83(2011) / UTM zone 8N"",GEOGCS[""NAD83(2011)"",DATUM[""NAD83_National_Spatial_Reference_System_2011"",SPHEROID[""GRS 1980"",6378137,298.257222101,AUTHORITY[""EPSG"",""7019""]],AUTHORITY[""EPSG"",""1116""]],PRIMEM[""Greenwich"",0,AUTHORITY[""EPSG"",""8901""]],UNIT[""degree"",0.0174532925199433,AUTHORITY[""EPSG"",""9122""]],AUTHORITY[""EPSG"",""6318""]],PROJECTION[""Transverse_Mercator""],PARAMETER[""latitude_of_origin"",0],PARAMETER[""central_meridian"",-135],PARAMETER[""scale_factor"",0.9996],PARAMETER[""false_easting"",500000],PARAMETER[""false_northing"",0],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Easting"",EAST],AXIS[""Northing"",NORTH],AUTHORITY[""EPSG"",""6337""]],VERT_CS[""NAVD88 height - Geoid12B (Meters)"",VERT_DATUM[""North American Vertical Datum 1988"",2005,AUTHORITY[""EPSG"",""5103""]],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Gravity-related height"",UP],AUTHORITY[""EPSG"",""5703""]]]",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2023Wrangell_DGGS\rdf2023_028_lidar-wrangell-2023-classified_points\classified_points\LAS","\.las","points",656,1064929317024,35497610576,TRUE,660193.916,691420.578,6222623.226,6264259.637,"PROJCRS[""NAD83(2011) / UTM zone 8N"",BASEGEOGCRS[""NAD83(2011)"",DATUM[""NAD83 (National Spatial Reference System 2011)"",ELLIPSOID[""GRS 1980"",6378137,298.2572221,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",7019]],ID[""EPSG"",1116]],ID[""EPSG"",6318]],CONVERSION[""UTM zone 8N"",METHOD[""Transverse Mercator"",ID[""EPSG"",9807]],PARAMETER[""Latitude of natural origin"",0,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Longitude of natural origin"",-135,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Scale factor at natural origin"",0.9996,SCALEUNIT[""unity"",1,ID[""EPSG"",9201]]],PARAMETER[""False easting"",500000,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],PARAMETER[""False northing"",0,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],ID[""EPSG"",16008]],CS[Cartesian,2,ID[""EPSG"",4400]],AXIS[""Easting (E)"",east],AXIS[""Northing (N)"",north],LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",6337]]",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2023Wrangell_DGGS\rdf2023_028_lidar-wrangell-2023-classified_points\classified_points\LAZ","\.laz","points",656,240455422495,35497610576,TRUE,660193.916,691420.578,6222623.226,6264259.637,"PROJCRS[""NAD83(2011) / UTM zone 8N"",BASEGEOGCRS[""NAD83(2011)"",DATUM[""NAD83 (National Spatial Reference System 2011)"",ELLIPSOID[""GRS 1980"",6378137,298.2572221,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",7019]],ID[""EPSG"",1116]],ID[""EPSG"",6318]],CONVERSION[""UTM zone 8N"",METHOD[""Transverse Mercator"",ID[""EPSG"",9807]],PARAMETER[""Latitude of natural origin"",0,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Longitude of natural origin"",-135,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Scale factor at natural origin"",0.9996,SCALEUNIT[""unity"",1,ID[""EPSG"",9201]]],PARAMETER[""False easting"",500000,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],PARAMETER[""False northing"",0,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],ID[""EPSG"",16008]],CS[Cartesian,2,ID[""EPSG"",4400]],AXIS[""Easting (E)"",east],AXIS[""Northing (N)"",north],LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",6337]]",""
-"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2024Wrangell_DGGS\rdf2024_001_wrangell-11-28-29-2023-classified_pts\data\classified_points","\.laz","points",100,21044745272,3288901667,TRUE,660407.825,668964.721,6242813.223,6263752.872,"PROJCRS[""NAD83(2011) / UTM zone 8N"",BASEGEOGCRS[""NAD83(2011)"",DATUM[""NAD83 (National Spatial Reference System 2011)"",ELLIPSOID[""GRS 1980"",6378137,298.2572221,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",7019]],ID[""EPSG"",1116]],ID[""EPSG"",6318]],CONVERSION[""UTM zone 8N"",METHOD[""Transverse Mercator"",ID[""EPSG"",9807]],PARAMETER[""Latitude of natural origin"",0,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Longitude of natural origin"",-135,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Scale factor at natural origin"",0.9996,SCALEUNIT[""unity"",1,ID[""EPSG"",9201]]],PARAMETER[""False easting"",500000,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],PARAMETER[""False northing"",0,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],ID[""EPSG"",16008]],CS[Cartesian,2,ID[""EPSG"",4400]],AXIS[""Easting (E)"",east],AXIS[""Northing (N)"",north],LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",6337]]",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\gravina\lasdata\NAD27","\.las","points",1,40407967,2020387,FALSE,3078050.5,1239684.75,3102322.5,1258007.13,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\gravina\lasdata\NAD83","\.las","points",1,40407967,2020387,FALSE,3078050.5,1239684.75,3102322.5,1258007.13,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD27\bald","\.las","points",1,11889747,594476,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD27\merged","\.las","points",1,20224767,1011227,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD27\veg","\.las","points",1,8335247,416751,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD83\bald","\.las","points",1,11889747,594476,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD83\merged","\.las","points",1,20224767,1011227,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\highbush\lasdata\NAD83\veg","\.las","points",1,8335247,416751,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD27\bald","\.las","points",1,8992687,449623,FALSE,2772290.75,2039084.63,2779657,2044397.63,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD27\merged","\.las","points",1,41393187,2069648,FALSE,2772290.75,2039084.25,2779657,2044397.63,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD27\veg","\.las","points",1,32400727,1620025,FALSE,2772292.25,2039084.25,2779657,2044397.13,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD83\bald","\.las","points",1,8992687,449623,FALSE,2772290.75,2039084.63,2779657,2044397.63,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD83\merged","\.las","points",1,41393187,2069648,FALSE,2772290.75,2039084.25,2779657,2044397.63,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\class\hobarts\lasdata\NAD83\veg","\.las","points",1,32400727,1620025,FALSE,2772292.25,2039084.25,2779657,2044397.13,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD27\baldearth","\.las","points",53,217453451,10872071,FALSE,2345023.56,2319880.61,2425729.42,2418936.9,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD27\merged","\.las","points",53,591009851,29549891,FALSE,2343695.61,2317043.56,2428090.74,2419781.41,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD27\veg","\.las","points",53,214828631,10740830,FALSE,2343695.61,2317043.56,2428090.74,2419781.41,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD83\baldearth","\.las","points",53,217453451,10872071,FALSE,2345023.56,2319880.61,2425729.42,2418936.9,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD83\merged","\.las","points",53,591009851,29549891,FALSE,2343695.61,2317043.56,2428090.74,2419781.41,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\couverden\lasdata\NAD83\veg","\.las","points",53,214828631,10740830,FALSE,2343695.61,2317043.56,2428090.74,2419781.41,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD27\baldearth","\.las","points",1,10696767,534827,FALSE,2505647.49,2397347.68,2520729.13,2412073.83,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD27\merged","\.las","points",1,66636627,3331820,FALSE,2503525.48,2395340.65,2522859.94,2414052.08,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD27\vegetation","\.las","points",1,25370987,1268538,FALSE,2503525.48,2395340.65,2522859.94,2414052.08,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD83\baldearth","\.las","points",1,10696767,534827,FALSE,2505647.49,2397347.68,2520729.13,2412073.83,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD83\merged","\.las","points",1,66636627,3331820,FALSE,2503525.48,2395340.65,2522859.94,2414052.08,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\dredgelk\lasdata\NAD83\vegetation","\.las","points",1,25370987,1268538,FALSE,2503525.48,2395340.65,2522859.94,2414052.08,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD27\baldearth","\.las","points",1,144312967,7215637,FALSE,2713338.03,2056214.22,2758515.82,2092714.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD27\vegetation","\.las","points",1,740944227,37047200,FALSE,2713337.98,2056214.32,2758569.02,2092669.03,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD83\baldearth","\.las","points",1,144312967,7215637,FALSE,2713338.03,2056214.22,2758515.82,2092714.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobartn\lasdata\NAD83\vegetation","\.las","points",1,740944227,37047200,FALSE,2713337.98,2056214.32,2758569.02,2092669.03,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobarts\lasdata\NAD27\vegetation","\.las","points",1,20971727,1048575,FALSE,2772292.25,2039084.25,2779657,2044396.88,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\JRD\hobarts\lasdata\NAD83\vegetation","\.las","points",1,20971727,1048575,FALSE,2772292.25,2039084.25,2779657,2044396.88,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD27\baldearth","\.las","points",13,24971651,1248435,FALSE,3108765.43,1325976.09,3121614.68,1339462.36,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD27\merged","\.las","points",13,120126331,6006169,FALSE,3108764.4,1325976.09,3121619.93,1339463.16,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD27\vegetation","\.las","points",13,38465831,1923144,FALSE,3108764.4,1325976.13,3121619.93,1339463.16,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD83\baldearth","\.las","points",13,24971651,1248435,FALSE,3108765.43,1325976.09,3121614.68,1339462.36,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD83\merged","\.las","points",13,120126331,6006169,FALSE,3108764.4,1325976.09,3121619.93,1339463.16,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\boundary\lasdata\NAD83\vegetation","\.las","points",13,38465831,1923144,FALSE,3108764.4,1325976.13,3121619.93,1339463.16,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD27\baldearth","\.las","points",26,60666582,3033034,FALSE,3060419.55,1209614.81,3099700,1286088.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD27\merged","\.las","points",26,190700022,9534706,FALSE,3060413.94,1209560.67,3099700,1286088.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD27\vegetation","\.las","points",27,108741289,5436758,FALSE,3060413.94,1209560.67,3102322.5,1285985.44,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD83\baldearth","\.las","points",26,60666582,3033034,FALSE,3060419.55,1209614.81,3099700,1286088.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD83\merged","\.las","points",26,190700022,9534706,FALSE,3060413.94,1209560.67,3099700,1286088.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\gravina\lasdata\NAD83\vegetation","\.las","points",27,108741289,5436758,FALSE,3060413.94,1209560.67,3102322.5,1285985.44,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD27\baldearth","\.las","points",1,314347707,15717374,FALSE,3096795.87,1339008.58,3121375.44,1378866.61,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD27\vegetation","\.las","points",1,509454227,25472700,FALSE,3096795.56,1339009.65,3121380.07,1378876.27,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD83\baldearth","\.las","points",1,314347707,15717374,FALSE,3096795.87,1339008.58,3121375.44,1378866.61,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\leasklake\lasdata\NAD83\vegetation","\.las","points",1,509454227,25472700,FALSE,3096795.56,1339009.65,3121380.07,1378876.27,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD27\baldearth","\.las","points",1,148594667,7429722,FALSE,3168178.84,1342614.51,3198536.34,1383226.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD27\vegetation","\.las","points",1,354193267,17709652,FALSE,3168111.37,1342612.3,3198525.61,1383240.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD83\baldearth","\.las","points",1,148594667,7429722,FALSE,3168178.84,1342614.51,3198536.34,1383226.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\lickingcr\lasdata\NAD83\vegetation","\.las","points",1,354193267,17709652,FALSE,3168111.37,1342612.3,3198525.61,1383240.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD27\baldearth","\.las","points",12,13810684,690398,FALSE,3082957.59,1316823.68,3093475.61,1325466.01,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD27\merged","\.las","points",11,49249937,2462372,FALSE,3082957.58,1316823.64,3093475.61,1325466.01,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD27\vegetation","\.las","points",10,35439030,1771838,FALSE,3082957.58,1316823.64,3093475.33,1325400,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD83\baldearth","\.las","points",12,13810684,690398,FALSE,3082957.59,1316823.68,3093475.61,1325466.01,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD83\merged","\.las","points",11,49249937,2462372,FALSE,3082957.58,1316823.64,3093475.61,1325466.01,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\Ketchikan\slideridge\lasdata\NAD83\vegetation","\.las","points",10,35439030,1771838,FALSE,3082957.58,1316823.64,3093475.33,1325400,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD27\baldearth","\.las","points",18,55044026,2751997,FALSE,2767888.81,1568065.47,2778408.66,1578708.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD27\merged","\.las","points",18,163354946,8167543,FALSE,2767888.81,1568065.28,2778408.75,1578708.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD27\vegetation","\.las","points",18,105653266,5282459,FALSE,2767889.19,1568065.28,2778408.75,1578707.92,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD83\baldearth","\.las","points",18,55044026,2751997,FALSE,2767888.81,1568065.47,2778408.66,1578708.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD83\merged","\.las","points",18,163354946,8167543,FALSE,2767888.81,1568065.28,2778408.75,1578708.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\beaverfalls\lasdata\NAD83\vegetation","\.las","points",18,105653266,5282459,FALSE,2767889.19,1568065.28,2778408.75,1578707.92,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD27\ground_points","\.las","points",41,52917247,2645397,FALSE,2760104.12,1480139.61,2802458.56,1583616,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD27\merged","\.las","points",41,189888687,9493969,FALSE,2756406.2,1480139.61,2802465.73,1583616.88,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD27\veg_points","\.las","points",41,136543507,6826710,FALSE,2756406.2,1480189.83,2802465.73,1583616.88,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD83\ground_points","\.las","points",41,52917247,2645397,FALSE,2760104.12,1480139.61,2802458.56,1583616,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD83\merged","\.las","points",41,189888687,9493969,FALSE,2756406.2,1480139.61,2802465.73,1583616.88,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\elcap_road\lasdata\NAD83\veg_points","\.las","points",41,136543507,6826710,FALSE,2756406.2,1480189.83,2802465.73,1583616.88,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD27\baldearth","\.las","points",18,44687126,2234152,FALSE,2674657.13,1409479.37,2727969.51,1463309.05,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD27\vegetation","\.las","points",1,820267,41002,FALSE,2678729.22,1432607.81,2685602.62,1442429.86,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD83\baldearth","\.las","points",18,44687126,2234152,FALSE,2674657.13,1409479.37,2727969.51,1463309.05,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\heceta\lasdata\NAD83\vegetation","\.las","points",1,820267,41002,FALSE,2678729.22,1432607.81,2685602.62,1442429.86,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\kosciusko\lasdata\NAD27","\.las","points",30,113451830,5672251,FALSE,2653812.59,1482833.5,2720896.88,1554810.57,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\kosciusko\lasdata\NAD83","\.las","points",30,113451830,5672251,FALSE,2653812.59,1482833.5,2720896.88,1554810.57,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD27\baldearth","\.las","points",1,86947147,4347346,FALSE,2880310.81,1333546.8,2895448.75,1351605.21,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD27\vegetation","\.las","points",1,300457467,15022862,FALSE,2880310.82,1333546.81,2895448.74,1351605.2,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD83\baldearth","\.las","points",1,86947147,4347346,FALSE,2880310.81,1333546.8,2895448.75,1351605.21,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\maybeso\lasdata\NAD83\vegetation","\.las","points",1,300457467,15022862,FALSE,2880310.82,1333546.81,2895448.74,1351605.2,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\naukati_road\lasdata\NAD27","\.las","points",8,20172976,1008558,FALSE,2776475.7,1474730.26,2785897.3,1485445.55,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\naukati_road\lasdata\NAD83","\.las","points",8,20172976,1008558,FALSE,2776475.7,1474730.26,2785897.3,1485445.55,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD27\ground_points","\.las","points",9,22093843,1104590,FALSE,2868535.35,1411144.3,2932757.37,1510698.17,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD27\merged","\.las","points",9,86500683,4324932,FALSE,2868501.62,1411144.3,2932757.37,1510700.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD27\veg_points","\.las","points",9,63707763,3185286,FALSE,2868501.62,1411144.49,2932729.8,1510700.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD83\ground_points","\.las","points",9,22093843,1104590,FALSE,2868535.35,1411144.3,2932757.37,1510698.17,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD83\merged","\.las","points",9,86500683,4324932,FALSE,2868501.62,1411144.3,2932757.37,1510700.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\sandybeach_road\lasdata\NAD83\veg_points","\.las","points",9,63707763,3185286,FALSE,2868501.62,1411144.49,2932729.8,1510700.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD27\baldearth","\.las","points",33,89227631,4461007,FALSE,2780659.36,1436193.44,2799368.87,1452100.12,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD27\merged","\.las","points",21,143145907,7157057,FALSE,2780656.86,1436193.44,2799369.44,1452100.12,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD27\vegetation","\.las","points",32,156134624,7806368,FALSE,2780656.86,1436193.94,2799369.44,1452099.35,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD83\baldearth","\.las","points",33,89227631,4461007,FALSE,2780659.36,1436193.44,2799368.87,1452100.12,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD83\merged","\.las","points",21,143145907,7157057,FALSE,2780656.86,1436193.44,2799369.44,1452100.12,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\POW\twinmtn\lasdata\NAD83\vegetation","\.las","points",32,156134624,7806368,FALSE,2780656.86,1436193.94,2799369.44,1452099.35,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD27\baldearth","\.las","points",135,139857385,6991337,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD27\merged","\.las","points",4,226647848,11332347,FALSE,2670973.67,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD27\vegetation","\.las","points",1,40091367,2004557,FALSE,2671352.21,1785357.57,2677952.77,1796177.98,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD83\baldearth","\.las","points",135,139857385,6991337,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD83\merged","\.las","points",4,226647848,11332347,FALSE,2670973.67,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland\LASFILES\NAD83\vegetation","\.las","points",1,40091367,2004557,FALSE,2671352.21,1785357.57,2677952.77,1796177.98,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\merged","\.las","points",8,83045716,4152195,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\raw_point_data\ground","\.las","points",8,43235936,2161706,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\raw_point_data\veg","\.las","points",8,39810156,1990417,FALSE,2671352.21,1785357.57,2677952.77,1795907.66,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\revised_datis2_points_3_02","\.las","points",8,42952396,2147529,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD27\revised_datis2_veg","\.las","points",8,40092956,2004557,FALSE,2671352.21,1785357.57,2677952.77,1796177.98,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\merged","\.las","points",8,83045716,4152195,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\raw_point_data\ground","\.las","points",8,43235936,2161706,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\raw_point_data\veg","\.las","points",8,39810156,1990417,FALSE,2671352.21,1785357.57,2677952.77,1795907.66,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\revised_datis2_points_3_02","\.las","points",8,42952396,2147529,FALSE,2670966.58,1784864.17,2678109.48,1796366.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\highisland_olddata\LASFILES\NAD83\revised_datis2_veg","\.las","points",8,40092956,2004557,FALSE,2671352.21,1785357.57,2677952.77,1796177.98,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Drivesurvey010911","\.las","points",1,189687,9473,FALSE,2632741.48,1848947.38,2676458.48,1876783.45,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Drivesurvey010913","\.las","points",6,1700002,84932,FALSE,2639792.21,1847593.98,2659426.8,1869843.67,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Ground_points","\.las","points",5,14777455,738816,FALSE,2639361.55,1847634.48,2660271.79,1871712.07,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\merged","\.las","points",4,44148788,2207394,FALSE,2639292.75,1847634.48,2660271.79,1871857.1,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD27\Veg_points","\.las","points",4,36760408,1837975,FALSE,2639292.75,1847655.66,2660207.66,1871857.1,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Drivesurvey010911","\.las","points",1,189687,9473,FALSE,2632741.48,1848947.38,2676458.48,1876783.45,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Drivesurvey010913","\.las","points",6,1700002,84932,FALSE,2639792.21,1847593.98,2659426.8,1869843.67,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Ground_points","\.las","points",5,14777455,738816,FALSE,2639361.55,1847634.48,2660271.79,1871712.07,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\merged","\.las","points",4,44148788,2207394,FALSE,2639292.75,1847634.48,2660271.79,1871857.1,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\kake\LASFILES\NAD83\Veg_points","\.las","points",4,36760408,1837975,FALSE,2639292.75,1847655.66,2660207.66,1871857.1,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD27\baldearth","\.las","points",20,222765820,11138064,FALSE,2772085.13,1833797.92,2839430.71,1884258.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD27\merged","\.las","points",5,744868995,37243393,FALSE,2784626.24,1833797.92,2839430.71,1884258.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD27\vegetation","\.las","points",165,729923695,36494312,FALSE,2772085.13,1833801.97,2839200.13,1883937.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD83\baldearth","\.las","points",20,222765820,11138064,FALSE,2772085.13,1833797.92,2839430.71,1884258.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD83\merged","\.las","points",5,744868995,37243393,FALSE,2784626.24,1833797.92,2839430.71,1884258.81,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\PRD\PRD\missionary\LASFILES\NAD83\vegetation","\.las","points",7,27688049,1384323,FALSE,2784626.24,1843127.36,2822571.72,1875117.76,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\baldearth","\.las","points",55,891845325,44591642,FALSE,2979547.62,1604285.6,3028850.4,1664921.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\merged","\.las","points",26,549289482,27464179,FALSE,2979478.56,1605616.03,3028658.48,1664921.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\vegetation\3Di","\.las","points",18,310238486,15511720,FALSE,3000678.17,1604504.46,3027939.4,1661890.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\vegetation\Airborne1","\.las","points",36,1134246832,56711933,FALSE,2979478.56,1604282.74,3005024.92,1664921.72,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD27\vegetation","\.las","points",1,8335247,416751,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\baldearth","\.las","points",54,889941298,44496452,FALSE,2979547.62,1604285.6,3028850.4,1664921.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\merged","\.las","points",26,549289482,27464179,FALSE,2979478.56,1605616.03,3028658.48,1664921.73,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\vegetation\3Di","\.las","points",18,310238486,15511720,FALSE,3000678.17,1604504.46,3027939.4,1661890.02,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\vegetation\Airborne1","\.las","points",36,1134246832,56711933,FALSE,2979478.56,1604282.74,3005024.92,1664921.72,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2000_03_TNF_3Di\WRD\highbush\lasdata\NAD83\vegetation","\.las","points",1,8335247,416751,FALSE,3001621.5,1641126,3014022.25,1650789.38,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Anita_Bay\lidar\point_cloud\classified\classified_tiles","\.las","points",16,4576879828,163459679,FALSE,2942838.56,1592819.44,2951175.33,1603841.96,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Anita_Bay\lidar\point_cloud\unclassified\Strips","\.las","points",18,7390182526,263934736,FALSE,2941214.24,1589370.22,2953034.04,1605970.64,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Anita_Bay\lidar\point_cloud\unclassified\Tiles","\.las","points",16,4576879828,163459679,FALSE,2942838.56,1592819.44,2951175.33,1603841.96,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Bradfield_to_Behms\lidar\point_cloud\classified\classified_tiles","\.las","points",110,30887068678,1103107431,FALSE,3104079.3,1514322.58,3154820.41,1596826.6,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Bradfield_to_Behms\lidar\point_cloud\unclassified\Strips","\.las","points",35,16868756653,602454906,FALSE,3101449.16,1527525.33,3151134.18,1598831.21,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Bradfield_to_Behms\lidar\point_cloud\unclassified\Tiles","\.las","points",110,30887070330,1103107490,FALSE,3104079.3,1514322.58,3154820.41,1596826.6,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Hoonah\lidar\point_cloud\classified\classified_tiles","\.las","points",158,54106633370,1932376654,FALSE,2243098.53,2235963.86,2338220.81,2263848.32,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Hoonah\lidar\point_cloud\unclassified\Strips","\.las","points",161,89209251607,3186041532,FALSE,2241196.89,2233092.15,2342644.78,2266146.42,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Hoonah\lidar\point_cloud\unclassified\Tiles","\.las","points",158,54106635554,1932376732,FALSE,2243098.53,2235963.86,2338220.81,2263848.32,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\KAKE_ACCESS_LIDAR\01_LAS_Data","\.las","points",99,57754477409,2062656446,FALSE,2639112.37,1473443.38,2845566.34,1879217.15,"","COMPOUNDCRS[""NAD_1983_StatePlane_Alaska_1_FIPS_5001_Feet|projection: Hotine_Oblique_Mercator_Azimuth_Natural_Origin + unknown"",
+    ENGCRS[""NAD_1983_StatePlane_Alaska_1_FIPS_5001_Feet|projection: Hotine_Oblique_Mercator_Azimuth_Natural_Origin"",
+        EDATUM[""Unknown engineering datum""],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""metre"",1,
+                    ID[""EPSG"",9001]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""metre"",1,
+                    ID[""EPSG"",9001]]]],
+    VERTCRS[""NAVD88 height (ftUS)"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",6360]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Revilla\lidar\point_cloud\classified\classified_tiles","\.las","points",81,33315574431,1189840350,FALSE,3135556.39,1437352.17,3157499.99,1506599.02,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + unknown"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""VertCS_North_American_Vertical_Datum_1988"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""foot"",0.3048,
+                    ID[""EPSG"",9002]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Shelter Cove\Deliverables_4-2009\LAS","\.las","points",331,14072456904,502575736,FALSE,3094755.56,1317679.55,3170025.84,1366456.31,"","COMPOUNDCRS[""NAD83 + NAVD88 height"",
+    GEOGCRS[""NAD83"",
+        DATUM[""North American Datum 1983"",
+            ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                LENGTHUNIT[""metre"",1]]],
+        PRIMEM[""Greenwich"",0,
+            ANGLEUNIT[""degree"",0.0174532925199433]],
+        CS[ellipsoidal,2],
+            AXIS[""geodetic latitude (Lat)"",north,
+                ORDER[1],
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            AXIS[""geodetic longitude (Lon)"",east,
+                ORDER[2],
+                ANGLEUNIT[""degree"",0.0174532925199433]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]]],
+    ID[""EPSG"",5498]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Vallenar_Bay\point_cloud_data","\.laz","points",32,1080704151,208234661,FALSE,3063950.14,1275956.24,3089434.96,1311203.77,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Wrangell\lidar\point_cloud\classified\classified_tiles","\.las","points",33,8134640131,290522203,FALSE,2959408.54,1602123.95,2983817.75,1612442.86,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Wrangell\lidar\point_cloud\unclassified\Strips","\.las","points",26,18934269902,676223406,FALSE,2953554.46,1596453.02,2988190.64,1613896.25,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2010sDOTLidar\Wrangell\lidar\point_cloud\unclassified\Tiles","\.las","points",33,8134640131,290522203,FALSE,2959408.54,1602123.95,2983817.75,1612442.86,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219]],
+        ID[""EPSG"",26931]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2012Juneau_USGS_NOAA\PointCloudTiles\LAS","\.las","points",243,61396198957,2192717269,FALSE,-134.8499587,58.2133515,-134.2630574,58.5494605,"","COMPOUNDCRS[""NAD83 + NAVD88 height"",
+    GEOGCRS[""NAD83"",
+        DATUM[""North American Datum 1983"",
+            ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                LENGTHUNIT[""metre"",1]]],
+        PRIMEM[""Greenwich"",0,
+            ANGLEUNIT[""degree"",0.0174532925199433]],
+        CS[ellipsoidal,2],
+            AXIS[""geodetic latitude (Lat)"",north,
+                ORDER[1],
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            AXIS[""geodetic longitude (Lon)"",east,
+                ORDER[2],
+                ANGLEUNIT[""degree"",0.0174532925199433]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]]],
+    ID[""EPSG"",5498]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2012Juneau_USGS_NOAA\PointCloudTiles\LAZ","\.laz","points",243,9226845856,2192717269,FALSE,-134.8499587,58.2133515,-134.2630574,58.5494605,"","COMPOUNDCRS[""NAD83 + NAVD88 height"",
+    GEOGCRS[""NAD83"",
+        DATUM[""North American Datum 1983"",
+            ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                LENGTHUNIT[""metre"",1]]],
+        PRIMEM[""Greenwich"",0,
+            ANGLEUNIT[""degree"",0.0174532925199433]],
+        CS[ellipsoidal,2],
+            AXIS[""geodetic latitude (Lat)"",north,
+                ORDER[1],
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            AXIS[""geodetic longitude (Lon)"",east,
+                ORDER[2],
+                ANGLEUNIT[""degree"",0.0174532925199433]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]]],
+    ID[""EPSG"",5498]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Ketchikan_FEMA\02130C_Terrain\Source\Classified_Point_Cloud_Data","\.las","points",106,19933808734,711920495,FALSE,3056125.84,1269577.58,3144466.15,1350279.8,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Ketchikan_FEMA\02130C_Terrain\Source\Raw_Point_Cloud_Data","\.las","points",64,33703266128,1203687324,FALSE,3053861.4,1266127.69,3147606.07,1353251.74,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Sitka_FEMA\57135A2\POINTS\ALL_POINTS","\.las","points",27,4755816835,169850284,FALSE,2353907.6,1899496.92,2376588.72,1915558.7,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Sitka_FEMA\57135A3\POINTS\ALL_POINTS","\.las","points",50,8185377921,295175763,FALSE,2326819.53,1898719.99,2354267.17,1936813.06,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2014Sitka_FEMA\57135B3\POINTS\ALL_POINTS","\.las","points",3,461954059,16498324,FALSE,2342405.52,1936677.92,2349331.03,1940733.09,"","COMPOUNDCRS[""NAD83 / Alaska zone 1 + NAVD88 height"",
+    PROJCRS[""NAD83 / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83"",
+            DATUM[""North American Datum 1983"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",4269]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-16404166.6666667,
+                LENGTHUNIT[""US survey foot"",0.304800609601219],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""9003"",""EPSG""]]]],
+    VERTCRS[""NAVD88 height"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""gravity-related height"",up,
+                LENGTHUNIT[""metre"",1]],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\2021WrangellCityDroneLidar\LiDAR Ground","\.laz","points",27,722713794,68476913,FALSE,2942770,1687516.625,2952050.5,1702774.125,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\MGRA_EngContract2021","\.las","points",3,7206090125,475200785,FALSE,2507523.4034,2402781.6975,2518385.0675,2406917.3706,"","COMPOUNDCRS[""unnamed + unknown"",
+    ENGCRS[""unnamed"",
+        EDATUM[""Unknown engineering datum""],
+        CS[Cartesian,2],
+            AXIS[""easting"",east,
+                ORDER[1],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""EPSG"",9003]]],
+            AXIS[""northing"",north,
+                ORDER[2],
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""EPSG"",9003]]]],
+    VERTCRS[""unknown"",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""US survey foot"",0.304800609601219,
+                    ID[""EPSG"",9003]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_lidar_2021_07\Deliverables","\.las","points",13,80752231078,1144982075,FALSE,518114.5,6178270.91799927,616577.99,6476385.6875,"",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_NuggetCreek_lidar_2021_07\lidar","\.las","points",1,3233842990,59885877,TRUE,526937.344,6476038.894,527622.859,6476474.532,"COMPD_CS[""NAD83(2011) / UTM zone 8N + NAVD88 height - Geoid12B (Meters)"",PROJCS[""NAD83(2011) / UTM zone 8N"",GEOGCS[""NAD83(2011)"",DATUM[""NAD83_National_Spatial_Reference_System_2011"",SPHEROID[""GRS 1980"",6378137,298.257222101,AUTHORITY[""EPSG"",""7019""]],AUTHORITY[""EPSG"",""1116""]],PRIMEM[""Greenwich"",0,AUTHORITY[""EPSG"",""8901""]],UNIT[""degree"",0.0174532925199433,AUTHORITY[""EPSG"",""9122""]],AUTHORITY[""EPSG"",""6318""]],PROJECTION[""Transverse_Mercator""],PARAMETER[""latitude_of_origin"",0],PARAMETER[""central_meridian"",-135],PARAMETER[""scale_factor"",0.9996],PARAMETER[""false_easting"",500000],PARAMETER[""false_northing"",0],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Easting"",EAST],AXIS[""Northing"",NORTH],AUTHORITY[""EPSG"",""6337""]],VERT_CS[""NAVD88 height"",VERT_DATUM[""North American Vertical Datum 1988"",2005,AUTHORITY[""EPSG"",""5103""]],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Gravity-related height"",UP],AUTHORITY[""EPSG"",""5703""]]]",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_NuggetCreek_lidar_2021_07\NuggetCreek_dam_300ft","\.laz","points",1,215759303,20253329,FALSE,527241.274,6476063.889,527620.192,6476384.057,"","COMPOUNDCRS[""NAD83 / UTM zone 8N + unknown"",
+    BOUNDCRS[
+        SOURCECRS[
+            PROJCRS[""NAD83 / UTM zone 8N"",
+                BASEGEOGCRS[""NAD83"",
+                    DATUM[""North American Datum 1983"",
+                        ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                            LENGTHUNIT[""metre"",1]]],
+                    PRIMEM[""Greenwich"",0,
+                        ANGLEUNIT[""degree"",0.0174532925199433]],
+                    ID[""EPSG"",4269]],
+                CONVERSION[""UTM zone 8N"",
+                    METHOD[""Transverse Mercator"",
+                        ID[""EPSG"",9807]],
+                    PARAMETER[""Latitude of natural origin"",0,
+                        ANGLEUNIT[""degree"",0.0174532925199433],
+                        ID[""EPSG"",8801]],
+                    PARAMETER[""Longitude of natural origin"",-135,
+                        ANGLEUNIT[""degree"",0.0174532925199433],
+                        ID[""EPSG"",8802]],
+                    PARAMETER[""Scale factor at natural origin"",0.9996,
+                        SCALEUNIT[""unity"",1],
+                        ID[""EPSG"",8805]],
+                    PARAMETER[""False easting"",500000,
+                        LENGTHUNIT[""metre"",1],
+                        ID[""EPSG"",8806]],
+                    PARAMETER[""False northing"",0,
+                        LENGTHUNIT[""metre"",1],
+                        ID[""EPSG"",8807]]],
+                CS[Cartesian,2],
+                    AXIS[""easting"",east,
+                        ORDER[1],
+                        LENGTHUNIT[""metre"",1]],
+                    AXIS[""northing"",north,
+                        ORDER[2],
+                        LENGTHUNIT[""metre"",1]],
+                ID[""EPSG"",26908]]],
+        TARGETCRS[
+            GEOGCRS[""WGS 84"",
+                DATUM[""World Geodetic System 1984"",
+                    ELLIPSOID[""WGS 84"",6378137,298.257223563,
+                        LENGTHUNIT[""metre"",1]]],
+                PRIMEM[""Greenwich"",0,
+                    ANGLEUNIT[""degree"",0.0174532925199433]],
+                CS[ellipsoidal,2],
+                    AXIS[""latitude"",north,
+                        ORDER[1],
+                        ANGLEUNIT[""degree"",0.0174532925199433]],
+                    AXIS[""longitude"",east,
+                        ORDER[2],
+                        ANGLEUNIT[""degree"",0.0174532925199433]],
+                ID[""EPSG"",4326]]],
+        ABRIDGEDTRANSFORMATION[""Transformation from NAD83 to WGS84"",
+            METHOD[""Position Vector transformation (geog2D domain)"",
+                ID[""EPSG"",9606]],
+            PARAMETER[""X-axis translation"",0,
+                ID[""EPSG"",8605]],
+            PARAMETER[""Y-axis translation"",0,
+                ID[""EPSG"",8606]],
+            PARAMETER[""Z-axis translation"",0,
+                ID[""EPSG"",8607]],
+            PARAMETER[""X-axis rotation"",0,
+                ID[""EPSG"",8608]],
+            PARAMETER[""Y-axis rotation"",0,
+                ID[""EPSG"",8609]],
+            PARAMETER[""Z-axis rotation"",0,
+                ID[""EPSG"",8610]],
+            PARAMETER[""Scale difference"",1,
+                ID[""EPSG"",8611]]]],
+    VERTCRS["""",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""metre"",1,
+                    ID[""EPSG"",9001]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2021sUAS\R10_NuggetCreek_lidar_2021_07\photogrammetry\NuggetCreek_dam_closeup","\.laz","points",1,228404300,22086172,FALSE,527481.7713,6476127.7543,527513.7724,6476169.6545,"","COMPOUNDCRS[""NAD83 / UTM zone 8N + unknown"",
+    BOUNDCRS[
+        SOURCECRS[
+            PROJCRS[""NAD83 / UTM zone 8N"",
+                BASEGEOGCRS[""NAD83"",
+                    DATUM[""North American Datum 1983"",
+                        ELLIPSOID[""GRS 1980"",6378137,298.257222101004,
+                            LENGTHUNIT[""metre"",1]]],
+                    PRIMEM[""Greenwich"",0,
+                        ANGLEUNIT[""degree"",0.0174532925199433]],
+                    ID[""EPSG"",4269]],
+                CONVERSION[""UTM zone 8N"",
+                    METHOD[""Transverse Mercator"",
+                        ID[""EPSG"",9807]],
+                    PARAMETER[""Latitude of natural origin"",0,
+                        ANGLEUNIT[""degree"",0.0174532925199433],
+                        ID[""EPSG"",8801]],
+                    PARAMETER[""Longitude of natural origin"",-135,
+                        ANGLEUNIT[""degree"",0.0174532925199433],
+                        ID[""EPSG"",8802]],
+                    PARAMETER[""Scale factor at natural origin"",0.9996,
+                        SCALEUNIT[""unity"",1],
+                        ID[""EPSG"",8805]],
+                    PARAMETER[""False easting"",500000,
+                        LENGTHUNIT[""metre"",1],
+                        ID[""EPSG"",8806]],
+                    PARAMETER[""False northing"",0,
+                        LENGTHUNIT[""metre"",1],
+                        ID[""EPSG"",8807]]],
+                CS[Cartesian,2],
+                    AXIS[""easting"",east,
+                        ORDER[1],
+                        LENGTHUNIT[""metre"",1]],
+                    AXIS[""northing"",north,
+                        ORDER[2],
+                        LENGTHUNIT[""metre"",1]],
+                ID[""EPSG"",26908]]],
+        TARGETCRS[
+            GEOGCRS[""WGS 84"",
+                DATUM[""World Geodetic System 1984"",
+                    ELLIPSOID[""WGS 84"",6378137,298.257223563,
+                        LENGTHUNIT[""metre"",1]]],
+                PRIMEM[""Greenwich"",0,
+                    ANGLEUNIT[""degree"",0.0174532925199433]],
+                CS[ellipsoidal,2],
+                    AXIS[""latitude"",north,
+                        ORDER[1],
+                        ANGLEUNIT[""degree"",0.0174532925199433]],
+                    AXIS[""longitude"",east,
+                        ORDER[2],
+                        ANGLEUNIT[""degree"",0.0174532925199433]],
+                ID[""EPSG"",4326]]],
+        ABRIDGEDTRANSFORMATION[""Transformation from NAD83 to WGS84"",
+            METHOD[""Position Vector transformation (geog2D domain)"",
+                ID[""EPSG"",9606]],
+            PARAMETER[""X-axis translation"",0,
+                ID[""EPSG"",8605]],
+            PARAMETER[""Y-axis translation"",0,
+                ID[""EPSG"",8606]],
+            PARAMETER[""Z-axis translation"",0,
+                ID[""EPSG"",8607]],
+            PARAMETER[""X-axis rotation"",0,
+                ID[""EPSG"",8608]],
+            PARAMETER[""Y-axis rotation"",0,
+                ID[""EPSG"",8609]],
+            PARAMETER[""Z-axis rotation"",0,
+                ID[""EPSG"",8610]],
+            PARAMETER[""Scale difference"",1,
+                ID[""EPSG"",8611]]]],
+    VERTCRS["""",
+        VDATUM[""unknown""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""metre"",1,
+                    ID[""EPSG"",9001]]]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2022_23_SEAK_D22_USGS\AK_SE_Landslides_1_D22\point_cloud\tilecls","\.laz","points",776,131739739578,18171470067,FALSE,886737.11,370711.56,965501.18,513383.08,"","COMPOUNDCRS[""NAD83(2011) / Alaska zone 1 + NAVD88 height - Geoid12B (m)"",
+    PROJCRS[""NAD83(2011) / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83(2011)"",
+            DATUM[""NAD83 (National Spatial Reference System 2011)"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",6318]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",5000000,
+                LENGTHUNIT[""meter"",1],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-5000000,
+                LENGTHUNIT[""meter"",1],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""x"",east,
+                ORDER[1],
+                LENGTHUNIT[""meter"",1]],
+            AXIS[""y"",north,
+                ORDER[2],
+                LENGTHUNIT[""meter"",1]],
+        ID[""EPSG"",6394]],
+    VERTCRS[""NAVD88 height - Geoid12B (m)"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""meter"",1]],
+        GEOIDMODEL[""GEOID12B""],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2022_23_SEAK_D22_USGS\AK_SE_Landslides_2_D22\point_cloud\tilecls","\.laz","points",3834,780118278489,109689749347,FALSE,468293.48,518936.82,887876.17,882760.64,"","COMPOUNDCRS[""NAD83(2011) / Alaska zone 1 + NAVD88 height - Geoid12B (m)"",
+    PROJCRS[""NAD83(2011) / Alaska zone 1"",
+        BASEGEOGCRS[""NAD83(2011)"",
+            DATUM[""NAD83 (National Spatial Reference System 2011)"",
+                ELLIPSOID[""GRS 1980"",6378137,298.257222101,
+                    LENGTHUNIT[""metre"",1]]],
+            PRIMEM[""Greenwich"",0,
+                ANGLEUNIT[""degree"",0.0174532925199433]],
+            ID[""EPSG"",6318]],
+        CONVERSION[""unnamed"",
+            METHOD[""Hotine Oblique Mercator (variant A)"",
+                ID[""EPSG"",9812]],
+            PARAMETER[""Latitude of projection centre"",57,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8811]],
+            PARAMETER[""Longitude of projection centre"",-133.666666666667,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8812]],
+            PARAMETER[""Azimuth of initial line"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8813]],
+            PARAMETER[""Angle from Rectified to Skew Grid"",323.130102361111,
+                ANGLEUNIT[""degree"",0.0174532925199433],
+                ID[""EPSG"",8814]],
+            PARAMETER[""Scale factor on initial line"",0.9999,
+                SCALEUNIT[""unity"",1],
+                ID[""EPSG"",8815]],
+            PARAMETER[""False easting"",5000000,
+                LENGTHUNIT[""meter"",1],
+                ID[""EPSG"",8806]],
+            PARAMETER[""False northing"",-5000000,
+                LENGTHUNIT[""meter"",1],
+                ID[""EPSG"",8807]]],
+        CS[Cartesian,2],
+            AXIS[""x"",east,
+                ORDER[1],
+                LENGTHUNIT[""meter"",1]],
+            AXIS[""y"",north,
+                ORDER[2],
+                LENGTHUNIT[""meter"",1]],
+        ID[""EPSG"",6394]],
+    VERTCRS[""NAVD88 height - Geoid12B (m)"",
+        VDATUM[""North American Vertical Datum 1988""],
+        CS[vertical,1],
+            AXIS[""up"",up,
+                LENGTHUNIT[""meter"",1]],
+        GEOIDMODEL[""GEOID12B""],
+        ID[""EPSG"",5703]]]"
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2023sUAS\R10_RainbowFalls\outputs\pointclouds","\.las","points",231,52849840937,1056986992,TRUE,663442.933,6255259.618,665623.695,6256928.404,"COMPD_CS[""NAD83(2011) / UTM zone 8N + NAVD88 height - Geoid12B (Meters)"",PROJCS[""NAD83(2011) / UTM zone 8N"",GEOGCS[""NAD83(2011)"",DATUM[""NAD83_National_Spatial_Reference_System_2011"",SPHEROID[""GRS 1980"",6378137,298.257222101,AUTHORITY[""EPSG"",""7019""]],AUTHORITY[""EPSG"",""1116""]],PRIMEM[""Greenwich"",0,AUTHORITY[""EPSG"",""8901""]],UNIT[""degree"",0.0174532925199433,AUTHORITY[""EPSG"",""9122""]],AUTHORITY[""EPSG"",""6318""]],PROJECTION[""Transverse_Mercator""],PARAMETER[""latitude_of_origin"",0],PARAMETER[""central_meridian"",-135],PARAMETER[""scale_factor"",0.9996],PARAMETER[""false_easting"",500000],PARAMETER[""false_northing"",0],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Easting"",EAST],AXIS[""Northing"",NORTH],AUTHORITY[""EPSG"",""6337""]],VERT_CS[""NAVD88 height - Geoid12B (Meters)"",VERT_DATUM[""North American Vertical Datum 1988"",2005,AUTHORITY[""EPSG"",""5103""]],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""Gravity-related height"",UP],AUTHORITY[""EPSG"",""5703""]]]",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2023Wrangell_DGGS\rdf2023_028_lidar-wrangell-2023-classified_points\classified_points\LAS","\.las","points",656,1064929317024,35497610576,TRUE,660193.916,6222623.226,691420.578,6264259.637,"PROJCRS[""NAD83(2011) / UTM zone 8N"",BASEGEOGCRS[""NAD83(2011)"",DATUM[""NAD83 (National Spatial Reference System 2011)"",ELLIPSOID[""GRS 1980"",6378137,298.2572221,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",7019]],ID[""EPSG"",1116]],ID[""EPSG"",6318]],CONVERSION[""UTM zone 8N"",METHOD[""Transverse Mercator"",ID[""EPSG"",9807]],PARAMETER[""Latitude of natural origin"",0,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Longitude of natural origin"",-135,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Scale factor at natural origin"",0.9996,SCALEUNIT[""unity"",1,ID[""EPSG"",9201]]],PARAMETER[""False easting"",500000,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],PARAMETER[""False northing"",0,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],ID[""EPSG"",16008]],CS[Cartesian,2,ID[""EPSG"",4400]],AXIS[""Easting (E)"",east],AXIS[""Northing (N)"",north],LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",6337]]",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2023Wrangell_DGGS\rdf2023_028_lidar-wrangell-2023-classified_points\classified_points\LAZ","\.laz","points",656,240455422495,35497610576,TRUE,660193.916,6222623.226,691420.578,6264259.637,"PROJCRS[""NAD83(2011) / UTM zone 8N"",BASEGEOGCRS[""NAD83(2011)"",DATUM[""NAD83 (National Spatial Reference System 2011)"",ELLIPSOID[""GRS 1980"",6378137,298.2572221,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",7019]],ID[""EPSG"",1116]],ID[""EPSG"",6318]],CONVERSION[""UTM zone 8N"",METHOD[""Transverse Mercator"",ID[""EPSG"",9807]],PARAMETER[""Latitude of natural origin"",0,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Longitude of natural origin"",-135,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Scale factor at natural origin"",0.9996,SCALEUNIT[""unity"",1,ID[""EPSG"",9201]]],PARAMETER[""False easting"",500000,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],PARAMETER[""False northing"",0,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],ID[""EPSG"",16008]],CS[Cartesian,2,ID[""EPSG"",4400]],AXIS[""Easting (E)"",east],AXIS[""Northing (N)"",north],LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",6337]]",""
+"T:\FS\Reference\RSImagery\ProcessedData\r10_tnf\RSImagery\Geo\DEM\LiDAR\2024Wrangell_DGGS\rdf2024_001_wrangell-11-28-29-2023-classified_pts\data\classified_points","\.laz","points",100,21044745272,3288901667,TRUE,660407.825,6242813.223,668964.721,6263752.872,"PROJCRS[""NAD83(2011) / UTM zone 8N"",BASEGEOGCRS[""NAD83(2011)"",DATUM[""NAD83 (National Spatial Reference System 2011)"",ELLIPSOID[""GRS 1980"",6378137,298.2572221,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",7019]],ID[""EPSG"",1116]],ID[""EPSG"",6318]],CONVERSION[""UTM zone 8N"",METHOD[""Transverse Mercator"",ID[""EPSG"",9807]],PARAMETER[""Latitude of natural origin"",0,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Longitude of natural origin"",-135,ANGLEUNIT[""degree"",0.0174532925199433,ID[""EPSG"",9102]]],PARAMETER[""Scale factor at natural origin"",0.9996,SCALEUNIT[""unity"",1,ID[""EPSG"",9201]]],PARAMETER[""False easting"",500000,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],PARAMETER[""False northing"",0,LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]]],ID[""EPSG"",16008]],CS[Cartesian,2,ID[""EPSG"",4400]],AXIS[""Easting (E)"",east],AXIS[""Northing (N)"",north],LENGTHUNIT[""metre"",1,ID[""EPSG"",9001]],ID[""EPSG"",6337]]",""

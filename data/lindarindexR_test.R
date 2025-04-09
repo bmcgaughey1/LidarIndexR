@@ -2,7 +2,8 @@
 # file in the repo but it causes problems if the flag is set to TRUE. I run the commands manually
 # for each area.
 #
-# ***** this is the code that actually builds the index files
+# ***** this is the code that actually builds the index files. It gets run for each area or parent folder
+# See addCRS.R for the post-processing steps to deal with missing CRS.
 #
 # you have to get the list of folders with point files using the ScanLocalFiles program (compiled C++)
 # for R3 data stored on GTAC NAS and mounted as Q:, this is the command:
@@ -13,10 +14,10 @@ if (Test) {
   library(LidarIndexR)
   library(tools)
   
-  # outputFolder <- "h:\\R6_IndexFiles\\"
-  # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r06/R06_DRM_Deliverables/PointCloud/"
-  # folderList <- "data/TDrive_R6_FileList.csv"
-  # summaryCSVFile <- "Documents/R6IndexEntries.csv"
+  outputFolder <- "h:\\R6_IndexFiles\\"
+  rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r06/R06_DRM_Deliverables/PointCloud/"
+  folderList <- "data/TDrive_R6_FileList.csv"
+  summaryCSVFile <- "Documents/R6_IndexEntries.csv"
   # outputFolder <- "h:\\R10_TNF_IndexFiles\\"
   # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_tnf/RSImagery/Geo/DEM/LiDAR/"
   # folderList <- "data/R10_TNF_FileList.csv"
@@ -25,10 +26,10 @@ if (Test) {
   # rootFolder <- "T:/FS/Reference/RSImagery/ProcessedData/r10_cnf/RSImagery/Geo/DEM/LIDAR/"
   # folderList <- "data/R10_CNF_FileList.csv"
   # summaryCSVFile <- "Documents/R10_CNF_IndexEntries.csv"
-  outputFolder <- "h:\\R3_IndexFiles\\"
-  rootFolder <- "q:"
-  folderList <- "data/R3_FileList.csv"
-  summaryCSVFile <- "Documents/R3_IndexEntries.csv"
+  # outputFolder <- "h:\\R3_IndexFiles\\"
+  # rootFolder <- "q:"
+  # folderList <- "data/R3_FileList.csv"
+  # summaryCSVFile <- "Documents/R3_IndexEntries.csv"
   
   slashReplacement <- "_][_"
   
@@ -86,6 +87,8 @@ if (Test) {
   
   write.csv(df, summaryCSVFile, row.names = FALSE)
   
+  # df <- read.csv(summaryCSVFile, stringsAsFactors = FALSE)
+  
   # summary information
   df3DEP <- df[grepl("3dep", tolower(df$base)),]
   if (nrow(df3DEP) > 0) {
@@ -98,9 +101,9 @@ if (Test) {
   # build shapefiles using the wrapping polygon ("boundary" layer). These can be easily 
   # loaded in GIS to look for overlap with USGS 3DEP holdings.
   outputFolder <- "h:\\R6_IndexFiles\\"
-  # outputFolder <- "h:\\R10_TNF_IndexFiles\\"
-  # outputFolder <- "h:\\R10_CNF_IndexFiles\\"
-  # outputFolder <- "h:\\R3_IndexFiles\\"
+  #outputFolder <- "h:\\R10_TNF_IndexFiles\\"
+  #outputFolder <- "h:\\R10_CNF_IndexFiles\\"
+  #outputFolder <- "h:\\R3_IndexFiles\\"
   
   shpFolder <- paste0(outputFolder, "Shapefiles\\")
   
@@ -116,6 +119,41 @@ if (Test) {
     
     writeVector(bb, paste0(shpFolder, file_path_sans_ext(basename(file)), ".shp"), overwrite = TRUE)
   }
+  
+  
+  
+  
+  
+  # folder <- "H:/R6_IndexFiles"
+  # folder <- "h:/R10_TNF_IndexFiles"
+  # folder <- "h:/R10_CNF_IndexFiles"
+  # folder <- "H:/R3_IndexFiles"
+  # 
+  # files <- list.files(folder, "\\.gpkg", full.names = TRUE, ignore.case = TRUE)
+  # 
+  # # special code to fix min/max values in index gpkg...then need to rerun the shapefiles
+  # fixMinMax <- function(index) {
+  #   bb <- vect(index, layer = "boundingbox")
+  #   wb <- vect(index, layer = "boundary")
+  #   ass <- vect(index, layer = "assets")
+  # 
+  #   t <- bb$miny
+  #   bb$miny <- bb$maxx
+  #   bb$maxx <- t
+  #   
+  #   t <- wb$miny
+  #   wb$miny <- wb$maxx
+  #   wb$maxx <- t
+  #   
+  #   # write new index (overwrite)
+  #   writeVector(bb, index, layer = "boundingbox", overwrite = TRUE)
+  #   writeVector(wb, index, layer = "boundary", overwrite = TRUE, insert = TRUE)
+  #   writeVector(ass, index, layer = "assets", overwrite = TRUE, insert = TRUE)
+  # }
+  # 
+  # for (file in files) {
+  #   fixMinMax(file)
+  # }
 }
 
 
